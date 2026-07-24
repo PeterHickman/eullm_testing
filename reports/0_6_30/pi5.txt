@@ -1,0 +1,65 @@
+OS: Debian GNU/Linux 12 (bookworm) aarch64
+Host: Raspberry Pi 5 Model B Rev 1.1
+Kernel: 6.12.93+rpt-rpi-2712
+CPU: (4) @ 2.400GHz
+Memory: 493MiB / 8063MiB
+
+
+eullm 0.6.30 (CPU)
+
+
+NAME                         SIZE   VRAM STATUS           DESCRIPTION
+smollm2-1.7b                1.1GB    2GB  ready            SmolLM2 1.7B Instruct
+qwen3-4b                    2.5GB    4GB  ready            Qwen3 4B Instruct
+deepseek-r1-distill-14b     9.0GB   12GB  ready            DeepSeek R1 Distill (Qwen-14B)
+gemma-4-e4b                 5.0GB    8GB  ready            Gemma 4 E4B Instruct (vision-capable)
+qwen3-0.6b                500.0MB    2GB  ready            Qwen3 0.6B Instruct
+
+Run one with: eullm run <NAME>   (e.g. eullm run smollm2-1.7b)
+
+
+eullm daemon started (PID 1573).
+  PID file: /tmp/eullm.pid
+  Log file: /tmp/eullm.log
+  Stop with: kill 1573
+
+
+TESTING http://localhost:11434/api/chat with simple query
+
+The server is running
+{"created_at":"2026-07-22T15:57:13.285867923+00:00","done":true,"done_reason":"stop","eval_count":221,"eval_duration":51607000000,"load_duration":0,"message":{"content":"<think>\nOkay, the user said \"Hello!\" and I need to respond appropriately. Let me think about how to approach this.\n\nFirst, I should acknowledge their greeting in a friendly manner. Maybe say \"Hello!\" back and offer assistance. Since they might have a question or need help, I should prompt them to ask anything they need. Keep it open-ended so they feel comfortable to share their needs.\n\nI should make sure the response is welcoming and not too formal. Use simple, conversational language. Also, check if there's any specific context I need to consider, but since it's just a greeting, probably not. Maybe add an emoji to keep it friendly, like a smiley face.\n\nWait, the user might be testing if I'm responsive or just want to start a conversation. So, my response should be quick and helpful. Let me structure it: greet them back, offer help, and ask what they need. Keep it concise but inviting.\n</think>\n\nHello!  How can I assist you today? Feel free to ask any questions or share what you need help with!","role":"assistant"},"model":"qwen3-4b","prompt_eval_count":10,"prompt_eval_duration":0,"total_duration":51607000000}
+
+TESTING http://localhost:11434/v1/chat/completions with simple query
+
+The server is running
+{"choices":[{"finish_reason":"stop","index":0,"message":{"content":"<think>\nOkay, the user said \"Hi!\" so I need to respond appropriately. Since they're just greeting me, a friendly and welcoming response is needed. Maybe start with a hello and ask how I can assist them. Keep it simple and open-ended to invite them to share what they need help with.\n\nI should make sure the tone is positive and approachable. Avoid any technical jargon or complex language since the user might not have a specific request yet. Just a basic greeting and an offer to help with anything they need.\n\nLet me check if there's any context I'm missing, but since the user only said \"Hi!\", there's no prior conversation. So stick to a standard greeting and prompt for their needs.\n</think>\n\nHello! How can I assist you today? ","role":"assistant"}}],"created":1784735869,"id":"chatcmpl-6985be60-eda0-4aa9-8e97-48d52b912e13","model":"qwen3-4b","object":"chat.completion","usage":{"completion_tokens":159,"prompt_tokens":10,"total_tokens":169}}
+
+TESTING http://localhost:11434/api/chat with longer query
+
+The server is running
+{"created_at":"2026-07-22T15:59:45.427135358+00:00","done":true,"done_reason":"stop","eval_count":489,"eval_duration":116008000000,"load_duration":0,"message":{"content":"<think>\nOkay, so the user is asking why 2 is considered a prime number even though all the other primes are odd. Let me think about this step by step.\n\nFirst, I need to recall what defines a prime number. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. So, the key here is that it should only be divisible by 1 and itself.\n\nNow, looking at 2: it's even. But wait, all other primes are odd. Let me check that. The prime numbers start from 2, then 3, 5, 7, 11, etc. So yes, after 2, they are all odd. But why is 2 special?\n\nI remember that 2 is the only even prime number. That's because if you take any other even number, like 4, 6, 8, etc., they can be divided by 2. So they aren't prime because they have divisors other than 1 and themselves. Therefore, the only even number that is prime is 2.\n\nBut wait, maybe the user is confused because they think all primes are odd? Let me make sure. If you check numbers greater than 2, any even number can't be prime except for 2 itself. So if we take an odd number and try to divide it by 2, it's not going to work unless the number is even. Wait, but all primes except 2 are odd because if you have an even number greater than 2, it's divisible by 2 and hence not prime. So that makes sense.\n\nSo maybe the user is wondering why 2 is considered a prime when all others are odd, but in reality, it's because 2 is the only even number that can't be divided by any other numbers except 1 and itself. Let me verify this with examples.\n\nTake 3: it's odd, divisors are 1 and 3. So that's prime. 4 is even, but divisible by 2, so not prime. 5 is odd, prime. 6 is even and divisible by 2 and 3. So yeah, the only even prime is 2.\n\nAnother thought: maybe the user is thinking that because all primes are odd, but 2 is even, so it's a special case","role":"assistant"},"model":"qwen3-4b","prompt_eval_count":23,"prompt_eval_duration":0,"total_duration":116008000000}
+
+TESTING http://localhost:11434/v1/chat/completions with longer query
+
+The server is running
+{"choices":[{"finish_reason":"stop","index":0,"message":{"content":"<think>\nOkay, so I need to figure out why 2 is considered a prime number even though all the other primes are odd. Hmm, let me start by recalling what a prime number is. From what I remember, a prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. So, for example, 2 is a prime because its only divisors are 1 and 2. But why is that different from the other numbers?\n\nWait, let me think about the definition again. The key point here is that a prime number has exactly two distinct positive divisors: 1 and itself. So if I take 2, the numbers that divide it are 1 and 2. If I check 3, its divisors are 1 and 3. Similarly, 5 is prime because only 1 and 5 divide it. But why does 2 stand out as the only even prime?\n\nWell, maybe because all other primes are odd. Let me think about how numbers work. If a number is even and greater than 2, it's divisible by 2, right? So if I take any even number that's not 2, like 4, 6, 8, etc., they are all divisible by 2. That means they have more than two divisors. For example, 4 can be divided by 1, 2, and 4. So that's three divisors. Therefore, they aren't prime.\n\nSo maybe the reason 2 is a prime is because it's the only even number that isn't divisible by any other number except 1 and itself. Let me check with another example. Take 6, which is even. It's divisible by 2 and 3. So it has divisors 1, 2, 3, 6. That's four divisors, so definitely not prime. But 2 is only divisible by 1 and 2, which are exactly the two required for a prime.\n\nWait, but why does that make it special? Because if you consider even numbers greater than 2, they can all be divided by 2. So the only even number that is prime must be 2 itself. Because if you have an even number greater than 2, then it's divisible by 2 and thus has divisors other than ","role":"assistant"}}],"created":1784736098,"id":"chatcmpl-c784d311-f407-4a2a-bea4-513d123505d0","model":"qwen3-4b","object":"chat.completion","usage":{"completion_tokens":489,"prompt_tokens":23,"total_tokens":512}}
+
+
+
+Server started with --cache-type-k q4_0 --cache-type-v q4_0
+
+eullm daemon started (PID 2041).
+  PID file: /tmp/eullm.pid
+  Log file: /tmp/eullm.log
+  Stop with: kill 2041
+
+
+TESTING http://localhost:11434/api/chat with longer query
+
+The server is running
+{"created_at":"2026-07-22T16:03:49.716741627+00:00","done":true,"done_reason":"stop","eval_count":489,"eval_duration":115563000000,"load_duration":0,"message":{"content":"<think>\nOkay, so I need to figure out why 2 is considered a prime number even though all the other primes are odd. Hmm, let me start by recalling what defines a prime number. From what I remember, a prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. So, for example, 2 is a prime because its only divisors are 1 and 2. But wait, why isn't it considered like the other primes? I know that numbers like 3, 5, 7, etc., are odd and prime. But 2 is even. So maybe the key here is that 2 is the only even prime number?\n\nBut why does that happen? Let me think. If I consider the definition again, primes are numbers greater than 1 that have no divisors other than 1 and themselves. So for 2, if we check its factors: 1 and 2. There's nothing in between. But since 2 is even, maybe that's why it's special? Let me check with another even number. For example, take 4. The factors of 4 are 1, 2, and 4. So since it has divisors other than 1 and itself (which is 2), then 4 isn't prime. That's why 2 is special because it can't be divided by any other number except 1 and itself.\n\nBut wait, maybe there's something about the even numbers in general. All even numbers are divisible by 2, right? So if a number is even and greater than 2, then it's divisible by 2, which would mean it has divisors other than 1 and itself. Therefore, the only even prime number is 2 because any other even number would have at least two factors: 1, itself, and 2. Hence, they can't be primes.\n\nLet me test that with another example. Take 6. It's even. Divisors of 6 are 1, 2, 3, 6. So obviously, not prime. Similarly, 8: divisors 1, 2, 4, 8. Not prime. So only 2 is the even number that's prime because it can't be divided by any other number except 1 and itself.\n\nWait,","role":"assistant"},"model":"qwen3-4b","prompt_eval_count":23,"prompt_eval_duration":0,"total_duration":115563000000}
+
+TESTING http://localhost:11434/v1/chat/completions with longer query
+
+The server is running
+{"choices":[{"finish_reason":"stop","index":0,"message":{"content":"<think>\nOkay, so the question is asking why 2 is a prime number when all the other primes are odd. Hmm, let me think about this. I remember that prime numbers are numbers greater than 1 that have no positive divisors other than 1 and themselves. So, the definition is key here.\n\nFirst, let me recall what prime numbers are. A prime number is a natural number greater than 1 that cannot be formed by multiplying two smaller natural numbers. So, for example, 2 is a prime because the only numbers that divide it are 1 and 2. But wait, 2 is even. All the other primes like 3, 5, 7, etc., are odd. So why is 2 special in that way?\n\nMaybe it's because of the definition itself? Let me check. The number 2 can only be divided by 1 and itself, right? If I try dividing 2 by any other number, like 3, that doesn't divide evenly. So it's only divisible by 1 and itself. But why is it even? Because if we consider the definition of prime numbers, they can be either even or odd. Wait, but there's only one even prime number, which is 2. All other primes are odd.\n\nWait, maybe it's because if we try to factor numbers, even numbers can be divided by 2. So 2 is the only even prime number because any other even number would have 2 as a divisor, making them not prime. For example, take 4: it's divisible by 2, so it's not prime. Similarly, 6 is divisible by 2 and 3, so it's not prime. Therefore, the only even number that is prime is 2 itself.\n\nSo maybe the reason is that all other even numbers are composite because they can be divided by 2. Therefore, since 2 cannot be divided by any number except 1 and itself, it's prime. But why isn't there another even number that is prime? Because if you have an even number greater than 2, like 4, 6, 8, etc., they can all be divided by 2. Therefore, none of them can be prime because they have a divisor other than 1 and themselves.\n\nSo, that's the key point here. The number 2 is even,","role":"assistant"}}],"created":1784736342,"id":"chatcmpl-52f1c43b-ba60-41cf-9b1e-d14050620626","model":"qwen3-4b","object":"chat.completion","usage":{"completion_tokens":489,"prompt_tokens":23,"total_tokens":512}}
