@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# Script created by qwen3.6:35b
+
+REPO_URL="https://github.com/eullm/eullm"
+DEST_DIR="./assets"
+
+# 1. Safely extract owner and repo using sed/cut (macOS/Linux compatible)
+OWNER=$(echo "$REPO_URL" | sed 's|https://github.com/||' | cut -d'/' -f1)
+REPO=$(echo "$REPO_URL" | sed 's|https://github.com/||' | cut -d'/' -f2)
+
+if [ -z "$OWNER" ] || [ -z "$REPO" ]; then
+    echo "❌ Error: Invalid GitHub URL format."
+    exit 1
+fi
+
+# Optional: Provide a Personal Access Token for private repos or to bypass rate limits
+GITHUB_TOKEN="${GITHUB_TOKEN:-}"
+AUTH_HEADER=""
+if [ ! -z "$GITHUB_TOKEN" ]; then
+    AUTH_HEADER="-H 'Authorization: Bearer $GITHUB_TOKEN'"
+fi
+
+echo "📥 Fetching assets from: https://github.com/$OWNER/$REPO/releases/latest"
+
+# 2. Fetch release JSON via GitHub API
+RELEASE_JSON=$(curl -s $AUTH_HEADER "https://api.github.com/repos/$OWNER/$REPO/releases/latest")
+
+if ! echo "$RELEASE_JSON" | jq empty 2>/dev/null; then
+    echo "❌ Error: Could not retrieve or parse release data. Check URL or token."
+    exit 1
+fi
+
+# 3. Create destination directory
+mkdir -p "$DEST_DIR"
+
+# 4. Extract download URLs and iterate
+ASSET_URLS=$(echo "$RELEASE_JSON" | jq -r '.assets[].browser_download_url')
+
+if [ -z "$ASSET_URLS" ]; then
+    echo "ℹ️ No artifacts found in the latest release."
+    exit 0
+fi
+
+COUNT=$(echo "$ASSET_URLS" | wc -l | xargs)
+echo "✅ Found $COUNT artifact(s). Starting download to: $DEST_DIR"
+echo "----------------------------------------"
+
+# 5. Download each asset
+echo "$ASSET_URLS" | while read -r url; do
+    filename=$(basename "$url")
+    echo "⏳ Downloading: $filename"
+    curl -L --progress-bar -o "$DEST_DIR/$filename" "$url" || echo "⚠️ Failed to download $filename"
+done
+
+echo "----------------------------------------"
+echo "🎉 Done! All artifacts saved in $(pwd)/$DEST_DIR"

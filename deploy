@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+
+def execute(cmd)
+  r = system(cmd)
+  return if r
+
+  puts "Command failed"
+  exit 1
+end
+
+config = YAML.load_file('config.yaml')
+
+host = ARGV.shift
+
+if host.nil?
+  puts "Specify a host to deploy to. From #{config.keys.sort.join(', ')}"
+  exit 1
+end
+
+unless config.key?(host)
+  puts "The host [#{host}] is not names in the config file. Only #{config.keys.sort.join(', ')}"
+  exit 1
+end
+
+execute "scp ./assets/#{config[host]['file']} #{config[host]['host']}:eullm"
+execute "scp test.sh #{config[host]['host']}:"
+execute "ssh #{config[host]['host']} sudo mv eullm /usr/local/bin/eullm"
+execute "ssh #{config[host]['host']} sudo chmod +x /usr/local/bin/eullm"
+execute "ssh #{config[host]['host']} sudo chmod +x test.sh"
+execute "ssh #{config[host]['host']} ./test.sh > ./report.txt"
+execute "scp #{config[host]['host']}:report.txt #{config[host]['report']}"
+execute "ssh #{config[host]['host']} rm test.sh report.txt"

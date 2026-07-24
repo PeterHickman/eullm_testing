@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+current = `eullm -V`.split(/\s+/)[1]
+
+puts "==> Installed version is #{current}"
+
+l = []
+
+x = `git ls-remote --tags https://github.com/eullm/eullm`
+
+x.split("\n").each do |line|
+  tag = line.split('/').last
+  next unless tag.start_with?('EuLLM-v')
+  _, version, other = tag.split('-', 3)
+
+  # A fix
+  version.gsub!('v.', 'v')
+  major, minor, patch = version.split('.').map(&:to_i)
+
+  l << [major, minor, patch, "#{major}.#{minor}.#{patch}"]
+end
+
+latest = l.sort.last.last
+
+puts "==> Version on github is #{latest}"
+
+if current == latest
+  puts "All is well"
+else
+  puts "Go visit https://github.com/eullm/eullm/releases/latest"
+end

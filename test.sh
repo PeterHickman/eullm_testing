@@ -1,0 +1,122 @@
+#!/bin/sh
+
+export PATH=$PATH:/opt/homebrew/bin:/usr/local/bin
+
+NOT_OLLAMA=11435
+
+is_the_server_up() {
+  X=`ps a | grep '/usr/local/bin/eullm serve' | grep -v grep`
+
+  if [ -z "$X" ]; then
+    echo "ERROR: The server is not running"
+  else
+    echo "The server is running"
+  fi
+}
+
+is_the_server_down() {
+  X=`ps a | grep '/usr/local/bin/eullm serve' | grep -v grep`
+
+  if [ -z "$X" ]; then
+    echo "The server is not running"
+  else
+    echo "ERROR: The server is still running"
+  fi
+}
+
+to() {
+	is_the_server_up
+
+  timeout 10m "$@"
+  if [ $? -ne 0 ]; then
+    echo "ERROR: Process timed out after 10 minutes"
+  fi
+}
+
+if command -v fastfetch >/dev/null 2>&1
+then
+  fastfetch --logo none | egrep 'OS:|Host:|Kernel:|CPU:|GPU:|Memory:'
+fi
+
+if command -v neofetch > /dev/null 2>&1
+then
+  neofetch --off | egrep 'OS|Host|Kernel|CPU|Memory'
+fi
+
+echo
+echo
+
+eullm -V
+
+echo
+echo
+
+eullm list
+
+echo
+echo
+
+eullm serve --daemon --port ${NOT_OLLAMA} --pidfile /tmp/eullm.pid
+sleep 5
+
+echo
+echo
+
+echo TESTING http://localhost:${NOT_OLLAMA}/api/chat with simple query
+echo
+to curl -X POST http://localhost:${NOT_OLLAMA}/api/chat -H "Content-Type: application/json" -d '{"model":"qwen3-4b","messages":[{"role":"user","content":"Hello!"}],"stream":false}'
+
+echo
+echo
+
+echo TESTING http://localhost:${NOT_OLLAMA}/v1/chat/completions with simple query
+echo
+to curl -X POST http://localhost:${NOT_OLLAMA}/v1/chat/completions -H "Content-Type: application/json" -d '{"model":"qwen3-4b","messages":[{"role":"user","content":"Hi!"}]}'
+
+echo
+echo
+
+echo TESTING http://localhost:${NOT_OLLAMA}/api/chat with longer query
+echo
+to curl -X POST http://localhost:${NOT_OLLAMA}/api/chat -H "Content-Type: application/json" -d '{"model":"qwen3-4b","messages":[{"role":"user","content":"why is 2 a prime number when all the rest are odd numbers?"}],"stream":false}'
+
+echo
+echo
+
+echo TESTING http://localhost:${NOT_OLLAMA}/v1/chat/completions with longer query
+echo
+to curl -X POST http://localhost:${NOT_OLLAMA}/v1/chat/completions -H "Content-Type: application/json" -d '{"model":"qwen3-4b","messages":[{"role":"user","content":"why is 2 a prime number when all the rest are odd numbers?"}]}'
+
+echo
+echo
+
+kill -9 `cat /tmp/eullm.pid`
+sleep 10
+is_the_server_down
+echo
+echo
+
+echo Server started with --cache-type-k q4_0 --cache-type-v q4_0
+echo
+
+eullm serve --daemon --port ${NOT_OLLAMA} --pidfile /tmp/eullm.pid --cache-type-k q4_0 --cache-type-v q4_0
+sleep 5
+echo
+echo
+
+echo TESTING http://localhost:${NOT_OLLAMA}/api/chat with longer query
+echo
+to curl -X POST http://localhost:${NOT_OLLAMA}/api/chat -H "Content-Type: application/json" -d '{"model":"qwen3-4b","messages":[{"role":"user","content":"why is 2 a prime number when all the rest are odd numbers?"}],"stream":false}'
+
+echo
+echo
+
+echo TESTING http://localhost:${NOT_OLLAMA}/v1/chat/completions with longer query
+echo
+to curl -X POST http://localhost:${NOT_OLLAMA}/v1/chat/completions -H "Content-Type: application/json" -d '{"model":"qwen3-4b","messages":[{"role":"user","content":"why is 2 a prime number when all the rest are odd numbers?"}]}'
+
+echo
+echo
+
+kill -9 `cat /tmp/eullm.pid`
+sleep 5

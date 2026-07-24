@@ -1,0 +1,20 @@
+#!/bin/sh
+
+if [ ! -e ./assets/checksums.txt ]; then
+  echo "❌ The checksums.txt files has not been downloaded"
+  exit 1
+else
+  echo "✅ checksums.txt file ready for processing"
+fi
+
+cd assets
+sed 's/ .*\// /;' checksums.txt > checksums.new
+sha256sum -c checksums.new
+
+if [ $? -eq 0 ]; then
+  echo "✅ All the checksums are good"
+else
+  echo "❌ checksum errors"
+  exit 1
+fi
+cd ..
