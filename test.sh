@@ -5,7 +5,7 @@ export PATH=$PATH:/opt/homebrew/bin:/usr/local/bin
 NOT_OLLAMA=11435
 
 is_the_server_up() {
-  X=`ps a | grep '/usr/local/bin/eullm serve' | grep -v grep`
+  X=`ps ax | grep '/usr/local/bin/eullm serve' | grep -v grep`
 
   if [ -z "$X" ]; then
     echo "ERROR: The server is not running"
@@ -15,7 +15,7 @@ is_the_server_up() {
 }
 
 is_the_server_down() {
-  X=`ps a | grep '/usr/local/bin/eullm serve' | grep -v grep`
+  X=`ps ax | grep '/usr/local/bin/eullm serve' | grep -v grep`
 
   if [ -z "$X" ]; then
     echo "The server is not running"
