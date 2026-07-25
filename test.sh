@@ -33,6 +33,8 @@ to() {
   fi
 }
 
+eullm pull qwen3-0.6b
+
 if command -v fastfetch >/dev/null 2>&1
 then
   fastfetch --logo none | egrep 'OS:|Host:|Kernel:|CPU:|GPU:|Memory:'
@@ -64,28 +66,28 @@ echo
 
 echo TESTING http://localhost:${NOT_OLLAMA}/api/chat with simple query
 echo
-to curl -X POST http://localhost:${NOT_OLLAMA}/api/chat -H "Content-Type: application/json" -d '{"model":"qwen3-4b","messages":[{"role":"user","content":"Hello!"}],"stream":false}'
+to curl -X POST http://localhost:${NOT_OLLAMA}/api/chat -H "Content-Type: application/json" -d '{"model":"qwen3-0.6b","messages":[{"role":"user","content":"Hello!"}],"stream":false}'
 
 echo
 echo
 
 echo TESTING http://localhost:${NOT_OLLAMA}/v1/chat/completions with simple query
 echo
-to curl -X POST http://localhost:${NOT_OLLAMA}/v1/chat/completions -H "Content-Type: application/json" -d '{"model":"qwen3-4b","messages":[{"role":"user","content":"Hi!"}]}'
+to curl -X POST http://localhost:${NOT_OLLAMA}/v1/chat/completions -H "Content-Type: application/json" -d '{"model":"qwen3-0.6b","messages":[{"role":"user","content":"Hi!"}]}'
 
 echo
 echo
 
 echo TESTING http://localhost:${NOT_OLLAMA}/api/chat with longer query
 echo
-to curl -X POST http://localhost:${NOT_OLLAMA}/api/chat -H "Content-Type: application/json" -d '{"model":"qwen3-4b","messages":[{"role":"user","content":"why is 2 a prime number when all the rest are odd numbers?"}],"stream":false}'
+to curl -X POST http://localhost:${NOT_OLLAMA}/api/chat -H "Content-Type: application/json" -d '{"model":"qwen3-0.6b","messages":[{"role":"user","content":"why is 2 a prime number when all the rest are odd numbers?"}],"stream":false}'
 
 echo
 echo
 
 echo TESTING http://localhost:${NOT_OLLAMA}/v1/chat/completions with longer query
 echo
-to curl -X POST http://localhost:${NOT_OLLAMA}/v1/chat/completions -H "Content-Type: application/json" -d '{"model":"qwen3-4b","messages":[{"role":"user","content":"why is 2 a prime number when all the rest are odd numbers?"}]}'
+to curl -X POST http://localhost:${NOT_OLLAMA}/v1/chat/completions -H "Content-Type: application/json" -d '{"model":"qwen3-0.6b","messages":[{"role":"user","content":"why is 2 a prime number when all the rest are odd numbers?"}]}'
 
 echo
 echo
@@ -106,14 +108,14 @@ echo
 
 echo TESTING http://localhost:${NOT_OLLAMA}/api/chat with longer query
 echo
-to curl -X POST http://localhost:${NOT_OLLAMA}/api/chat -H "Content-Type: application/json" -d '{"model":"qwen3-4b","messages":[{"role":"user","content":"why is 2 a prime number when all the rest are odd numbers?"}],"stream":false}'
+to curl -X POST http://localhost:${NOT_OLLAMA}/api/chat -H "Content-Type: application/json" -d '{"model":"qwen3-0.6b","messages":[{"role":"user","content":"why is 2 a prime number when all the rest are odd numbers?"}],"stream":false}'
 
 echo
 echo
 
 echo TESTING http://localhost:${NOT_OLLAMA}/v1/chat/completions with longer query
 echo
-to curl -X POST http://localhost:${NOT_OLLAMA}/v1/chat/completions -H "Content-Type: application/json" -d '{"model":"qwen3-4b","messages":[{"role":"user","content":"why is 2 a prime number when all the rest are odd numbers?"}]}'
+to curl -X POST http://localhost:${NOT_OLLAMA}/v1/chat/completions -H "Content-Type: application/json" -d '{"model":"qwen3-0.6b","messages":[{"role":"user","content":"why is 2 a prime number when all the rest are odd numbers?"}]}'
 
 echo
 echo
