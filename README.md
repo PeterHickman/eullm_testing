@@ -19,6 +19,6 @@ To see what is available run `./latest_tags`
 
 When a new release becomes available you need to:
 
-1. Run `./download` to get all the assets into th `assets` directory
+1. Run `./download` to get all the assets into the `assets` directory
 2. Run `./checksums` to check that the download worked correctly
 3. For each test server run `./deploy XXX` where `XXX` is the test host
