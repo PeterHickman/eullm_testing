@@ -33,7 +33,24 @@ to() {
   fi
 }
 
-eullm pull qwen3-0.6b
+start_server() {
+  [ -e /tmp/eullm.log ] && rm /tmp/eullm.log
+
+  echo "Server started with --port ${NOT_OLLAMA} ${SERVER_ARGS}"
+
+  eullm serve --daemon --port ${NOT_OLLAMA} ${SERVER_ARGS}
+  sleep 5
+}
+
+dump_log() {
+  echo
+  echo "== Dumping server log /tmp/eullm.log after server shutdown"
+  echo
+  cat /tmp/eullm.log
+  echo
+  echo "== End of dump"
+  echo
+}
 
 if command -v fastfetch >/dev/null 2>&1
 then
@@ -58,8 +75,8 @@ eullm list
 echo
 echo
 
-eullm serve --daemon --port ${NOT_OLLAMA} --pidfile /tmp/eullm.pid
-sleep 5
+SERVER_ARGS="--rust-debug --batch-size 4"
+start_server
 
 echo
 echo
@@ -98,13 +115,10 @@ is_the_server_down
 echo
 echo
 
-echo Server started with --cache-type-k q4_0 --cache-type-v q4_0
-echo
+dump_log
 
-eullm serve --daemon --port ${NOT_OLLAMA} --pidfile /tmp/eullm.pid --cache-type-k q4_0 --cache-type-v q4_0
-sleep 5
-echo
-echo
+SERVER_ARGS="--rust-debug --batch-size 4 --cache-type-k q4_0 --cache-type-v q4_0"
+start_server
 
 echo TESTING http://localhost:${NOT_OLLAMA}/api/chat with longer query
 echo
@@ -122,3 +136,5 @@ echo
 
 kill -9 `cat /tmp/eullm.pid`
 sleep 5
+
+dump_log
