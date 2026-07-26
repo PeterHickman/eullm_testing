@@ -52,19 +52,6 @@ dump_log() {
   echo
 }
 
-# if command -v fastfetch >/dev/null 2>&1
-# then
-#   fastfetch --logo none | egrep 'OS:|Host:|Kernel:|CPU:|GPU:|Memory:'
-# fi
-#
-# if command -v neofetch > /dev/null 2>&1
-# then
-#   neofetch --off | egrep 'OS|Host|Kernel|CPU|Memory'
-# fi
-
-echo
-echo
-
 eullm -V
 
 echo
@@ -75,7 +62,7 @@ eullm list
 echo
 echo
 
-SERVER_ARGS="--rust-debug --batch-size 4"
+SERVER_ARGS="--rust-debug --batch-size 4 --no-flash-attn"
 start_server
 
 echo
@@ -117,7 +104,7 @@ echo
 
 dump_log
 
-SERVER_ARGS="--rust-debug --batch-size 4 --cache-type-k q4_0 --cache-type-v q4_0"
+SERVER_ARGS="--rust-debug --batch-size 4 --cache-type-k q4_0 --cache-type-v q4_0 --no-flash-attn"
 start_server
 
 echo TESTING http://localhost:${NOT_OLLAMA}/api/chat with longer query
