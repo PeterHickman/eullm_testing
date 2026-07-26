@@ -52,15 +52,15 @@ dump_log() {
   echo
 }
 
-if command -v fastfetch >/dev/null 2>&1
-then
-  fastfetch --logo none | egrep 'OS:|Host:|Kernel:|CPU:|GPU:|Memory:'
-fi
-
-if command -v neofetch > /dev/null 2>&1
-then
-  neofetch --off | egrep 'OS|Host|Kernel|CPU|Memory'
-fi
+# if command -v fastfetch >/dev/null 2>&1
+# then
+#   fastfetch --logo none | egrep 'OS:|Host:|Kernel:|CPU:|GPU:|Memory:'
+# fi
+#
+# if command -v neofetch > /dev/null 2>&1
+# then
+#   neofetch --off | egrep 'OS|Host|Kernel|CPU|Memory'
+# fi
 
 echo
 echo
