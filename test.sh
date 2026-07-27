@@ -25,12 +25,16 @@ is_the_server_down() {
 }
 
 to() {
-	is_the_server_up
+  echo "TEST_START"
+
+  is_the_server_up
 
   timeout 10m "$@"
   if [ $? -ne 0 ]; then
     echo "ERROR: Process timed out after 10 minutes"
   fi
+
+  echo "TEST_END"
 }
 
 start_server() {
