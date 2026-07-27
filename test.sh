@@ -34,6 +34,7 @@ to() {
     echo "ERROR: Process timed out after 10 minutes"
   fi
 
+  echo
   echo "TEST_END"
 }
 
