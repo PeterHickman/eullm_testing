@@ -24,6 +24,10 @@ def check_block(filename, counter, block)
     errors << 'The server raised some errors'
   end
 
+  if block.select { |l| l.include?('Process timed out after') }.any?
+    errors << 'The curl request timed out'
+  end
+
   if errors.any?
     puts "==> #{filename}"
     errors.each do |e|
