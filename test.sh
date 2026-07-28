@@ -57,6 +57,35 @@ dump_log() {
   echo
 }
 
+sys_info() {
+  HOST=`uname`
+
+  if [ ${HOST} = 'Darwin' ]; then
+    #!/bin/bash
+
+    # --- Gather System Info ---
+    OS_NAME="macOS $(sw_vers -productVersion)"
+    KERNEL_VER=$(uname -r | awk '{print $1}')
+    CPU_MODEL=$(sysctl -n machdep.cpu.brand_string 2>/dev/null || sysctl -n cpufamily)
+
+    # GPU: system_profiler can be slow, so we suppress stderr and clean up whitespace
+    GPU_INFO=$(system_profiler SPDisplaysDataType 2>/dev/null | grep "Chipset Model:" | awk '{for(i=3;i<=NF;i++) printf "%s ", $i; print ""}' | sed 's/ *$//')
+
+    # Memory: Uses sysctl for universal macOS compatibility
+    MEM_TOTAL=$(sysctl -n hw.memsize | awk '{printf "%.1f GiB", $1/1024/1024/1024}')
+
+    # --- Display Info ---
+    printf "OS:      %s\n" "$OS_NAME"
+    printf "Kernel:  %s\n" "$KERNEL_VER"
+    printf "CPU:     %s\n" "$CPU_MODEL"
+    printf "GPU:     %s\n" "$GPU_INFO"
+    printf "Memory:  %s\n" "$MEM_TOTAL"
+    echo ""
+  fi
+}
+
+sys_info
+
 eullm -V
 
 echo
