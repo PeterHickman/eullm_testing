@@ -43,7 +43,7 @@ start_server() {
 
   echo "Server started with --port ${NOT_OLLAMA} ${SERVER_ARGS}"
 
-  eullm serve --daemon --port ${NOT_OLLAMA} ${SERVER_ARGS}
+  eullm serve --daemon --port ${NOT_OLLAMA} --pidfile /tmp/eullm.pid ${SERVER_ARGS}
   sleep 5
 }
 
