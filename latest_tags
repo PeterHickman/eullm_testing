@@ -17,7 +17,10 @@ x.split("\n").each do |line|
   version.gsub!('v.', 'v')
   major, minor, patch = version.split('.').map(&:to_i)
 
-  l << [major, minor, patch, "#{major}.#{minor}.#{patch}"]
+  name = "#{major}.#{minor}.#{patch}"
+  name += "-#{other}" if other
+
+  l << [major, minor, patch, other||'', name]
 end
 
 latest = l.sort.last.last
