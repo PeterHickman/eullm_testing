@@ -35,7 +35,7 @@ fi
 mkdir -p "$DEST_DIR"
 
 # 4. Extract download URLs and iterate
-ASSET_URLS=$(echo "$RELEASE_JSON" | jq -r '.assets[].browser_download_url')
+ASSET_URLS=$(echo "$RELEASE_JSON" | jq -r '.assets[].browser_download_url' | grep -v cuda)
 
 if [ -z "$ASSET_URLS" ]; then
     echo "ℹ️ No artifacts found in the latest release."
