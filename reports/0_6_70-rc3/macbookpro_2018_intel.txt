@@ -1,0 +1,1651 @@
+OS:      macOS 15.7.7
+Kernel:  24.6.0
+CPU:     Intel(R) Core(TM) i9-8950HK CPU @ 2.90GHz
+GPU:     Intel UHD Graphics 630
+Radeon Pro 560X
+Memory:  32.0 GiB
+
+eullm 0.6.70-rc3 (CPU)
+
+
+Models in /Users/peterhickman/.eullm/models [default]
+
+NAME                         SIZE   VRAM STATUS           DESCRIPTION
+qwen3-0.6b                500.0MB    2GB  ready            Qwen3 0.6B Instruct
+smollm2-1.7b                1.1GB    2GB  ready            SmolLM2 1.7B Instruct
+deepseek-r1-distill-14b     9.0GB   12GB  ready            DeepSeek R1 Distill (Qwen-14B)
+gemma-4-e4b                 5.0GB    8GB  ready            Gemma 4 E4B Instruct (vision-capable)
+qwen3-4b                    2.5GB    4GB  ready            Qwen3 4B Instruct
+
+Run one with: eullm run <NAME>   (e.g. eullm run qwen3-0.6b)
+
+
+Server started with --port 11435 --rust-debug --batch-size 4 --no-flash-attn
+eullm daemon started (PID 487).
+  PID file: /tmp/eullm.pid
+  Log file: /tmp/eullm.log
+  Stop with: kill 487
+
+
+TESTING http://localhost:11435/api/chat with simple query
+
+TEST_START
+The server is running
+{"created_at":"2026-07-31T16:50:07.120788+00:00","done":true,"done_reason":"stop","eval_count":104,"eval_duration":2252000000,"load_duration":0,"message":{"content":"<think>\nOkay, the user just said \"Hello!\" so I need to respond. Let me start by acknowledging their greeting. Maybe say \"Hello! How can I assist you today?\" That's friendly and opens the door for questions.\n\nI should check if there are any other things they might need. The response needs to be concise but helpful. No markdown, so just plain text. Let me make sure it's polite and in line with the user's intent.\n</think>\n\nHello! How can I assist you today?","role":"assistant"},"model":"qwen3-0.6b","prompt_eval_count":10,"prompt_eval_duration":0,"total_duration":2252000000}
+TEST_END
+
+
+TESTING http://localhost:11435/v1/chat/completions with simple query
+
+TEST_START
+The server is running
+{"choices":[{"finish_reason":"stop","index":0,"message":{"content":"<think>\nOkay, the user said \"Hi!\" so I need to respond politely. Since they're just greeting me, a simple 'Hello!' is appropriate. Let me check if there's any specific context I should include, but since the conversation hasn't started, just a friendly greeting should suffice.\n</think>\n\nHello! How can I assist you today? ","role":"assistant"}}],"created":1785516608,"id":"chatcmpl-01c446ab-63ca-4d5e-84b3-e875bcb6f732","model":"qwen3-0.6b","object":"chat.completion","usage":{"completion_tokens":73,"prompt_tokens":10,"total_tokens":83}}
+TEST_END
+
+
+TESTING http://localhost:11435/api/chat with longer query
+
+TEST_START
+The server is running
+{"created_at":"2026-07-31T16:50:32.341247+00:00","done":true,"done_reason":"length","eval_count":1001,"eval_duration":23539000000,"load_duration":0,"message":{"content":"<think>\nOkay, so I need to figure out why 2 is considered a prime number even though all the other odd numbers are also primes. Let me start by recalling what a prime number is. From what I remember, a prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. So primes are numbers like 2, 3, 5, 7, etc., which are only divisible by 1 and themselves.\n\nBut the question is why 2 is considered a prime even though all other odd numbers (like 3, 5, etc.) are also primes. Wait, maybe I'm misunderstanding the question? Let me think again. Are all the other odd numbers prime as well? Yes, they are. So why isn't 2 a composite number?\n\nAh! Wait, maybe there's confusion between primes and composites here. A prime is a number that has only two positive divisors: 1 and itself. So when we say \"all the rest are odd numbers,\" does that mean all other primes except 2? Because 3 is a prime, so 3 is an example of a composite number. So why isn't 2 considered a composite?\n\nWait, no! Hold on. If all other odd numbers are primes, then 2 must be a prime as well. So why is there confusion? Maybe I'm misunderstanding the term \"rest.\" If all the other numbers are odd, but they include primes like 3 and 5. So even though all of them are odd, they are not considered composite because they have only two divisors.\n\nBut wait, the question is why 2 is a prime when all the rest (which are odd) are primes. That seems contradictory because both 2 and 3 are primes. Unless there's some other aspect I'm missing here.\n\nWait, let me check again. The question is phrased as \"why is 2 a prime number when all the rest are odd numbers?\" Maybe there's a misunderstanding in how primes are defined. Let me check the definition again.\n\nA prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. So primes are numbers like 2, 3, 5, etc. So 2 is prime because it's a prime number. The other odd numbers (like 3, 5) are also primes. Therefore, the confusion might be about whether \"rest\" includes both even and odd numbers or just all the other odd ones.\n\nWait, maybe there's a translation issue or terminology problem. Let me check again. The question says \"why is 2 a prime number when all the rest are odd numbers?\" So if \"rest\" refers to the other numbers besides 2, which would be all the odds. But since they include primes like 3 and 5, then even though they are odd, they are still primes.\n\nSo maybe there's a misunderstanding here. Perhaps the question is trying to say that all odd numbers except 2 are prime, and so why isn't 2 considered composite? But according to definitions, both 2 and 3 (and others) are primes. Therefore, the confusion might stem from whether \"rest\" includes 2 or not.\n\nAlternatively, maybe there's a misunderstanding in how we classify numbers. For example, primes can be even? Wait, no, the definition of a prime number is that they are greater than 1 and have no divisors other than 1 and themselves. So even numbers like 2, which is the smallest, are primes. All other odd numbers (3, 5) are also primes.\n\nTherefore, there seems to be no confusion here. The question might have a typo or mistranslation, but according to standard definitions, 2 is indeed a prime number even though all other odd numbers are primes. Therefore, the answer should explain that both 2 and all other odd numbers (which include primes) are considered prime numbers.\n\nWait, but maybe there's something else. Let me think of examples. For example, take the number 4: it's even and composite, so not prime. Take 5: prime. Take 6: composite. So all other odd numbers (except 2) are primes. Therefore, even though they are odd and include primes like 3 and 5, they still qualify as primes.\n\nTherefore, the confusion might not exist. The answer is that both 2 and all other odd numbers (which include primes) are prime numbers. So why is it said \"when all the rest are odd\"? Because they are, but since they are primes, 2 also qualifies.\n\nSo to summarize: 2 is prime because it meets the definition of a prime number. All other odd numbers (3, 5, etc.) are also primes. Therefore, there's no confusion here;","role":"assistant"},"model":"qwen3-0.6b","prompt_eval_count":23,"prompt_eval_duration":0,"total_duration":23539000000}
+TEST_END
+
+
+TESTING http://localhost:11435/v1/chat/completions with longer query
+
+TEST_START
+The server is running
+{"choices":[{"finish_reason":"length","index":0,"message":{"content":"<think>\nOkay, so the question is why 2 is considered a prime number when all the other numbers are odd. Hmm, let me think about this.\n\nFirst, I remember that primes are numbers greater than 1 that have no divisors other than 1 and themselves. So, the definition is straightforward: a prime number is a number that can only be divided by 1 and itself. Now, I need to figure out why 2 is considered a prime when most other numbers are odd.\n\nLet me start by recalling some basic definitions. The number 2 is the smallest prime, right? And it's even, which makes sense because any even number greater than 2 is not a prime. Wait, but why does this matter here? The question is asking specifically about the reason that 2 is considered a prime even though all other numbers are odd.\n\nAh! Maybe there's a misunderstanding. Let me check: when they say \"all the rest,\" do they mean all numbers except 2? Or is it possible that I'm misinterpreting something else?\n\nWait, if we consider even numbers greater than 2, they are not primes. For example, 4, 6, 8, etc., all have divisors other than 1 and themselves, like 2. So if someone says \"all the rest are odd numbers,\" does that mean only those numbers? But then why is 2 considered a prime?\n\nWait, maybe I'm overcomplicating. Let me look up the definition of prime again. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. So, for example, 2's only positive divisors are 1 and itself. Since it is greater than 1, it qualifies as a prime.\n\nSo why does this matter? Maybe the question is phrased in a way that suggests confusion between primes and other numbers. Wait, maybe there's a misunderstanding here. If someone says \"all the rest are odd,\" but 2 is even and not prime, then that would be confusing.\n\nWait, perhaps there's a confusion between parity. Let me think again. The number 2 is even, but it has no factors other than itself and 1. Since it's greater than 1, it's a prime. So the reason why 2 is considered a prime even though all other numbers are odd is because of its definition and properties.\n\nBut maybe there's another angle. For example, if someone thinks that primes have to be even or something else? No, that doesn't seem right. Primes are defined in terms of their divisors and being greater than 1.\n\nAlternatively, perhaps the question is a trick question? Like, when you say \"all the rest are odd numbers,\" but if 2 is even, then why does it count as a prime? But no, 2 is a prime. So maybe the confusion comes from the fact that primes are only odd for certain cases, like when they are part of a group? Or perhaps there's a typo in the question.\n\nWait, let me check again. The number 2 is a prime because it meets the definition of being greater than 1 and having no other divisors besides 1 and itself. Even though all other numbers are odd, 2 is a prime because it doesn't have any factors except those. So maybe the confusion comes from how someone might think of primes in relation to other numbers, but actually, 2 is a prime and it's even.\n\nAlternatively, perhaps there's an example I'm missing. Let me think of some examples: 3 is a prime (odd), 5 is a prime (odd), etc., so if all others are odd, then why is 2 considered a prime? Because of its own properties.\n\nWait, maybe the confusion arises from the fact that primes other than 2 are odd, but 2 is an even number. So in this case, if someone says \"all others are odd,\" and 2 is even, then why does it count as a prime? It's because of the definition.\n\nAlternatively, maybe there's an error in the question. But assuming that the question is correct and wants to know why 2 is a prime despite others being odd, then the answer would be because it meets the definition of a prime number. But maybe there's another reason.\n\nWait, let me check another source. For example, in mathematics, the definition of prime is straightforward: a prime is a number greater than 1 that has no divisors other than 1 and itself. So if all others are odd, then 2 meets the definition because it's greater than 1. Hence, it's a prime.\n\nSo perhaps the confusion is that when someone says \"all the rest are odd,\" but if there's an even number like 2, then it must be considered a prime.","role":"assistant"}}],"created":1785516655,"id":"chatcmpl-0d502478-4543-40f8-8f07-e0d7b245ab0a","model":"qwen3-0.6b","object":"chat.completion","usage":{"completion_tokens":1001,"prompt_tokens":23,"total_tokens":1024}}
+TEST_END
+
+
+The server is not running
+
+
+
+== Dumping server log /tmp/eullm.log after server shutdown
+
+eullm ready (no model loaded — send a request with a "model" field to load one).
+  API (EULLM):   http://localhost:11435/api
+  API (OpenAI):  http://localhost:11435/v1
+  Rust debug:    enabled (NaN/Inf logit check active — extra per-token cost)
+
+Press Ctrl+C to stop.
+
+[2m2026-07-31T16:49:57.302806Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m API authentication: disabled (not configured (no authentication — the IP allowlist is the only control)). Set EULLM_API_KEYS=id:secret to require a bearer token — necessary behind Docker's published ports, where every external client arrives as the bridge gateway address.
+[2m2026-07-31T16:49:57.302857Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Allowed source IPs/subnets: 127.0.0.1/32, ::1/128  [source: default (loopback only — nothing configured)]
+[2m2026-07-31T16:49:57.302874Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Allowed browser origins: any loopback origin  [source: default (any loopback origin — nothing configured)]
+[2m2026-07-31T16:49:57.302892Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Model store: /Users/peterhickman/.eullm/models  [source: default]
+[2m2026-07-31T16:49:57.303000Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Audit trail: /Users/peterhickman/.eullm/audit/audit.jsonl
+[2m2026-07-31T16:49:57.303313Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m eullm API listening on 0.0.0.0:11435
+[2m2026-07-31T16:50:03.612140Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Swapping model → qwen3-0.6b (/Users/peterhickman/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf)
+[2m2026-07-31T16:50:03.612180Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Previous model fully unloaded
+
+╔══════════════════════════════════════════════════════════════╗
+║  WARNING: GPU requested but this binary has no GPU support  ║
+║                                                              ║
+║  All inference will run on CPU (very slow for large prompts) ║
+║                                                              ║
+║  Rebuild with GPU support:                                   ║
+║    cargo build --release --features cuda    # NVIDIA         ║
+║    cargo build --release --features rocm    # AMD            ║
+║    cargo build --release --features vulkan  # Cross-platform ║
+║    cargo build --release --features metal   # Apple Silicon  ║
+║                                                              ║
+║  Docker: use the engine-gpu service or build with:           ║
+║    docker build --build-arg FEATURES=cuda -t eullm .         ║
+╚══════════════════════════════════════════════════════════════╝
+
+[2m2026-07-31T16:50:03.612504Z[0m [33m WARN[0m [2meullm::inference[0m[2m:[0m No GPU backend compiled: requested gpu_layers=-1, forcing 0. Rebuild with --features cuda/rocm/vulkan/metal for GPU acceleration.
+[2m2026-07-31T16:50:03.612524Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Initializing llama.cpp backend (scheduler)...
+[2m2026-07-31T16:50:03.615683Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Loading model: /Users/peterhickman/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf
+llama_model_loader: loaded meta data with 32 key-value pairs and 310 tensors from /Users/peterhickman/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = qwen3
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Qwen3-0.6B
+llama_model_loader: - kv   3:                           general.basename str              = Qwen3-0.6B
+llama_model_loader: - kv   4:                       general.quantized_by str              = Unsloth
+llama_model_loader: - kv   5:                         general.size_label str              = 0.6B
+llama_model_loader: - kv   6:                           general.repo_url str              = https://huggingface.co/unsloth
+llama_model_loader: - kv   7:                          qwen3.block_count u32              = 28
+llama_model_loader: - kv   8:                       qwen3.context_length u32              = 40960
+llama_model_loader: - kv   9:                     qwen3.embedding_length u32              = 1024
+llama_model_loader: - kv  10:                  qwen3.feed_forward_length u32              = 3072
+llama_model_loader: - kv  11:                 qwen3.attention.head_count u32              = 16
+llama_model_loader: - kv  12:              qwen3.attention.head_count_kv u32              = 8
+llama_model_loader: - kv  13:                       qwen3.rope.freq_base f32              = 1000000.000000
+llama_model_loader: - kv  14:     qwen3.attention.layer_norm_rms_epsilon f32              = 0.000001
+llama_model_loader: - kv  15:                 qwen3.attention.key_length u32              = 128
+llama_model_loader: - kv  16:               qwen3.attention.value_length u32              = 128
+llama_model_loader: - kv  17:                       tokenizer.ggml.model str              = gpt2
+llama_model_loader: - kv  18:                         tokenizer.ggml.pre str              = qwen2
+llama_model_loader: - kv  19:                      tokenizer.ggml.tokens arr[str,151936]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+llama_model_loader: - kv  20:                  tokenizer.ggml.token_type arr[i32,151936]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+llama_model_loader: - kv  21:                      tokenizer.ggml.merges arr[str,151387]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+llama_model_loader: - kv  22:                tokenizer.ggml.eos_token_id u32              = 151645
+llama_model_loader: - kv  23:            tokenizer.ggml.padding_token_id u32              = 151654
+llama_model_loader: - kv  24:               tokenizer.ggml.add_bos_token bool             = false
+llama_model_loader: - kv  25:                    tokenizer.chat_template str              = {%- if tools %}\n    {{- '<|im_start|>...
+llama_model_loader: - kv  26:               general.quantization_version u32              = 2
+llama_model_loader: - kv  27:                          general.file_type u32              = 15
+llama_model_loader: - kv  28:                      quantize.imatrix.file str              = Qwen3-0.6B-GGUF/imatrix_unsloth.dat
+llama_model_loader: - kv  29:                   quantize.imatrix.dataset str              = unsloth_calibration_Qwen3-0.6B.txt
+llama_model_loader: - kv  30:             quantize.imatrix.entries_count u32              = 196
+llama_model_loader: - kv  31:              quantize.imatrix.chunks_count u32              = 688
+llama_model_loader: - type  f32:  113 tensors
+llama_model_loader: - type q4_K:  168 tensors
+llama_model_loader: - type q6_K:   29 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = Q4_K - Medium
+print_info: file size   = 372.65 MiB (5.24 BPW) 
+init_tokenizer: initializing tokenizer for type 2
+load: 0 unused tokens
+load: control token: 151659 '<|fim_prefix|>' is not marked as EOG
+load: control token: 151656 '<|video_pad|>' is not marked as EOG
+load: control token: 151655 '<|image_pad|>' is not marked as EOG
+load: control token: 151653 '<|vision_end|>' is not marked as EOG
+load: control token: 151652 '<|vision_start|>' is not marked as EOG
+load: control token: 151651 '<|quad_end|>' is not marked as EOG
+load: control token: 151649 '<|box_end|>' is not marked as EOG
+load: control token: 151648 '<|box_start|>' is not marked as EOG
+load: control token: 151646 '<|object_ref_start|>' is not marked as EOG
+load: control token: 151644 '<|im_start|>' is not marked as EOG
+load: control token: 151661 '<|fim_suffix|>' is not marked as EOG
+load: control token: 151647 '<|object_ref_end|>' is not marked as EOG
+load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+load: control token: 151660 '<|fim_middle|>' is not marked as EOG
+load: control token: 151654 '<|vision_pad|>' is not marked as EOG
+load: control token: 151650 '<|quad_start|>' is not marked as EOG
+load: printing all EOG tokens:
+load:   - 128247 ('</s>')
+load:   - 151643 ('<|endoftext|>')
+load:   - 151645 ('<|im_end|>')
+load:   - 151662 ('<|fim_pad|>')
+load:   - 151663 ('<|repo_name|>')
+load:   - 151664 ('<|file_sep|>')
+load: special tokens cache size = 27
+load: token to piece cache size = 0.9311 MB
+print_info: arch                  = qwen3
+print_info: vocab_only            = 0
+print_info: no_alloc              = 0
+print_info: n_ctx_train           = 40960
+print_info: n_embd_inp            = 1024
+print_info: n_embd                = 1024
+print_info: n_embd_out            = 1024
+print_info: n_layer               = 28
+print_info: n_layer_all           = 28
+print_info: n_head                = 16
+print_info: n_head_kv             = 8
+print_info: n_rot                 = 128
+print_info: n_swa                 = 0
+print_info: is_swa_any            = 0
+print_info: n_embd_head_k         = 128
+print_info: n_embd_head_v         = 128
+print_info: n_gqa                 = 2
+print_info: n_embd_k_gqa          = 1024
+print_info: n_embd_v_gqa          = 1024
+print_info: f_norm_eps            = 0.0e+00
+print_info: f_norm_rms_eps        = 1.0e-06
+print_info: f_clamp_kqv           = 0.0e+00
+print_info: f_max_alibi_bias      = 0.0e+00
+print_info: f_logit_scale         = 0.0e+00
+print_info: f_attn_scale          = 0.0e+00
+print_info: f_attn_value_scale    = 0.0000
+print_info: n_ff                  = 3072
+print_info: n_expert              = 0
+print_info: n_expert_used         = 0
+print_info: n_expert_groups       = 0
+print_info: n_group_used          = 0
+print_info: causal attn           = 1
+print_info: pooling type          = -1
+print_info: rope type             = 2
+print_info: rope scaling          = linear
+print_info: freq_base_train       = 1000000.0
+print_info: freq_scale_train      = 1
+print_info: n_ctx_orig_yarn       = 40960
+print_info: rope_yarn_log_mul     = 0.0000
+print_info: rope_finetuned        = unknown
+print_info: model type            = 0.6B
+print_info: model params          = 596.05 M
+print_info: general.name          = Qwen3-0.6B
+print_info: vocab type            = BPE
+print_info: n_vocab               = 151936
+print_info: n_merges              = 151387
+print_info: BOS token             = 11 ','
+print_info: EOS token             = 151645 '<|im_end|>'
+print_info: EOT token             = 151645 '<|im_end|>'
+print_info: PAD token             = 151654 '<|vision_pad|>'
+print_info: LF token              = 198 'Ċ'
+print_info: FIM PRE token         = 151659 '<|fim_prefix|>'
+print_info: FIM SUF token         = 151661 '<|fim_suffix|>'
+print_info: FIM MID token         = 151660 '<|fim_middle|>'
+print_info: FIM PAD token         = 151662 '<|fim_pad|>'
+print_info: FIM REP token         = 151663 '<|repo_name|>'
+print_info: FIM SEP token         = 151664 '<|file_sep|>'
+print_info: EOG token             = 128247 '</s>'
+print_info: EOG token             = 151643 '<|endoftext|>'
+print_info: EOG token             = 151645 '<|im_end|>'
+print_info: EOG token             = 151662 '<|fim_pad|>'
+print_info: EOG token             = 151663 '<|repo_name|>'
+print_info: EOG token             = 151664 '<|file_sep|>'
+print_info: max token length      = 256
+load_tensors: loading model tensors, this can take a while... (mmap = true, direct_io = false)
+load_tensors: layer   0 assigned to device CPU, is_swa = 0
+load_tensors: layer   1 assigned to device CPU, is_swa = 0
+load_tensors: layer   2 assigned to device CPU, is_swa = 0
+load_tensors: layer   3 assigned to device CPU, is_swa = 0
+load_tensors: layer   4 assigned to device CPU, is_swa = 0
+load_tensors: layer   5 assigned to device CPU, is_swa = 0
+load_tensors: layer   6 assigned to device CPU, is_swa = 0
+load_tensors: layer   7 assigned to device CPU, is_swa = 0
+load_tensors: layer   8 assigned to device CPU, is_swa = 0
+load_tensors: layer   9 assigned to device CPU, is_swa = 0
+load_tensors: layer  10 assigned to device CPU, is_swa = 0
+load_tensors: layer  11 assigned to device CPU, is_swa = 0
+load_tensors: layer  12 assigned to device CPU, is_swa = 0
+load_tensors: layer  13 assigned to device CPU, is_swa = 0
+load_tensors: layer  14 assigned to device CPU, is_swa = 0
+load_tensors: layer  15 assigned to device CPU, is_swa = 0
+load_tensors: layer  16 assigned to device CPU, is_swa = 0
+load_tensors: layer  17 assigned to device CPU, is_swa = 0
+load_tensors: layer  18 assigned to device CPU, is_swa = 0
+load_tensors: layer  19 assigned to device CPU, is_swa = 0
+load_tensors: layer  20 assigned to device CPU, is_swa = 0
+load_tensors: layer  21 assigned to device CPU, is_swa = 0
+load_tensors: layer  22 assigned to device CPU, is_swa = 0
+load_tensors: layer  23 assigned to device CPU, is_swa = 0
+load_tensors: layer  24 assigned to device CPU, is_swa = 0
+load_tensors: layer  25 assigned to device CPU, is_swa = 0
+load_tensors: layer  26 assigned to device CPU, is_swa = 0
+load_tensors: layer  27 assigned to device CPU, is_swa = 0
+load_tensors: layer  28 assigned to device CPU, is_swa = 0
+create_tensor: loading tensor token_embd.weight
+create_tensor: loading tensor output_norm.weight
+create_tensor: loading tensor blk.0.attn_norm.weight
+create_tensor: loading tensor blk.0.attn_q.weight
+create_tensor: loading tensor blk.0.attn_k.weight
+create_tensor: loading tensor blk.0.attn_v.weight
+create_tensor: loading tensor blk.0.attn_output.weight
+create_tensor: loading tensor blk.0.attn_k_norm.weight
+create_tensor: loading tensor blk.0.attn_q_norm.weight
+create_tensor: loading tensor blk.0.ffn_norm.weight
+create_tensor: loading tensor blk.0.ffn_gate.weight
+create_tensor: loading tensor blk.0.ffn_down.weight
+create_tensor: loading tensor blk.0.ffn_up.weight
+create_tensor: loading tensor blk.1.attn_norm.weight
+create_tensor: loading tensor blk.1.attn_q.weight
+create_tensor: loading tensor blk.1.attn_k.weight
+create_tensor: loading tensor blk.1.attn_v.weight
+create_tensor: loading tensor blk.1.attn_output.weight
+create_tensor: loading tensor blk.1.attn_k_norm.weight
+create_tensor: loading tensor blk.1.attn_q_norm.weight
+create_tensor: loading tensor blk.1.ffn_norm.weight
+create_tensor: loading tensor blk.1.ffn_gate.weight
+create_tensor: loading tensor blk.1.ffn_down.weight
+create_tensor: loading tensor blk.1.ffn_up.weight
+create_tensor: loading tensor blk.2.attn_norm.weight
+create_tensor: loading tensor blk.2.attn_q.weight
+create_tensor: loading tensor blk.2.attn_k.weight
+create_tensor: loading tensor blk.2.attn_v.weight
+create_tensor: loading tensor blk.2.attn_output.weight
+create_tensor: loading tensor blk.2.attn_k_norm.weight
+create_tensor: loading tensor blk.2.attn_q_norm.weight
+create_tensor: loading tensor blk.2.ffn_norm.weight
+create_tensor: loading tensor blk.2.ffn_gate.weight
+create_tensor: loading tensor blk.2.ffn_down.weight
+create_tensor: loading tensor blk.2.ffn_up.weight
+create_tensor: loading tensor blk.3.attn_norm.weight
+create_tensor: loading tensor blk.3.attn_q.weight
+create_tensor: loading tensor blk.3.attn_k.weight
+create_tensor: loading tensor blk.3.attn_v.weight
+create_tensor: loading tensor blk.3.attn_output.weight
+create_tensor: loading tensor blk.3.attn_k_norm.weight
+create_tensor: loading tensor blk.3.attn_q_norm.weight
+create_tensor: loading tensor blk.3.ffn_norm.weight
+create_tensor: loading tensor blk.3.ffn_gate.weight
+create_tensor: loading tensor blk.3.ffn_down.weight
+create_tensor: loading tensor blk.3.ffn_up.weight
+create_tensor: loading tensor blk.4.attn_norm.weight
+create_tensor: loading tensor blk.4.attn_q.weight
+create_tensor: loading tensor blk.4.attn_k.weight
+create_tensor: loading tensor blk.4.attn_v.weight
+create_tensor: loading tensor blk.4.attn_output.weight
+create_tensor: loading tensor blk.4.attn_k_norm.weight
+create_tensor: loading tensor blk.4.attn_q_norm.weight
+create_tensor: loading tensor blk.4.ffn_norm.weight
+create_tensor: loading tensor blk.4.ffn_gate.weight
+create_tensor: loading tensor blk.4.ffn_down.weight
+create_tensor: loading tensor blk.4.ffn_up.weight
+create_tensor: loading tensor blk.5.attn_norm.weight
+create_tensor: loading tensor blk.5.attn_q.weight
+create_tensor: loading tensor blk.5.attn_k.weight
+create_tensor: loading tensor blk.5.attn_v.weight
+create_tensor: loading tensor blk.5.attn_output.weight
+create_tensor: loading tensor blk.5.attn_k_norm.weight
+create_tensor: loading tensor blk.5.attn_q_norm.weight
+create_tensor: loading tensor blk.5.ffn_norm.weight
+create_tensor: loading tensor blk.5.ffn_gate.weight
+create_tensor: loading tensor blk.5.ffn_down.weight
+create_tensor: loading tensor blk.5.ffn_up.weight
+create_tensor: loading tensor blk.6.attn_norm.weight
+create_tensor: loading tensor blk.6.attn_q.weight
+create_tensor: loading tensor blk.6.attn_k.weight
+create_tensor: loading tensor blk.6.attn_v.weight
+create_tensor: loading tensor blk.6.attn_output.weight
+create_tensor: loading tensor blk.6.attn_k_norm.weight
+create_tensor: loading tensor blk.6.attn_q_norm.weight
+create_tensor: loading tensor blk.6.ffn_norm.weight
+create_tensor: loading tensor blk.6.ffn_gate.weight
+create_tensor: loading tensor blk.6.ffn_down.weight
+create_tensor: loading tensor blk.6.ffn_up.weight
+create_tensor: loading tensor blk.7.attn_norm.weight
+create_tensor: loading tensor blk.7.attn_q.weight
+create_tensor: loading tensor blk.7.attn_k.weight
+create_tensor: loading tensor blk.7.attn_v.weight
+create_tensor: loading tensor blk.7.attn_output.weight
+create_tensor: loading tensor blk.7.attn_k_norm.weight
+create_tensor: loading tensor blk.7.attn_q_norm.weight
+create_tensor: loading tensor blk.7.ffn_norm.weight
+create_tensor: loading tensor blk.7.ffn_gate.weight
+create_tensor: loading tensor blk.7.ffn_down.weight
+create_tensor: loading tensor blk.7.ffn_up.weight
+create_tensor: loading tensor blk.8.attn_norm.weight
+create_tensor: loading tensor blk.8.attn_q.weight
+create_tensor: loading tensor blk.8.attn_k.weight
+create_tensor: loading tensor blk.8.attn_v.weight
+create_tensor: loading tensor blk.8.attn_output.weight
+create_tensor: loading tensor blk.8.attn_k_norm.weight
+create_tensor: loading tensor blk.8.attn_q_norm.weight
+create_tensor: loading tensor blk.8.ffn_norm.weight
+create_tensor: loading tensor blk.8.ffn_gate.weight
+create_tensor: loading tensor blk.8.ffn_down.weight
+create_tensor: loading tensor blk.8.ffn_up.weight
+create_tensor: loading tensor blk.9.attn_norm.weight
+create_tensor: loading tensor blk.9.attn_q.weight
+create_tensor: loading tensor blk.9.attn_k.weight
+create_tensor: loading tensor blk.9.attn_v.weight
+create_tensor: loading tensor blk.9.attn_output.weight
+create_tensor: loading tensor blk.9.attn_k_norm.weight
+create_tensor: loading tensor blk.9.attn_q_norm.weight
+create_tensor: loading tensor blk.9.ffn_norm.weight
+create_tensor: loading tensor blk.9.ffn_gate.weight
+create_tensor: loading tensor blk.9.ffn_down.weight
+create_tensor: loading tensor blk.9.ffn_up.weight
+create_tensor: loading tensor blk.10.attn_norm.weight
+create_tensor: loading tensor blk.10.attn_q.weight
+create_tensor: loading tensor blk.10.attn_k.weight
+create_tensor: loading tensor blk.10.attn_v.weight
+create_tensor: loading tensor blk.10.attn_output.weight
+create_tensor: loading tensor blk.10.attn_k_norm.weight
+create_tensor: loading tensor blk.10.attn_q_norm.weight
+create_tensor: loading tensor blk.10.ffn_norm.weight
+create_tensor: loading tensor blk.10.ffn_gate.weight
+create_tensor: loading tensor blk.10.ffn_down.weight
+create_tensor: loading tensor blk.10.ffn_up.weight
+create_tensor: loading tensor blk.11.attn_norm.weight
+create_tensor: loading tensor blk.11.attn_q.weight
+create_tensor: loading tensor blk.11.attn_k.weight
+create_tensor: loading tensor blk.11.attn_v.weight
+create_tensor: loading tensor blk.11.attn_output.weight
+create_tensor: loading tensor blk.11.attn_k_norm.weight
+create_tensor: loading tensor blk.11.attn_q_norm.weight
+create_tensor: loading tensor blk.11.ffn_norm.weight
+create_tensor: loading tensor blk.11.ffn_gate.weight
+create_tensor: loading tensor blk.11.ffn_down.weight
+create_tensor: loading tensor blk.11.ffn_up.weight
+create_tensor: loading tensor blk.12.attn_norm.weight
+create_tensor: loading tensor blk.12.attn_q.weight
+create_tensor: loading tensor blk.12.attn_k.weight
+create_tensor: loading tensor blk.12.attn_v.weight
+create_tensor: loading tensor blk.12.attn_output.weight
+create_tensor: loading tensor blk.12.attn_k_norm.weight
+create_tensor: loading tensor blk.12.attn_q_norm.weight
+create_tensor: loading tensor blk.12.ffn_norm.weight
+create_tensor: loading tensor blk.12.ffn_gate.weight
+create_tensor: loading tensor blk.12.ffn_down.weight
+create_tensor: loading tensor blk.12.ffn_up.weight
+create_tensor: loading tensor blk.13.attn_norm.weight
+create_tensor: loading tensor blk.13.attn_q.weight
+create_tensor: loading tensor blk.13.attn_k.weight
+create_tensor: loading tensor blk.13.attn_v.weight
+create_tensor: loading tensor blk.13.attn_output.weight
+create_tensor: loading tensor blk.13.attn_k_norm.weight
+create_tensor: loading tensor blk.13.attn_q_norm.weight
+create_tensor: loading tensor blk.13.ffn_norm.weight
+create_tensor: loading tensor blk.13.ffn_gate.weight
+create_tensor: loading tensor blk.13.ffn_down.weight
+create_tensor: loading tensor blk.13.ffn_up.weight
+create_tensor: loading tensor blk.14.attn_norm.weight
+create_tensor: loading tensor blk.14.attn_q.weight
+create_tensor: loading tensor blk.14.attn_k.weight
+create_tensor: loading tensor blk.14.attn_v.weight
+create_tensor: loading tensor blk.14.attn_output.weight
+create_tensor: loading tensor blk.14.attn_k_norm.weight
+create_tensor: loading tensor blk.14.attn_q_norm.weight
+create_tensor: loading tensor blk.14.ffn_norm.weight
+create_tensor: loading tensor blk.14.ffn_gate.weight
+create_tensor: loading tensor blk.14.ffn_down.weight
+create_tensor: loading tensor blk.14.ffn_up.weight
+create_tensor: loading tensor blk.15.attn_norm.weight
+create_tensor: loading tensor blk.15.attn_q.weight
+create_tensor: loading tensor blk.15.attn_k.weight
+create_tensor: loading tensor blk.15.attn_v.weight
+create_tensor: loading tensor blk.15.attn_output.weight
+create_tensor: loading tensor blk.15.attn_k_norm.weight
+create_tensor: loading tensor blk.15.attn_q_norm.weight
+create_tensor: loading tensor blk.15.ffn_norm.weight
+create_tensor: loading tensor blk.15.ffn_gate.weight
+create_tensor: loading tensor blk.15.ffn_down.weight
+create_tensor: loading tensor blk.15.ffn_up.weight
+create_tensor: loading tensor blk.16.attn_norm.weight
+create_tensor: loading tensor blk.16.attn_q.weight
+create_tensor: loading tensor blk.16.attn_k.weight
+create_tensor: loading tensor blk.16.attn_v.weight
+create_tensor: loading tensor blk.16.attn_output.weight
+create_tensor: loading tensor blk.16.attn_k_norm.weight
+create_tensor: loading tensor blk.16.attn_q_norm.weight
+create_tensor: loading tensor blk.16.ffn_norm.weight
+create_tensor: loading tensor blk.16.ffn_gate.weight
+create_tensor: loading tensor blk.16.ffn_down.weight
+create_tensor: loading tensor blk.16.ffn_up.weight
+create_tensor: loading tensor blk.17.attn_norm.weight
+create_tensor: loading tensor blk.17.attn_q.weight
+create_tensor: loading tensor blk.17.attn_k.weight
+create_tensor: loading tensor blk.17.attn_v.weight
+create_tensor: loading tensor blk.17.attn_output.weight
+create_tensor: loading tensor blk.17.attn_k_norm.weight
+create_tensor: loading tensor blk.17.attn_q_norm.weight
+create_tensor: loading tensor blk.17.ffn_norm.weight
+create_tensor: loading tensor blk.17.ffn_gate.weight
+create_tensor: loading tensor blk.17.ffn_down.weight
+create_tensor: loading tensor blk.17.ffn_up.weight
+create_tensor: loading tensor blk.18.attn_norm.weight
+create_tensor: loading tensor blk.18.attn_q.weight
+create_tensor: loading tensor blk.18.attn_k.weight
+create_tensor: loading tensor blk.18.attn_v.weight
+create_tensor: loading tensor blk.18.attn_output.weight
+create_tensor: loading tensor blk.18.attn_k_norm.weight
+create_tensor: loading tensor blk.18.attn_q_norm.weight
+create_tensor: loading tensor blk.18.ffn_norm.weight
+create_tensor: loading tensor blk.18.ffn_gate.weight
+create_tensor: loading tensor blk.18.ffn_down.weight
+create_tensor: loading tensor blk.18.ffn_up.weight
+create_tensor: loading tensor blk.19.attn_norm.weight
+create_tensor: loading tensor blk.19.attn_q.weight
+create_tensor: loading tensor blk.19.attn_k.weight
+create_tensor: loading tensor blk.19.attn_v.weight
+create_tensor: loading tensor blk.19.attn_output.weight
+create_tensor: loading tensor blk.19.attn_k_norm.weight
+create_tensor: loading tensor blk.19.attn_q_norm.weight
+create_tensor: loading tensor blk.19.ffn_norm.weight
+create_tensor: loading tensor blk.19.ffn_gate.weight
+create_tensor: loading tensor blk.19.ffn_down.weight
+create_tensor: loading tensor blk.19.ffn_up.weight
+create_tensor: loading tensor blk.20.attn_norm.weight
+create_tensor: loading tensor blk.20.attn_q.weight
+create_tensor: loading tensor blk.20.attn_k.weight
+create_tensor: loading tensor blk.20.attn_v.weight
+create_tensor: loading tensor blk.20.attn_output.weight
+create_tensor: loading tensor blk.20.attn_k_norm.weight
+create_tensor: loading tensor blk.20.attn_q_norm.weight
+create_tensor: loading tensor blk.20.ffn_norm.weight
+create_tensor: loading tensor blk.20.ffn_gate.weight
+create_tensor: loading tensor blk.20.ffn_down.weight
+create_tensor: loading tensor blk.20.ffn_up.weight
+create_tensor: loading tensor blk.21.attn_norm.weight
+create_tensor: loading tensor blk.21.attn_q.weight
+create_tensor: loading tensor blk.21.attn_k.weight
+create_tensor: loading tensor blk.21.attn_v.weight
+create_tensor: loading tensor blk.21.attn_output.weight
+create_tensor: loading tensor blk.21.attn_k_norm.weight
+create_tensor: loading tensor blk.21.attn_q_norm.weight
+create_tensor: loading tensor blk.21.ffn_norm.weight
+create_tensor: loading tensor blk.21.ffn_gate.weight
+create_tensor: loading tensor blk.21.ffn_down.weight
+create_tensor: loading tensor blk.21.ffn_up.weight
+create_tensor: loading tensor blk.22.attn_norm.weight
+create_tensor: loading tensor blk.22.attn_q.weight
+create_tensor: loading tensor blk.22.attn_k.weight
+create_tensor: loading tensor blk.22.attn_v.weight
+create_tensor: loading tensor blk.22.attn_output.weight
+create_tensor: loading tensor blk.22.attn_k_norm.weight
+create_tensor: loading tensor blk.22.attn_q_norm.weight
+create_tensor: loading tensor blk.22.ffn_norm.weight
+create_tensor: loading tensor blk.22.ffn_gate.weight
+create_tensor: loading tensor blk.22.ffn_down.weight
+create_tensor: loading tensor blk.22.ffn_up.weight
+create_tensor: loading tensor blk.23.attn_norm.weight
+create_tensor: loading tensor blk.23.attn_q.weight
+create_tensor: loading tensor blk.23.attn_k.weight
+create_tensor: loading tensor blk.23.attn_v.weight
+create_tensor: loading tensor blk.23.attn_output.weight
+create_tensor: loading tensor blk.23.attn_k_norm.weight
+create_tensor: loading tensor blk.23.attn_q_norm.weight
+create_tensor: loading tensor blk.23.ffn_norm.weight
+create_tensor: loading tensor blk.23.ffn_gate.weight
+create_tensor: loading tensor blk.23.ffn_down.weight
+create_tensor: loading tensor blk.23.ffn_up.weight
+create_tensor: loading tensor blk.24.attn_norm.weight
+create_tensor: loading tensor blk.24.attn_q.weight
+create_tensor: loading tensor blk.24.attn_k.weight
+create_tensor: loading tensor blk.24.attn_v.weight
+create_tensor: loading tensor blk.24.attn_output.weight
+create_tensor: loading tensor blk.24.attn_k_norm.weight
+create_tensor: loading tensor blk.24.attn_q_norm.weight
+create_tensor: loading tensor blk.24.ffn_norm.weight
+create_tensor: loading tensor blk.24.ffn_gate.weight
+create_tensor: loading tensor blk.24.ffn_down.weight
+create_tensor: loading tensor blk.24.ffn_up.weight
+create_tensor: loading tensor blk.25.attn_norm.weight
+create_tensor: loading tensor blk.25.attn_q.weight
+create_tensor: loading tensor blk.25.attn_k.weight
+create_tensor: loading tensor blk.25.attn_v.weight
+create_tensor: loading tensor blk.25.attn_output.weight
+create_tensor: loading tensor blk.25.attn_k_norm.weight
+create_tensor: loading tensor blk.25.attn_q_norm.weight
+create_tensor: loading tensor blk.25.ffn_norm.weight
+create_tensor: loading tensor blk.25.ffn_gate.weight
+create_tensor: loading tensor blk.25.ffn_down.weight
+create_tensor: loading tensor blk.25.ffn_up.weight
+create_tensor: loading tensor blk.26.attn_norm.weight
+create_tensor: loading tensor blk.26.attn_q.weight
+create_tensor: loading tensor blk.26.attn_k.weight
+create_tensor: loading tensor blk.26.attn_v.weight
+create_tensor: loading tensor blk.26.attn_output.weight
+create_tensor: loading tensor blk.26.attn_k_norm.weight
+create_tensor: loading tensor blk.26.attn_q_norm.weight
+create_tensor: loading tensor blk.26.ffn_norm.weight
+create_tensor: loading tensor blk.26.ffn_gate.weight
+create_tensor: loading tensor blk.26.ffn_down.weight
+create_tensor: loading tensor blk.26.ffn_up.weight
+create_tensor: loading tensor blk.27.attn_norm.weight
+create_tensor: loading tensor blk.27.attn_q.weight
+create_tensor: loading tensor blk.27.attn_k.weight
+create_tensor: loading tensor blk.27.attn_v.weight
+create_tensor: loading tensor blk.27.attn_output.weight
+create_tensor: loading tensor blk.27.attn_k_norm.weight
+create_tensor: loading tensor blk.27.attn_q_norm.weight
+create_tensor: loading tensor blk.27.ffn_norm.weight
+create_tensor: loading tensor blk.27.ffn_gate.weight
+create_tensor: loading tensor blk.27.ffn_down.weight
+create_tensor: loading tensor blk.27.ffn_up.weight
+done_getting_tensors: tensor 'token_embd.weight' (q6_K) (and 142 others) cannot be used with preferred buffer type CPU_REPACK, using CPU instead
+load_tensors:   CPU_Mapped model buffer size =   370.96 MiB
+load_tensors:   CPU_REPACK model buffer size =   204.75 MiB
+..............repack: repack tensor blk.0.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.0.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.0.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.0.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.0.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.1.attn_q.weight with q4_K_8x8
+.repack: repack tensor blk.1.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.1.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.1.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.1.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.2.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.2.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.2.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.2.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.2.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.3.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.3.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.3.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.3.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.3.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.3.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.3.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.4.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.4.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.4.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.4.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.4.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.4.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.4.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.5.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.5.attn_k.weight with q4_K_8x8
+.repack: repack tensor blk.5.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.5.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.5.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.6.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.6.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.6.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.6.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.6.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.6.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.6.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.7.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.7.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.7.attn_v.weight with q4_K_8x8
+.repack: repack tensor blk.7.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.7.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.7.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.7.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.8.attn_q.weight with q4_K_8x8
+.repack: repack tensor blk.8.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.8.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.8.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.8.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.9.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.9.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.9.attn_v.weight with q4_K_8x8
+.repack: repack tensor blk.9.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.9.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.9.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.9.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.10.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.10.attn_k.weight with q4_K_8x8
+.repack: repack tensor blk.10.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.10.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.10.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.10.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.10.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.11.attn_q.weight with q4_K_8x8
+.repack: repack tensor blk.11.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.11.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.11.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.11.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.12.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.12.attn_k.weight with q4_K_8x8
+.repack: repack tensor blk.12.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.12.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.12.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.12.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.12.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.13.attn_q.weight with q4_K_8x8
+.repack: repack tensor blk.13.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.13.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.13.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.13.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.13.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.13.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.14.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.14.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.14.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.14.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.14.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.15.attn_q.weight with q4_K_8x8
+.repack: repack tensor blk.15.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.15.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.15.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.15.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.15.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.15.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.16.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.16.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.16.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.16.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.16.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.16.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.16.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.17.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.17.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.17.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.17.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.17.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.18.attn_q.weight with q4_K_8x8
+.repack: repack tensor blk.18.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.18.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.18.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.18.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.18.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.18.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.19.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.19.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.19.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.19.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.19.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.19.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.19.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.20.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.20.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.20.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.20.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.20.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.21.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.21.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.21.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.21.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.21.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.21.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.21.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.22.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.22.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.22.attn_v.weight with q4_K_8x8
+.repack: repack tensor blk.22.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.22.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.22.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.22.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.23.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.23.attn_k.weight with q4_K_8x8
+.repack: repack tensor blk.23.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.23.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.23.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.24.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.24.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.24.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.24.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.24.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.25.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.25.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.25.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.25.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.25.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.26.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.26.attn_k.weight with q4_K_8x8
+.repack: repack tensor blk.26.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.26.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.26.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.27.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.27.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.27.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.27.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.27.ffn_up.weight with q4_K_8x8
+.
+[2m2026-07-31T16:50:04.592137Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Allocating context: 4096 total tokens, 1024 per sequence (4 slots, flash_attn=false, n_batch=2048)
+[2m2026-07-31T16:50:04.592164Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m Each of the 4 slots gets only 1024 tokens of context (4096 total ÷ 4 slots). Answers longer than that will be cut off and reported with done_reason="length". Either raise --ctx-size to 8192 or lower --batch-size.
+llama_context: constructing llama_context
+llama_context: n_seq_max     = 4
+llama_context: n_ctx         = 4096
+llama_context: n_ctx_seq     = 1024
+llama_context: n_batch       = 2048
+llama_context: n_ubatch      = 1024
+llama_context: causal_attn   = 1
+llama_context: flash_attn    = disabled
+llama_context: kv_unified    = false
+llama_context: freq_base     = 1000000.0
+llama_context: freq_scale    = 1
+llama_context: n_rs_seq      = 0
+llama_context: n_outputs_max = 2048
+llama_context: n_ctx_seq (1024) < n_ctx_train (40960) -- the full capacity of the model will not be utilized
+set_abort_callback: call
+llama_context:        CPU  output buffer size =     2.32 MiB
+llama_kv_cache: layer   0: dev = CPU
+llama_kv_cache: layer   1: dev = CPU
+llama_kv_cache: layer   2: dev = CPU
+llama_kv_cache: layer   3: dev = CPU
+llama_kv_cache: layer   4: dev = CPU
+llama_kv_cache: layer   5: dev = CPU
+llama_kv_cache: layer   6: dev = CPU
+llama_kv_cache: layer   7: dev = CPU
+llama_kv_cache: layer   8: dev = CPU
+llama_kv_cache: layer   9: dev = CPU
+llama_kv_cache: layer  10: dev = CPU
+llama_kv_cache: layer  11: dev = CPU
+llama_kv_cache: layer  12: dev = CPU
+llama_kv_cache: layer  13: dev = CPU
+llama_kv_cache: layer  14: dev = CPU
+llama_kv_cache: layer  15: dev = CPU
+llama_kv_cache: layer  16: dev = CPU
+llama_kv_cache: layer  17: dev = CPU
+llama_kv_cache: layer  18: dev = CPU
+llama_kv_cache: layer  19: dev = CPU
+llama_kv_cache: layer  20: dev = CPU
+llama_kv_cache: layer  21: dev = CPU
+llama_kv_cache: layer  22: dev = CPU
+llama_kv_cache: layer  23: dev = CPU
+llama_kv_cache: layer  24: dev = CPU
+llama_kv_cache: layer  25: dev = CPU
+llama_kv_cache: layer  26: dev = CPU
+llama_kv_cache: layer  27: dev = CPU
+llama_kv_cache:        CPU KV buffer size =   448.00 MiB
+llama_kv_cache: size =  448.00 MiB (  1024 cells,  28 layers,  4/4 seqs), K (f16):  224.00 MiB, V (f16):  224.00 MiB
+llama_kv_cache: attn_rot_k = 0, n_embd_head_k_all = 128
+llama_kv_cache: attn_rot_v = 0, n_embd_head_k_all = 128
+llama_context: enumerating backends
+llama_context: backend_ptrs.size() = 1
+sched_reserve: reserving ...
+sched_reserve: max_nodes = 2480
+sched_reserve: reserving full memory module
+sched_reserve: worst-case: n_tokens = 1024, n_seqs = 4, n_outputs = 4
+sched_reserve: resolving fused Gated Delta Net support:
+graph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  4, n_outputs =    4
+graph_reserve: making n_tokens a multiple of n_seqs - n_tokens = 4, n_seqs = 4, n_outputs = 4
+sched_reserve: fused Gated Delta Net (autoregressive) enabled
+graph_reserve: reserving a graph for ubatch with n_tokens =   64, n_seqs =  4, n_outputs =   64
+sched_reserve: fused Gated Delta Net (chunked) enabled
+graph_reserve: reserving a graph for ubatch with n_tokens = 1024, n_seqs =  4, n_outputs = 1024
+graph_reserve: reserving a graph for ubatch with n_tokens =    4, n_seqs =  4, n_outputs =    4
+graph_reserve: reserving a graph for ubatch with n_tokens = 1024, n_seqs =  4, n_outputs = 1024
+sched_reserve:        CPU compute buffer size =   601.50 MiB
+sched_reserve: graph nodes  = 1154
+sched_reserve: graph splits = 1
+sched_reserve: reserve took 7.32 ms, sched copies = 1
+[2m2026-07-31T16:50:04.866616Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Scheduler running — max_batch_size=4, queue_capacity=32, total_ctx=4096, per_seq_ctx=1024
+[2m2026-07-31T16:50:04.866744Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Model swap complete → qwen3-0.6b (batch_size=4)
+  Model:         qwen3-0.6b
+  GPU backend:   none (CPU only!)
+  CPU features:  CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | LLAMAFILE = 1 | ACCELERATE = 1 | REPACK = 1 | 
+  Rust debug:    enabled (NaN/Inf logit check active — extra per-token cost)
+  GPU layers:    0 (no GPU backend compiled into this binary)
+  Context:       4096 total (1024 per sequence × 4 slots)
+  ⚠ per-sequence context is only 1024 tokens — long histories will fail.
+    For single-chat use:   --batch-size 1   (full 4096 tokens)
+    For 32k per slot:      --ctx-size 131072   (= 32768 × 4 slots)
+    this model was trained for 40960 — raise it with --ctx-size (costs KV memory)
+  Flash attn:    disabled (auto-detect)
+  KV cache:      K=F16 V=F16
+  KV memory:     K=224 MiB, V=224 MiB
+  Threads:       6
+  Batch (prefill): 2048
+  Mode:          continuous batching (max 4 concurrent)
+[2m2026-07-31T16:50:04.866903Z[0m [32m INFO[0m [2meullm::api::routes[0m[2m:[0m Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+[2m2026-07-31T16:50:04.867079Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m num_predict capped: requested=4294967295, effective=1014 (context=1024, prompt_tokens=10)
+[2m2026-07-31T16:50:04.867094Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Seq 0: prompt=10 tokens, reused 0 from cache, decoded 10 fresh, max_output=1014, effective_ctx=1024
+[2m2026-07-31T16:50:07.119631Z[0m [32m INFO[0m [2meullm::audit[0m[2m:[0m Audit: inference logged [3maudit_id[0m[2m=[0ma8e11e7c-e31b-496d-84b8-35d280af6455 [3mmodel[0m[2m=[0mqwen3-0.6b [3mrequest_type[0m[2m=[0mchat [3minput_tokens[0m[2m=[0m10 [3moutput_tokens[0m[2m=[0m104 [3mduration_ms[0m[2m=[0m2252
+[2m2026-07-31T16:50:07.173060Z[0m [32m INFO[0m [2meullm::api::routes[0m[2m:[0m Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+[2m2026-07-31T16:50:07.173208Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m num_predict capped: requested=4294967295, effective=1014 (context=1024, prompt_tokens=10)
+[2m2026-07-31T16:50:07.173225Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Seq 0: prompt=10 tokens, reused 3 from cache, decoded 7 fresh, max_output=1014, effective_ctx=1024
+[2m2026-07-31T16:50:08.748940Z[0m [32m INFO[0m [2meullm::audit[0m[2m:[0m Audit: inference logged [3maudit_id[0m[2m=[0mce0c68b0-f665-4621-9515-20ff383e18dd [3mmodel[0m[2m=[0mqwen3-0.6b [3mrequest_type[0m[2m=[0mchat.completions [3minput_tokens[0m[2m=[0m10 [3moutput_tokens[0m[2m=[0m73 [3mduration_ms[0m[2m=[0m1575
+[2m2026-07-31T16:50:08.801012Z[0m [32m INFO[0m [2meullm::api::routes[0m[2m:[0m Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+[2m2026-07-31T16:50:08.801254Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m num_predict capped: requested=4294967295, effective=1001 (context=1024, prompt_tokens=23)
+[2m2026-07-31T16:50:08.801281Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Seq 0: prompt=23 tokens, reused 3 from cache, decoded 20 fresh, max_output=1001, effective_ctx=1024
+[2m2026-07-31T16:50:32.341072Z[0m [32m INFO[0m [2meullm::audit[0m[2m:[0m Audit: inference logged [3maudit_id[0m[2m=[0m2f10c008-c8e8-497a-84e1-f457abb4c43a [3mmodel[0m[2m=[0mqwen3-0.6b [3mrequest_type[0m[2m=[0mchat [3minput_tokens[0m[2m=[0m23 [3moutput_tokens[0m[2m=[0m1001 [3mduration_ms[0m[2m=[0m23539
+[2m2026-07-31T16:50:32.395239Z[0m [32m INFO[0m [2meullm::api::routes[0m[2m:[0m Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+[2m2026-07-31T16:50:32.395443Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m num_predict capped: requested=4294967295, effective=1001 (context=1024, prompt_tokens=23)
+[2m2026-07-31T16:50:32.395466Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Seq 0: prompt=23 tokens, reused 22 from cache, decoded 1 fresh, max_output=1001, effective_ctx=1024
+[2m2026-07-31T16:50:55.611215Z[0m [32m INFO[0m [2meullm::audit[0m[2m:[0m Audit: inference logged [3maudit_id[0m[2m=[0mf8586351-fb6f-430b-ab8e-b2006eed1c2f [3mmodel[0m[2m=[0mqwen3-0.6b [3mrequest_type[0m[2m=[0mchat.completions [3minput_tokens[0m[2m=[0m23 [3moutput_tokens[0m[2m=[0m1001 [3mduration_ms[0m[2m=[0m23215
+
+== End of dump
+
+Server started with --port 11435 --rust-debug --batch-size 4 --cache-type-k q4_0 --cache-type-v q4_0 --no-flash-attn
+eullm daemon started (PID 539).
+  PID file: /tmp/eullm.pid
+  Log file: /tmp/eullm.log
+  Stop with: kill 539
+TESTING http://localhost:11435/api/chat with longer query
+
+TEST_START
+The server is running
+{"created_at":"2026-07-31T16:51:36.099906+00:00","done":true,"done_reason":"length","eval_count":1001,"eval_duration":23112000000,"load_duration":0,"message":{"content":"<think>\nOkay, so I need to figure out why 2 is considered a prime number even though all the other odd numbers are primes. Hmm, wait, but actually, 2 is a prime by definition, right? Let me start over and clarify.\n\nFirst, let's remember the basic definitions. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. So, by definition, primes are numbers like 2, 3, 5, 7, etc., which have only two positive divisors.\n\nNow, the question is: why is 2 a prime number when all other numbers are odd? That seems contradictory to what I know. Wait, but hold on! Maybe there's confusion here between the parity of numbers and their primality.\n\nLet me think again. Let's take an example. Take 3. It is a prime number, right? Yes, because it has no divisors except 1 and 3. Similarly, 5 is also prime. But what about even numbers? They are not primes themselves. The smallest even number is 2, which is a prime. So why does the question say that all other odd numbers are also primes? Wait, maybe the user was referring to another context where there's confusion?\n\nWait, no. Let me check again. The question is: \"Why is 2 a prime number when all the rest are odd numbers?\" So perhaps there's confusion in terms of parity or something else? Wait, maybe it's a misunderstanding. Let me think: If someone says \"all the rest are odd numbers,\" but 2 is even and hence not prime. But in this case, the user is referring to all other odd numbers being primes? That would be a misunderstanding.\n\nWait, maybe there's confusion between parity and the actual number. Let me think again. Prime numbers are defined as natural numbers greater than 1 that have no divisors other than 1 and themselves. So, primes can be even or odd. The only even prime is 2, which makes sense because all other even numbers are not prime. So if someone says \"all the rest\" when they mean others (odd numbers), but 2 is a prime, that's correct.\n\nBut then why does the question say that all the rest are odd? Maybe the user is trying to confuse the concepts here. Let me confirm: primes can be even or odd, and 2 is the only even prime. So if someone says \"all other numbers are odd,\" but they're talking about the rest in general (not just primes), then 2 is a prime, which makes sense.\n\nAlternatively, maybe there's confusion about whether primes can be even. But according to the definition, yes, 2 is the only even prime. Therefore, when considering all other odd numbers (which would include primes like 3, 5, etc.), they are indeed primes.\n\nWait, but why does the question say \"all the rest are odd numbers\"? Maybe it's a misstatement. If someone says that all other numbers except 2 are odd, but then primes include both even and odd ones, so the rest would be primes. However, if they meant all numbers except 2, which are odd, then they are correct. But the original question is phrased as \"when all the rest are odd numbers,\" implying that all other numbers (which would include even ones) are odd. But in reality, only 2 is even and hence not prime.\n\nSo perhaps the confusion comes from thinking that if all numbers except 2 are odd, then they are primes. But in reality, when considering all other odd numbers (which are primes), they are indeed primes.\n\nAlternatively, maybe there's a misunderstanding about parity. Let me think: 2 is the only even number that is also prime. All other numbers are odd and may or may not be primes. So, if someone says \"all rest are odd,\" then it's correct because 2 is even but not prime. Hence, the question's phrasing seems to be a bit confusing.\n\nBut regardless, according to definitions, 2 is prime because it meets the criteria of having exactly two positive divisors. All other odd numbers (which are primes) also meet this criteria.\n\nTherefore, the answer is that 2 is a prime number because it meets the definition of a prime number, while other odd numbers (primes) also satisfy this condition. The confusion arises from whether \"rest\" refers to even or odd numbers and the parity of the numbers.\n</think>\n\nThe number 2 is considered a prime number because it satisfies the fundamental definition of a prime: it is a natural number greater than 1 that has no positive divisors other than 1 and itself. \n\nHere's why:\n\n- **Definition**: A prime number is a natural number greater than 1 that has no positive divisors","role":"assistant"},"model":"qwen3-0.6b","prompt_eval_count":23,"prompt_eval_duration":0,"total_duration":23112000000}
+TEST_END
+
+
+TESTING http://localhost:11435/v1/chat/completions with longer query
+
+TEST_START
+The server is running
+{"choices":[{"finish_reason":"length","index":0,"message":{"content":"<think>\nOkay, so I need to figure out why 2 is considered a prime number even though all other numbers are odd. Hmm, let me start by recalling what a prime number is. From what I remember, a prime number is a natural number greater than 1 that cannot be expressed as the product of two smaller positive integers other than 1. So, primes are numbers like 2, 3, 5, 7, etc., and they have no divisors other than 1 and themselves.\n\nNow, the question is why 2 is a prime even though all other numbers are odd. Let me think about this. All numbers greater than 1 except for 2 and 3 are composite. Wait, but 2 is a prime, so why isn't it considered odd? Because 2 is even. So maybe the confusion comes from mixing up the parity (evenness or oddness) of numbers.\n\nLet me verify. If all other numbers are odd, then adding them together would result in an even number because 1 is odd and adding multiple odds gives an odd sum, but adding more than one would make it even. However, the problem states that all other numbers are odd, so their sum isn't necessarily even. But the question is about why 2 is a prime.\n\nBut wait, maybe I'm mixing up concepts here. Let me think again. The parity of numbers doesn't directly affect whether they are primes. A prime can be even or odd, but 2 is the only even prime. All other primes are odd because any composite number has at least one factor of 2 (if it's not a power of two). So, if you take all the other numbers except 2, they are odd and have no factors other than 1 and themselves. Therefore, their sum isn't even, so adding them all together would not be even unless... but the problem says they are odd.\n\nWait, perhaps I'm making this more complicated. Let me think of examples. The primes up to 20: 2, 3, 5, 7, 11, 13, 17, 19. All of these are odd numbers except 2 itself. So even though other primes are odd, 2 is the only one that's even. Therefore, even though there are many odd primes and 2 is even, 2 still is a prime because it meets the criteria of being greater than 1 and having only two divisors. The question is why 2 is considered a prime when all others are odd, which seems to be because 2 is the even prime and all other primes are odd.\n\nBut maybe there's another angle. Let me check if I'm misunderstanding something. If you have a number that is not prime, but still even, like 2. All other primes are odd and composite, so yes, they can't be prime. Therefore, 2 is the only even prime. So that's why even though all others are odd, 2 is a prime.\n\nAlternatively, maybe there's confusion about numbers being composite or not. For example, the number 4 is even and composite, but it has factors like 2. But if you have a prime that's even, like 2, it's still prime because it is greater than 1 and cannot be divided by any other number except itself. So, the confusion arises from considering 2 as even but not odd, while all others are odd.\n\nTherefore, the answer is that 2 is a prime number because it meets the criteria of being greater than 1 and having only two divisors: 1 and itself. The rest of the numbers are odd, so they can't be primes unless they themselves are composite or equal to 2.\n\nI think that makes sense. Let me just check with some numbers. For example, 3 is prime and odd. 5 is also prime and odd. So all the primes except 2 are odd. Therefore, why is 2 considered a prime? Because it's even and meets the definition of a prime number. So the answer is that 2 is a prime because it is an even number, but all other primes are odd.\n</think>\n\nThe reason why **2** is considered a **prime number**, despite the fact that **all other numbers are odd**, can be understood through the definition of a prime number.\n\n### Definition Recap:\nA prime number is any natural number greater than 1 that has no divisors other than **1** and itself. This includes numbers like $2, 3, 5, 7,$ etc.\n\n### Key Insight:\n- All primes except for **2** are odd.  \n- The number $2$ is even and greater than 1, which qualifies it as a prime number.\n\n### Why 2 Is Prime:\n- Since $2$ is the only even","role":"assistant"}}],"created":1785516719,"id":"chatcmpl-401f5c29-85a4-4f70-ad9f-9a48031fd387","model":"qwen3-0.6b","object":"chat.completion","usage":{"completion_tokens":1001,"prompt_tokens":23,"total_tokens":1024}}
+TEST_END
+
+
+
+== Dumping server log /tmp/eullm.log after server shutdown
+
+eullm ready (no model loaded — send a request with a "model" field to load one).
+  API (EULLM):   http://localhost:11435/api
+  API (OpenAI):  http://localhost:11435/v1
+  Rust debug:    enabled (NaN/Inf logit check active — extra per-token cost)
+
+Press Ctrl+C to stop.
+
+[2m2026-07-31T16:51:05.725776Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m API authentication: disabled (not configured (no authentication — the IP allowlist is the only control)). Set EULLM_API_KEYS=id:secret to require a bearer token — necessary behind Docker's published ports, where every external client arrives as the bridge gateway address.
+[2m2026-07-31T16:51:05.725827Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Allowed source IPs/subnets: 127.0.0.1/32, ::1/128  [source: default (loopback only — nothing configured)]
+[2m2026-07-31T16:51:05.725843Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Allowed browser origins: any loopback origin  [source: default (any loopback origin — nothing configured)]
+[2m2026-07-31T16:51:05.725861Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Model store: /Users/peterhickman/.eullm/models  [source: default]
+[2m2026-07-31T16:51:05.725927Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Audit trail: /Users/peterhickman/.eullm/audit/audit.jsonl
+[2m2026-07-31T16:51:05.726258Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m eullm API listening on 0.0.0.0:11435
+[2m2026-07-31T16:51:12.019568Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Swapping model → qwen3-0.6b (/Users/peterhickman/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf)
+[2m2026-07-31T16:51:12.019612Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Previous model fully unloaded
+
+╔══════════════════════════════════════════════════════════════╗
+║  WARNING: GPU requested but this binary has no GPU support  ║
+║                                                              ║
+║  All inference will run on CPU (very slow for large prompts) ║
+║                                                              ║
+║  Rebuild with GPU support:                                   ║
+║    cargo build --release --features cuda    # NVIDIA         ║
+║    cargo build --release --features rocm    # AMD            ║
+║    cargo build --release --features vulkan  # Cross-platform ║
+║    cargo build --release --features metal   # Apple Silicon  ║
+║                                                              ║
+║  Docker: use the engine-gpu service or build with:           ║
+║    docker build --build-arg FEATURES=cuda -t eullm .         ║
+╚══════════════════════════════════════════════════════════════╝
+
+[2m2026-07-31T16:51:12.019926Z[0m [33m WARN[0m [2meullm::inference[0m[2m:[0m No GPU backend compiled: requested gpu_layers=-1, forcing 0. Rebuild with --features cuda/rocm/vulkan/metal for GPU acceleration.
+[2m2026-07-31T16:51:12.019946Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Initializing llama.cpp backend (scheduler)...
+[2m2026-07-31T16:51:12.022374Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Loading model: /Users/peterhickman/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf
+llama_model_loader: loaded meta data with 32 key-value pairs and 310 tensors from /Users/peterhickman/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = qwen3
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Qwen3-0.6B
+llama_model_loader: - kv   3:                           general.basename str              = Qwen3-0.6B
+llama_model_loader: - kv   4:                       general.quantized_by str              = Unsloth
+llama_model_loader: - kv   5:                         general.size_label str              = 0.6B
+llama_model_loader: - kv   6:                           general.repo_url str              = https://huggingface.co/unsloth
+llama_model_loader: - kv   7:                          qwen3.block_count u32              = 28
+llama_model_loader: - kv   8:                       qwen3.context_length u32              = 40960
+llama_model_loader: - kv   9:                     qwen3.embedding_length u32              = 1024
+llama_model_loader: - kv  10:                  qwen3.feed_forward_length u32              = 3072
+llama_model_loader: - kv  11:                 qwen3.attention.head_count u32              = 16
+llama_model_loader: - kv  12:              qwen3.attention.head_count_kv u32              = 8
+llama_model_loader: - kv  13:                       qwen3.rope.freq_base f32              = 1000000.000000
+llama_model_loader: - kv  14:     qwen3.attention.layer_norm_rms_epsilon f32              = 0.000001
+llama_model_loader: - kv  15:                 qwen3.attention.key_length u32              = 128
+llama_model_loader: - kv  16:               qwen3.attention.value_length u32              = 128
+llama_model_loader: - kv  17:                       tokenizer.ggml.model str              = gpt2
+llama_model_loader: - kv  18:                         tokenizer.ggml.pre str              = qwen2
+llama_model_loader: - kv  19:                      tokenizer.ggml.tokens arr[str,151936]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+llama_model_loader: - kv  20:                  tokenizer.ggml.token_type arr[i32,151936]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+llama_model_loader: - kv  21:                      tokenizer.ggml.merges arr[str,151387]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+llama_model_loader: - kv  22:                tokenizer.ggml.eos_token_id u32              = 151645
+llama_model_loader: - kv  23:            tokenizer.ggml.padding_token_id u32              = 151654
+llama_model_loader: - kv  24:               tokenizer.ggml.add_bos_token bool             = false
+llama_model_loader: - kv  25:                    tokenizer.chat_template str              = {%- if tools %}\n    {{- '<|im_start|>...
+llama_model_loader: - kv  26:               general.quantization_version u32              = 2
+llama_model_loader: - kv  27:                          general.file_type u32              = 15
+llama_model_loader: - kv  28:                      quantize.imatrix.file str              = Qwen3-0.6B-GGUF/imatrix_unsloth.dat
+llama_model_loader: - kv  29:                   quantize.imatrix.dataset str              = unsloth_calibration_Qwen3-0.6B.txt
+llama_model_loader: - kv  30:             quantize.imatrix.entries_count u32              = 196
+llama_model_loader: - kv  31:              quantize.imatrix.chunks_count u32              = 688
+llama_model_loader: - type  f32:  113 tensors
+llama_model_loader: - type q4_K:  168 tensors
+llama_model_loader: - type q6_K:   29 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = Q4_K - Medium
+print_info: file size   = 372.65 MiB (5.24 BPW) 
+init_tokenizer: initializing tokenizer for type 2
+load: 0 unused tokens
+load: control token: 151659 '<|fim_prefix|>' is not marked as EOG
+load: control token: 151656 '<|video_pad|>' is not marked as EOG
+load: control token: 151655 '<|image_pad|>' is not marked as EOG
+load: control token: 151653 '<|vision_end|>' is not marked as EOG
+load: control token: 151652 '<|vision_start|>' is not marked as EOG
+load: control token: 151651 '<|quad_end|>' is not marked as EOG
+load: control token: 151649 '<|box_end|>' is not marked as EOG
+load: control token: 151648 '<|box_start|>' is not marked as EOG
+load: control token: 151646 '<|object_ref_start|>' is not marked as EOG
+load: control token: 151644 '<|im_start|>' is not marked as EOG
+load: control token: 151661 '<|fim_suffix|>' is not marked as EOG
+load: control token: 151647 '<|object_ref_end|>' is not marked as EOG
+load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+load: control token: 151660 '<|fim_middle|>' is not marked as EOG
+load: control token: 151654 '<|vision_pad|>' is not marked as EOG
+load: control token: 151650 '<|quad_start|>' is not marked as EOG
+load: printing all EOG tokens:
+load:   - 128247 ('</s>')
+load:   - 151643 ('<|endoftext|>')
+load:   - 151645 ('<|im_end|>')
+load:   - 151662 ('<|fim_pad|>')
+load:   - 151663 ('<|repo_name|>')
+load:   - 151664 ('<|file_sep|>')
+load: special tokens cache size = 27
+load: token to piece cache size = 0.9311 MB
+print_info: arch                  = qwen3
+print_info: vocab_only            = 0
+print_info: no_alloc              = 0
+print_info: n_ctx_train           = 40960
+print_info: n_embd_inp            = 1024
+print_info: n_embd                = 1024
+print_info: n_embd_out            = 1024
+print_info: n_layer               = 28
+print_info: n_layer_all           = 28
+print_info: n_head                = 16
+print_info: n_head_kv             = 8
+print_info: n_rot                 = 128
+print_info: n_swa                 = 0
+print_info: is_swa_any            = 0
+print_info: n_embd_head_k         = 128
+print_info: n_embd_head_v         = 128
+print_info: n_gqa                 = 2
+print_info: n_embd_k_gqa          = 1024
+print_info: n_embd_v_gqa          = 1024
+print_info: f_norm_eps            = 0.0e+00
+print_info: f_norm_rms_eps        = 1.0e-06
+print_info: f_clamp_kqv           = 0.0e+00
+print_info: f_max_alibi_bias      = 0.0e+00
+print_info: f_logit_scale         = 0.0e+00
+print_info: f_attn_scale          = 0.0e+00
+print_info: f_attn_value_scale    = 0.0000
+print_info: n_ff                  = 3072
+print_info: n_expert              = 0
+print_info: n_expert_used         = 0
+print_info: n_expert_groups       = 0
+print_info: n_group_used          = 0
+print_info: causal attn           = 1
+print_info: pooling type          = -1
+print_info: rope type             = 2
+print_info: rope scaling          = linear
+print_info: freq_base_train       = 1000000.0
+print_info: freq_scale_train      = 1
+print_info: n_ctx_orig_yarn       = 40960
+print_info: rope_yarn_log_mul     = 0.0000
+print_info: rope_finetuned        = unknown
+print_info: model type            = 0.6B
+print_info: model params          = 596.05 M
+print_info: general.name          = Qwen3-0.6B
+print_info: vocab type            = BPE
+print_info: n_vocab               = 151936
+print_info: n_merges              = 151387
+print_info: BOS token             = 11 ','
+print_info: EOS token             = 151645 '<|im_end|>'
+print_info: EOT token             = 151645 '<|im_end|>'
+print_info: PAD token             = 151654 '<|vision_pad|>'
+print_info: LF token              = 198 'Ċ'
+print_info: FIM PRE token         = 151659 '<|fim_prefix|>'
+print_info: FIM SUF token         = 151661 '<|fim_suffix|>'
+print_info: FIM MID token         = 151660 '<|fim_middle|>'
+print_info: FIM PAD token         = 151662 '<|fim_pad|>'
+print_info: FIM REP token         = 151663 '<|repo_name|>'
+print_info: FIM SEP token         = 151664 '<|file_sep|>'
+print_info: EOG token             = 128247 '</s>'
+print_info: EOG token             = 151643 '<|endoftext|>'
+print_info: EOG token             = 151645 '<|im_end|>'
+print_info: EOG token             = 151662 '<|fim_pad|>'
+print_info: EOG token             = 151663 '<|repo_name|>'
+print_info: EOG token             = 151664 '<|file_sep|>'
+print_info: max token length      = 256
+load_tensors: loading model tensors, this can take a while... (mmap = true, direct_io = false)
+load_tensors: layer   0 assigned to device CPU, is_swa = 0
+load_tensors: layer   1 assigned to device CPU, is_swa = 0
+load_tensors: layer   2 assigned to device CPU, is_swa = 0
+load_tensors: layer   3 assigned to device CPU, is_swa = 0
+load_tensors: layer   4 assigned to device CPU, is_swa = 0
+load_tensors: layer   5 assigned to device CPU, is_swa = 0
+load_tensors: layer   6 assigned to device CPU, is_swa = 0
+load_tensors: layer   7 assigned to device CPU, is_swa = 0
+load_tensors: layer   8 assigned to device CPU, is_swa = 0
+load_tensors: layer   9 assigned to device CPU, is_swa = 0
+load_tensors: layer  10 assigned to device CPU, is_swa = 0
+load_tensors: layer  11 assigned to device CPU, is_swa = 0
+load_tensors: layer  12 assigned to device CPU, is_swa = 0
+load_tensors: layer  13 assigned to device CPU, is_swa = 0
+load_tensors: layer  14 assigned to device CPU, is_swa = 0
+load_tensors: layer  15 assigned to device CPU, is_swa = 0
+load_tensors: layer  16 assigned to device CPU, is_swa = 0
+load_tensors: layer  17 assigned to device CPU, is_swa = 0
+load_tensors: layer  18 assigned to device CPU, is_swa = 0
+load_tensors: layer  19 assigned to device CPU, is_swa = 0
+load_tensors: layer  20 assigned to device CPU, is_swa = 0
+load_tensors: layer  21 assigned to device CPU, is_swa = 0
+load_tensors: layer  22 assigned to device CPU, is_swa = 0
+load_tensors: layer  23 assigned to device CPU, is_swa = 0
+load_tensors: layer  24 assigned to device CPU, is_swa = 0
+load_tensors: layer  25 assigned to device CPU, is_swa = 0
+load_tensors: layer  26 assigned to device CPU, is_swa = 0
+load_tensors: layer  27 assigned to device CPU, is_swa = 0
+load_tensors: layer  28 assigned to device CPU, is_swa = 0
+create_tensor: loading tensor token_embd.weight
+create_tensor: loading tensor output_norm.weight
+create_tensor: loading tensor blk.0.attn_norm.weight
+create_tensor: loading tensor blk.0.attn_q.weight
+create_tensor: loading tensor blk.0.attn_k.weight
+create_tensor: loading tensor blk.0.attn_v.weight
+create_tensor: loading tensor blk.0.attn_output.weight
+create_tensor: loading tensor blk.0.attn_k_norm.weight
+create_tensor: loading tensor blk.0.attn_q_norm.weight
+create_tensor: loading tensor blk.0.ffn_norm.weight
+create_tensor: loading tensor blk.0.ffn_gate.weight
+create_tensor: loading tensor blk.0.ffn_down.weight
+create_tensor: loading tensor blk.0.ffn_up.weight
+create_tensor: loading tensor blk.1.attn_norm.weight
+create_tensor: loading tensor blk.1.attn_q.weight
+create_tensor: loading tensor blk.1.attn_k.weight
+create_tensor: loading tensor blk.1.attn_v.weight
+create_tensor: loading tensor blk.1.attn_output.weight
+create_tensor: loading tensor blk.1.attn_k_norm.weight
+create_tensor: loading tensor blk.1.attn_q_norm.weight
+create_tensor: loading tensor blk.1.ffn_norm.weight
+create_tensor: loading tensor blk.1.ffn_gate.weight
+create_tensor: loading tensor blk.1.ffn_down.weight
+create_tensor: loading tensor blk.1.ffn_up.weight
+create_tensor: loading tensor blk.2.attn_norm.weight
+create_tensor: loading tensor blk.2.attn_q.weight
+create_tensor: loading tensor blk.2.attn_k.weight
+create_tensor: loading tensor blk.2.attn_v.weight
+create_tensor: loading tensor blk.2.attn_output.weight
+create_tensor: loading tensor blk.2.attn_k_norm.weight
+create_tensor: loading tensor blk.2.attn_q_norm.weight
+create_tensor: loading tensor blk.2.ffn_norm.weight
+create_tensor: loading tensor blk.2.ffn_gate.weight
+create_tensor: loading tensor blk.2.ffn_down.weight
+create_tensor: loading tensor blk.2.ffn_up.weight
+create_tensor: loading tensor blk.3.attn_norm.weight
+create_tensor: loading tensor blk.3.attn_q.weight
+create_tensor: loading tensor blk.3.attn_k.weight
+create_tensor: loading tensor blk.3.attn_v.weight
+create_tensor: loading tensor blk.3.attn_output.weight
+create_tensor: loading tensor blk.3.attn_k_norm.weight
+create_tensor: loading tensor blk.3.attn_q_norm.weight
+create_tensor: loading tensor blk.3.ffn_norm.weight
+create_tensor: loading tensor blk.3.ffn_gate.weight
+create_tensor: loading tensor blk.3.ffn_down.weight
+create_tensor: loading tensor blk.3.ffn_up.weight
+create_tensor: loading tensor blk.4.attn_norm.weight
+create_tensor: loading tensor blk.4.attn_q.weight
+create_tensor: loading tensor blk.4.attn_k.weight
+create_tensor: loading tensor blk.4.attn_v.weight
+create_tensor: loading tensor blk.4.attn_output.weight
+create_tensor: loading tensor blk.4.attn_k_norm.weight
+create_tensor: loading tensor blk.4.attn_q_norm.weight
+create_tensor: loading tensor blk.4.ffn_norm.weight
+create_tensor: loading tensor blk.4.ffn_gate.weight
+create_tensor: loading tensor blk.4.ffn_down.weight
+create_tensor: loading tensor blk.4.ffn_up.weight
+create_tensor: loading tensor blk.5.attn_norm.weight
+create_tensor: loading tensor blk.5.attn_q.weight
+create_tensor: loading tensor blk.5.attn_k.weight
+create_tensor: loading tensor blk.5.attn_v.weight
+create_tensor: loading tensor blk.5.attn_output.weight
+create_tensor: loading tensor blk.5.attn_k_norm.weight
+create_tensor: loading tensor blk.5.attn_q_norm.weight
+create_tensor: loading tensor blk.5.ffn_norm.weight
+create_tensor: loading tensor blk.5.ffn_gate.weight
+create_tensor: loading tensor blk.5.ffn_down.weight
+create_tensor: loading tensor blk.5.ffn_up.weight
+create_tensor: loading tensor blk.6.attn_norm.weight
+create_tensor: loading tensor blk.6.attn_q.weight
+create_tensor: loading tensor blk.6.attn_k.weight
+create_tensor: loading tensor blk.6.attn_v.weight
+create_tensor: loading tensor blk.6.attn_output.weight
+create_tensor: loading tensor blk.6.attn_k_norm.weight
+create_tensor: loading tensor blk.6.attn_q_norm.weight
+create_tensor: loading tensor blk.6.ffn_norm.weight
+create_tensor: loading tensor blk.6.ffn_gate.weight
+create_tensor: loading tensor blk.6.ffn_down.weight
+create_tensor: loading tensor blk.6.ffn_up.weight
+create_tensor: loading tensor blk.7.attn_norm.weight
+create_tensor: loading tensor blk.7.attn_q.weight
+create_tensor: loading tensor blk.7.attn_k.weight
+create_tensor: loading tensor blk.7.attn_v.weight
+create_tensor: loading tensor blk.7.attn_output.weight
+create_tensor: loading tensor blk.7.attn_k_norm.weight
+create_tensor: loading tensor blk.7.attn_q_norm.weight
+create_tensor: loading tensor blk.7.ffn_norm.weight
+create_tensor: loading tensor blk.7.ffn_gate.weight
+create_tensor: loading tensor blk.7.ffn_down.weight
+create_tensor: loading tensor blk.7.ffn_up.weight
+create_tensor: loading tensor blk.8.attn_norm.weight
+create_tensor: loading tensor blk.8.attn_q.weight
+create_tensor: loading tensor blk.8.attn_k.weight
+create_tensor: loading tensor blk.8.attn_v.weight
+create_tensor: loading tensor blk.8.attn_output.weight
+create_tensor: loading tensor blk.8.attn_k_norm.weight
+create_tensor: loading tensor blk.8.attn_q_norm.weight
+create_tensor: loading tensor blk.8.ffn_norm.weight
+create_tensor: loading tensor blk.8.ffn_gate.weight
+create_tensor: loading tensor blk.8.ffn_down.weight
+create_tensor: loading tensor blk.8.ffn_up.weight
+create_tensor: loading tensor blk.9.attn_norm.weight
+create_tensor: loading tensor blk.9.attn_q.weight
+create_tensor: loading tensor blk.9.attn_k.weight
+create_tensor: loading tensor blk.9.attn_v.weight
+create_tensor: loading tensor blk.9.attn_output.weight
+create_tensor: loading tensor blk.9.attn_k_norm.weight
+create_tensor: loading tensor blk.9.attn_q_norm.weight
+create_tensor: loading tensor blk.9.ffn_norm.weight
+create_tensor: loading tensor blk.9.ffn_gate.weight
+create_tensor: loading tensor blk.9.ffn_down.weight
+create_tensor: loading tensor blk.9.ffn_up.weight
+create_tensor: loading tensor blk.10.attn_norm.weight
+create_tensor: loading tensor blk.10.attn_q.weight
+create_tensor: loading tensor blk.10.attn_k.weight
+create_tensor: loading tensor blk.10.attn_v.weight
+create_tensor: loading tensor blk.10.attn_output.weight
+create_tensor: loading tensor blk.10.attn_k_norm.weight
+create_tensor: loading tensor blk.10.attn_q_norm.weight
+create_tensor: loading tensor blk.10.ffn_norm.weight
+create_tensor: loading tensor blk.10.ffn_gate.weight
+create_tensor: loading tensor blk.10.ffn_down.weight
+create_tensor: loading tensor blk.10.ffn_up.weight
+create_tensor: loading tensor blk.11.attn_norm.weight
+create_tensor: loading tensor blk.11.attn_q.weight
+create_tensor: loading tensor blk.11.attn_k.weight
+create_tensor: loading tensor blk.11.attn_v.weight
+create_tensor: loading tensor blk.11.attn_output.weight
+create_tensor: loading tensor blk.11.attn_k_norm.weight
+create_tensor: loading tensor blk.11.attn_q_norm.weight
+create_tensor: loading tensor blk.11.ffn_norm.weight
+create_tensor: loading tensor blk.11.ffn_gate.weight
+create_tensor: loading tensor blk.11.ffn_down.weight
+create_tensor: loading tensor blk.11.ffn_up.weight
+create_tensor: loading tensor blk.12.attn_norm.weight
+create_tensor: loading tensor blk.12.attn_q.weight
+create_tensor: loading tensor blk.12.attn_k.weight
+create_tensor: loading tensor blk.12.attn_v.weight
+create_tensor: loading tensor blk.12.attn_output.weight
+create_tensor: loading tensor blk.12.attn_k_norm.weight
+create_tensor: loading tensor blk.12.attn_q_norm.weight
+create_tensor: loading tensor blk.12.ffn_norm.weight
+create_tensor: loading tensor blk.12.ffn_gate.weight
+create_tensor: loading tensor blk.12.ffn_down.weight
+create_tensor: loading tensor blk.12.ffn_up.weight
+create_tensor: loading tensor blk.13.attn_norm.weight
+create_tensor: loading tensor blk.13.attn_q.weight
+create_tensor: loading tensor blk.13.attn_k.weight
+create_tensor: loading tensor blk.13.attn_v.weight
+create_tensor: loading tensor blk.13.attn_output.weight
+create_tensor: loading tensor blk.13.attn_k_norm.weight
+create_tensor: loading tensor blk.13.attn_q_norm.weight
+create_tensor: loading tensor blk.13.ffn_norm.weight
+create_tensor: loading tensor blk.13.ffn_gate.weight
+create_tensor: loading tensor blk.13.ffn_down.weight
+create_tensor: loading tensor blk.13.ffn_up.weight
+create_tensor: loading tensor blk.14.attn_norm.weight
+create_tensor: loading tensor blk.14.attn_q.weight
+create_tensor: loading tensor blk.14.attn_k.weight
+create_tensor: loading tensor blk.14.attn_v.weight
+create_tensor: loading tensor blk.14.attn_output.weight
+create_tensor: loading tensor blk.14.attn_k_norm.weight
+create_tensor: loading tensor blk.14.attn_q_norm.weight
+create_tensor: loading tensor blk.14.ffn_norm.weight
+create_tensor: loading tensor blk.14.ffn_gate.weight
+create_tensor: loading tensor blk.14.ffn_down.weight
+create_tensor: loading tensor blk.14.ffn_up.weight
+create_tensor: loading tensor blk.15.attn_norm.weight
+create_tensor: loading tensor blk.15.attn_q.weight
+create_tensor: loading tensor blk.15.attn_k.weight
+create_tensor: loading tensor blk.15.attn_v.weight
+create_tensor: loading tensor blk.15.attn_output.weight
+create_tensor: loading tensor blk.15.attn_k_norm.weight
+create_tensor: loading tensor blk.15.attn_q_norm.weight
+create_tensor: loading tensor blk.15.ffn_norm.weight
+create_tensor: loading tensor blk.15.ffn_gate.weight
+create_tensor: loading tensor blk.15.ffn_down.weight
+create_tensor: loading tensor blk.15.ffn_up.weight
+create_tensor: loading tensor blk.16.attn_norm.weight
+create_tensor: loading tensor blk.16.attn_q.weight
+create_tensor: loading tensor blk.16.attn_k.weight
+create_tensor: loading tensor blk.16.attn_v.weight
+create_tensor: loading tensor blk.16.attn_output.weight
+create_tensor: loading tensor blk.16.attn_k_norm.weight
+create_tensor: loading tensor blk.16.attn_q_norm.weight
+create_tensor: loading tensor blk.16.ffn_norm.weight
+create_tensor: loading tensor blk.16.ffn_gate.weight
+create_tensor: loading tensor blk.16.ffn_down.weight
+create_tensor: loading tensor blk.16.ffn_up.weight
+create_tensor: loading tensor blk.17.attn_norm.weight
+create_tensor: loading tensor blk.17.attn_q.weight
+create_tensor: loading tensor blk.17.attn_k.weight
+create_tensor: loading tensor blk.17.attn_v.weight
+create_tensor: loading tensor blk.17.attn_output.weight
+create_tensor: loading tensor blk.17.attn_k_norm.weight
+create_tensor: loading tensor blk.17.attn_q_norm.weight
+create_tensor: loading tensor blk.17.ffn_norm.weight
+create_tensor: loading tensor blk.17.ffn_gate.weight
+create_tensor: loading tensor blk.17.ffn_down.weight
+create_tensor: loading tensor blk.17.ffn_up.weight
+create_tensor: loading tensor blk.18.attn_norm.weight
+create_tensor: loading tensor blk.18.attn_q.weight
+create_tensor: loading tensor blk.18.attn_k.weight
+create_tensor: loading tensor blk.18.attn_v.weight
+create_tensor: loading tensor blk.18.attn_output.weight
+create_tensor: loading tensor blk.18.attn_k_norm.weight
+create_tensor: loading tensor blk.18.attn_q_norm.weight
+create_tensor: loading tensor blk.18.ffn_norm.weight
+create_tensor: loading tensor blk.18.ffn_gate.weight
+create_tensor: loading tensor blk.18.ffn_down.weight
+create_tensor: loading tensor blk.18.ffn_up.weight
+create_tensor: loading tensor blk.19.attn_norm.weight
+create_tensor: loading tensor blk.19.attn_q.weight
+create_tensor: loading tensor blk.19.attn_k.weight
+create_tensor: loading tensor blk.19.attn_v.weight
+create_tensor: loading tensor blk.19.attn_output.weight
+create_tensor: loading tensor blk.19.attn_k_norm.weight
+create_tensor: loading tensor blk.19.attn_q_norm.weight
+create_tensor: loading tensor blk.19.ffn_norm.weight
+create_tensor: loading tensor blk.19.ffn_gate.weight
+create_tensor: loading tensor blk.19.ffn_down.weight
+create_tensor: loading tensor blk.19.ffn_up.weight
+create_tensor: loading tensor blk.20.attn_norm.weight
+create_tensor: loading tensor blk.20.attn_q.weight
+create_tensor: loading tensor blk.20.attn_k.weight
+create_tensor: loading tensor blk.20.attn_v.weight
+create_tensor: loading tensor blk.20.attn_output.weight
+create_tensor: loading tensor blk.20.attn_k_norm.weight
+create_tensor: loading tensor blk.20.attn_q_norm.weight
+create_tensor: loading tensor blk.20.ffn_norm.weight
+create_tensor: loading tensor blk.20.ffn_gate.weight
+create_tensor: loading tensor blk.20.ffn_down.weight
+create_tensor: loading tensor blk.20.ffn_up.weight
+create_tensor: loading tensor blk.21.attn_norm.weight
+create_tensor: loading tensor blk.21.attn_q.weight
+create_tensor: loading tensor blk.21.attn_k.weight
+create_tensor: loading tensor blk.21.attn_v.weight
+create_tensor: loading tensor blk.21.attn_output.weight
+create_tensor: loading tensor blk.21.attn_k_norm.weight
+create_tensor: loading tensor blk.21.attn_q_norm.weight
+create_tensor: loading tensor blk.21.ffn_norm.weight
+create_tensor: loading tensor blk.21.ffn_gate.weight
+create_tensor: loading tensor blk.21.ffn_down.weight
+create_tensor: loading tensor blk.21.ffn_up.weight
+create_tensor: loading tensor blk.22.attn_norm.weight
+create_tensor: loading tensor blk.22.attn_q.weight
+create_tensor: loading tensor blk.22.attn_k.weight
+create_tensor: loading tensor blk.22.attn_v.weight
+create_tensor: loading tensor blk.22.attn_output.weight
+create_tensor: loading tensor blk.22.attn_k_norm.weight
+create_tensor: loading tensor blk.22.attn_q_norm.weight
+create_tensor: loading tensor blk.22.ffn_norm.weight
+create_tensor: loading tensor blk.22.ffn_gate.weight
+create_tensor: loading tensor blk.22.ffn_down.weight
+create_tensor: loading tensor blk.22.ffn_up.weight
+create_tensor: loading tensor blk.23.attn_norm.weight
+create_tensor: loading tensor blk.23.attn_q.weight
+create_tensor: loading tensor blk.23.attn_k.weight
+create_tensor: loading tensor blk.23.attn_v.weight
+create_tensor: loading tensor blk.23.attn_output.weight
+create_tensor: loading tensor blk.23.attn_k_norm.weight
+create_tensor: loading tensor blk.23.attn_q_norm.weight
+create_tensor: loading tensor blk.23.ffn_norm.weight
+create_tensor: loading tensor blk.23.ffn_gate.weight
+create_tensor: loading tensor blk.23.ffn_down.weight
+create_tensor: loading tensor blk.23.ffn_up.weight
+create_tensor: loading tensor blk.24.attn_norm.weight
+create_tensor: loading tensor blk.24.attn_q.weight
+create_tensor: loading tensor blk.24.attn_k.weight
+create_tensor: loading tensor blk.24.attn_v.weight
+create_tensor: loading tensor blk.24.attn_output.weight
+create_tensor: loading tensor blk.24.attn_k_norm.weight
+create_tensor: loading tensor blk.24.attn_q_norm.weight
+create_tensor: loading tensor blk.24.ffn_norm.weight
+create_tensor: loading tensor blk.24.ffn_gate.weight
+create_tensor: loading tensor blk.24.ffn_down.weight
+create_tensor: loading tensor blk.24.ffn_up.weight
+create_tensor: loading tensor blk.25.attn_norm.weight
+create_tensor: loading tensor blk.25.attn_q.weight
+create_tensor: loading tensor blk.25.attn_k.weight
+create_tensor: loading tensor blk.25.attn_v.weight
+create_tensor: loading tensor blk.25.attn_output.weight
+create_tensor: loading tensor blk.25.attn_k_norm.weight
+create_tensor: loading tensor blk.25.attn_q_norm.weight
+create_tensor: loading tensor blk.25.ffn_norm.weight
+create_tensor: loading tensor blk.25.ffn_gate.weight
+create_tensor: loading tensor blk.25.ffn_down.weight
+create_tensor: loading tensor blk.25.ffn_up.weight
+create_tensor: loading tensor blk.26.attn_norm.weight
+create_tensor: loading tensor blk.26.attn_q.weight
+create_tensor: loading tensor blk.26.attn_k.weight
+create_tensor: loading tensor blk.26.attn_v.weight
+create_tensor: loading tensor blk.26.attn_output.weight
+create_tensor: loading tensor blk.26.attn_k_norm.weight
+create_tensor: loading tensor blk.26.attn_q_norm.weight
+create_tensor: loading tensor blk.26.ffn_norm.weight
+create_tensor: loading tensor blk.26.ffn_gate.weight
+create_tensor: loading tensor blk.26.ffn_down.weight
+create_tensor: loading tensor blk.26.ffn_up.weight
+create_tensor: loading tensor blk.27.attn_norm.weight
+create_tensor: loading tensor blk.27.attn_q.weight
+create_tensor: loading tensor blk.27.attn_k.weight
+create_tensor: loading tensor blk.27.attn_v.weight
+create_tensor: loading tensor blk.27.attn_output.weight
+create_tensor: loading tensor blk.27.attn_k_norm.weight
+create_tensor: loading tensor blk.27.attn_q_norm.weight
+create_tensor: loading tensor blk.27.ffn_norm.weight
+create_tensor: loading tensor blk.27.ffn_gate.weight
+create_tensor: loading tensor blk.27.ffn_down.weight
+create_tensor: loading tensor blk.27.ffn_up.weight
+done_getting_tensors: tensor 'token_embd.weight' (q6_K) (and 142 others) cannot be used with preferred buffer type CPU_REPACK, using CPU instead
+load_tensors:   CPU_Mapped model buffer size =   370.96 MiB
+load_tensors:   CPU_REPACK model buffer size =   204.75 MiB
+..............repack: repack tensor blk.0.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.0.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.0.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.0.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.0.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.1.attn_q.weight with q4_K_8x8
+.repack: repack tensor blk.1.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.1.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.1.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.1.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.2.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.2.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.2.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.2.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.2.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.3.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.3.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.3.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.3.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.3.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.3.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.3.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.4.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.4.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.4.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.4.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.4.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.4.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.4.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.5.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.5.attn_k.weight with q4_K_8x8
+.repack: repack tensor blk.5.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.5.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.5.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.6.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.6.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.6.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.6.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.6.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.6.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.6.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.7.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.7.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.7.attn_v.weight with q4_K_8x8
+.repack: repack tensor blk.7.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.7.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.7.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.7.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.8.attn_q.weight with q4_K_8x8
+.repack: repack tensor blk.8.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.8.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.8.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.8.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.9.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.9.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.9.attn_v.weight with q4_K_8x8
+.repack: repack tensor blk.9.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.9.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.9.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.9.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.10.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.10.attn_k.weight with q4_K_8x8
+.repack: repack tensor blk.10.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.10.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.10.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.10.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.10.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.11.attn_q.weight with q4_K_8x8
+.repack: repack tensor blk.11.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.11.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.11.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.11.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.12.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.12.attn_k.weight with q4_K_8x8
+.repack: repack tensor blk.12.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.12.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.12.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.12.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.12.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.13.attn_q.weight with q4_K_8x8
+.repack: repack tensor blk.13.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.13.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.13.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.13.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.13.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.13.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.14.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.14.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.14.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.14.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.14.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.15.attn_q.weight with q4_K_8x8
+.repack: repack tensor blk.15.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.15.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.15.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.15.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.15.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.15.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.16.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.16.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.16.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.16.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.16.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.16.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.16.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.17.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.17.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.17.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.17.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.17.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.18.attn_q.weight with q4_K_8x8
+.repack: repack tensor blk.18.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.18.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.18.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.18.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.18.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.18.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.19.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.19.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.19.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.19.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.19.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.19.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.19.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.20.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.20.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.20.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.20.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.20.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.21.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.21.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.21.attn_v.weight with q4_K_8x8
+repack: repack tensor blk.21.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.21.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.21.ffn_down.weight with q4_K_8x8
+repack: repack tensor blk.21.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.22.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.22.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.22.attn_v.weight with q4_K_8x8
+.repack: repack tensor blk.22.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.22.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.22.ffn_down.weight with q4_K_8x8
+.repack: repack tensor blk.22.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.23.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.23.attn_k.weight with q4_K_8x8
+.repack: repack tensor blk.23.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.23.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.23.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.24.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.24.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.24.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.24.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.24.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.25.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.25.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.25.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.25.ffn_gate.weight with q4_K_8x8
+.repack: repack tensor blk.25.ffn_up.weight with q4_K_8x8
+repack: repack tensor blk.26.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.26.attn_k.weight with q4_K_8x8
+.repack: repack tensor blk.26.attn_output.weight with q4_K_8x8
+repack: repack tensor blk.26.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.26.ffn_up.weight with q4_K_8x8
+.repack: repack tensor blk.27.attn_q.weight with q4_K_8x8
+repack: repack tensor blk.27.attn_k.weight with q4_K_8x8
+repack: repack tensor blk.27.attn_output.weight with q4_K_8x8
+.repack: repack tensor blk.27.ffn_gate.weight with q4_K_8x8
+repack: repack tensor blk.27.ffn_up.weight with q4_K_8x8
+.
+[2m2026-07-31T16:51:12.710509Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Allocating context: 4096 total tokens, 1024 per sequence (4 slots, flash_attn=false, n_batch=2048)
+[2m2026-07-31T16:51:12.710535Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m Each of the 4 slots gets only 1024 tokens of context (4096 total ÷ 4 slots). Answers longer than that will be cut off and reported with done_reason="length". Either raise --ctx-size to 8192 or lower --batch-size.
+llama_init_from_model: V cache quantization requires flash_attn
+[EULLM] KV cache fallback: Q4_0/Q4_0 → F16/F16
+llama_context: constructing llama_context
+llama_context: n_seq_max     = 4
+llama_context: n_ctx         = 4096
+llama_context: n_ctx_seq     = 1024
+llama_context: n_batch       = 2048
+llama_context: n_ubatch      = 1024
+llama_context: causal_attn   = 1
+llama_context: flash_attn    = disabled
+llama_context: kv_unified    = false
+llama_context: freq_base     = 1000000.0
+llama_context: freq_scale    = 1
+llama_context: n_rs_seq      = 0
+llama_context: n_outputs_max = 2048
+llama_context: n_ctx_seq (1024) < n_ctx_train (40960) -- the full capacity of the model will not be utilized
+set_abort_callback: call
+llama_context:        CPU  output buffer size =     2.32 MiB
+llama_kv_cache: layer   0: dev = CPU
+llama_kv_cache: layer   1: dev = CPU
+llama_kv_cache: layer   2: dev = CPU
+llama_kv_cache: layer   3: dev = CPU
+llama_kv_cache: layer   4: dev = CPU
+llama_kv_cache: layer   5: dev = CPU
+llama_kv_cache: layer   6: dev = CPU
+llama_kv_cache: layer   7: dev = CPU
+llama_kv_cache: layer   8: dev = CPU
+llama_kv_cache: layer   9: dev = CPU
+llama_kv_cache: layer  10: dev = CPU
+llama_kv_cache: layer  11: dev = CPU
+llama_kv_cache: layer  12: dev = CPU
+llama_kv_cache: layer  13: dev = CPU
+llama_kv_cache: layer  14: dev = CPU
+llama_kv_cache: layer  15: dev = CPU
+llama_kv_cache: layer  16: dev = CPU
+llama_kv_cache: layer  17: dev = CPU
+llama_kv_cache: layer  18: dev = CPU
+llama_kv_cache: layer  19: dev = CPU
+llama_kv_cache: layer  20: dev = CPU
+llama_kv_cache: layer  21: dev = CPU
+llama_kv_cache: layer  22: dev = CPU
+llama_kv_cache: layer  23: dev = CPU
+llama_kv_cache: layer  24: dev = CPU
+llama_kv_cache: layer  25: dev = CPU
+llama_kv_cache: layer  26: dev = CPU
+llama_kv_cache: layer  27: dev = CPU
+llama_kv_cache:        CPU KV buffer size =   448.00 MiB
+llama_kv_cache: size =  448.00 MiB (  1024 cells,  28 layers,  4/4 seqs), K (f16):  224.00 MiB, V (f16):  224.00 MiB
+llama_kv_cache: attn_rot_k = 0, n_embd_head_k_all = 128
+llama_kv_cache: attn_rot_v = 0, n_embd_head_k_all = 128
+llama_context: enumerating backends
+llama_context: backend_ptrs.size() = 1
+sched_reserve: reserving ...
+sched_reserve: max_nodes = 2480
+sched_reserve: reserving full memory module
+sched_reserve: worst-case: n_tokens = 1024, n_seqs = 4, n_outputs = 4
+sched_reserve: resolving fused Gated Delta Net support:
+graph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  4, n_outputs =    4
+graph_reserve: making n_tokens a multiple of n_seqs - n_tokens = 4, n_seqs = 4, n_outputs = 4
+sched_reserve: fused Gated Delta Net (autoregressive) enabled
+graph_reserve: reserving a graph for ubatch with n_tokens =   64, n_seqs =  4, n_outputs =   64
+sched_reserve: fused Gated Delta Net (chunked) enabled
+graph_reserve: reserving a graph for ubatch with n_tokens = 1024, n_seqs =  4, n_outputs = 1024
+graph_reserve: reserving a graph for ubatch with n_tokens =    4, n_seqs =  4, n_outputs =    4
+graph_reserve: reserving a graph for ubatch with n_tokens = 1024, n_seqs =  4, n_outputs = 1024
+sched_reserve:        CPU compute buffer size =   601.50 MiB
+sched_reserve: graph nodes  = 1154
+sched_reserve: graph splits = 1
+sched_reserve: reserve took 7.45 ms, sched copies = 1
+[2m2026-07-31T16:51:12.986666Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Scheduler running — max_batch_size=4, queue_capacity=32, total_ctx=4096, per_seq_ctx=1024
+[2m2026-07-31T16:51:12.986787Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Model swap complete → qwen3-0.6b (batch_size=4)
+  Model:         qwen3-0.6b
+  GPU backend:   none (CPU only!)
+  CPU features:  CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | LLAMAFILE = 1 | ACCELERATE = 1 | REPACK = 1 | 
+  Rust debug:    enabled (NaN/Inf logit check active — extra per-token cost)
+  GPU layers:    0 (no GPU backend compiled into this binary)
+  Context:       4096 total (1024 per sequence × 4 slots)
+  ⚠ per-sequence context is only 1024 tokens — long histories will fail.
+    For single-chat use:   --batch-size 1   (full 4096 tokens)
+    For 32k per slot:      --ctx-size 131072   (= 32768 × 4 slots)
+    this model was trained for 40960 — raise it with --ctx-size (costs KV memory)
+  Flash attn:    disabled (auto-detect)
+  KV cache:      K=Q4_0 V=Q4_0
+  KV memory:     K=63 MiB, V=63 MiB
+  Threads:       6
+  Batch (prefill): 2048
+  Mode:          continuous batching (max 4 concurrent)
+[2m2026-07-31T16:51:12.986941Z[0m [32m INFO[0m [2meullm::api::routes[0m[2m:[0m Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+[2m2026-07-31T16:51:12.987139Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m num_predict capped: requested=4294967295, effective=1001 (context=1024, prompt_tokens=23)
+[2m2026-07-31T16:51:12.987155Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Seq 0: prompt=23 tokens, reused 0 from cache, decoded 23 fresh, max_output=1001, effective_ctx=1024
+[2m2026-07-31T16:51:36.099684Z[0m [32m INFO[0m [2meullm::audit[0m[2m:[0m Audit: inference logged [3maudit_id[0m[2m=[0m736185ab-e6f0-421f-af7b-47771d07312b [3mmodel[0m[2m=[0mqwen3-0.6b [3mrequest_type[0m[2m=[0mchat [3minput_tokens[0m[2m=[0m23 [3moutput_tokens[0m[2m=[0m1001 [3mduration_ms[0m[2m=[0m23112
+[2m2026-07-31T16:51:36.151689Z[0m [32m INFO[0m [2meullm::api::routes[0m[2m:[0m Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+[2m2026-07-31T16:51:36.151898Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m num_predict capped: requested=4294967295, effective=1001 (context=1024, prompt_tokens=23)
+[2m2026-07-31T16:51:36.151920Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Seq 0: prompt=23 tokens, reused 22 from cache, decoded 1 fresh, max_output=1001, effective_ctx=1024
+[2m2026-07-31T16:51:59.154107Z[0m [32m INFO[0m [2meullm::audit[0m[2m:[0m Audit: inference logged [3maudit_id[0m[2m=[0ma377e9c0-6f4c-4aa2-9f04-d022ebead2f4 [3mmodel[0m[2m=[0mqwen3-0.6b [3mrequest_type[0m[2m=[0mchat.completions [3minput_tokens[0m[2m=[0m23 [3moutput_tokens[0m[2m=[0m1001 [3mduration_ms[0m[2m=[0m23002
+
+== End of dump
+
