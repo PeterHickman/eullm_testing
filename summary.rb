@@ -6,7 +6,8 @@ FILENAME_MAP = {
   'mac_mini_m4_pro.txt' => 'm4 pro',
   'macbookpro_2018_intel.txt' => 'intel',
   'pi5.txt' => 'arm64',
-  'pi4.txt' => 'arm64'
+  'pi4.txt' => 'arm64',
+  'jetson.txt' => 'arm64'
 }
 
 def check_block(filename, counter, block)
@@ -34,7 +35,7 @@ def check_block(filename, counter, block)
       puts e
     end
 
-    'Errors'
+    '❌' #'Errors'
   else
     'Ok'
   end
