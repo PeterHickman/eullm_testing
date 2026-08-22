@@ -86,7 +86,7 @@ sys_info() {
 
     KERNEL_VER=$(uname -r)
 
-    CPU_MODEL=$(grep "Model" /proc/cpuinfo | head -1 | cut -d':' -f2 | sed 's/^ //')
+    CPU_MODEL=$(grep -i "Model" /proc/cpuinfo | head -1 | cut -d':' -f2 | sed 's/^ //')
 
     MEM_TOTAL=$(awk '/MemTotal/ {printf "%.1f GiB", $2/1024/1024}' /proc/meminfo)
 
