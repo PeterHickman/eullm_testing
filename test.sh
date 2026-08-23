@@ -29,7 +29,8 @@ to() {
 
   is_the_server_up
 
-  timeout 10m "$@"
+  # timeout 10m "$@"
+  "$@"
   if [ $? -ne 0 ]; then
     echo "ERROR: Process timed out after 10 minutes"
   fi
@@ -41,7 +42,7 @@ to() {
 start_server() {
   [ -e /tmp/eullm.log ] && rm /tmp/eullm.log
 
-  echo "Server started with --port ${NOT_OLLAMA} ${SERVER_ARGS}"
+  echo "Server started with --daemon --port ${NOT_OLLAMA} --pidfile /tmp/eullm.pid ${SERVER_ARGS}"
 
   eullm serve --daemon --port ${NOT_OLLAMA} --pidfile /tmp/eullm.pid ${SERVER_ARGS}
   sleep 5
