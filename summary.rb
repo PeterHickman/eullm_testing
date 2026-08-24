@@ -62,7 +62,7 @@ ARGV.each do |filename|
     File.open(filename, 'r').each do |line|
       line.chomp!
 
-      if line =~ /^eullm (.*) \((.*)\)$/
+      if line =~ /^eullm (.*) \((.*)\) /
         if version.nil?
           version = $1
           puts "# #{version}"
