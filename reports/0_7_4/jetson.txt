@@ -1,0 +1,222 @@
+OS:         Ubuntu 22.04.5 LTS
+Kernel:     5.15.148-tegra
+CPU:        ARMv8 Processor rev 1 (v8l)
+Memory:     7.4 GiB
+
+eullm 0.7.4 (CPU) [da2a26174647]
+
+
+Models in /home/jetson/.eullm/models [default]
+
+NAME                         SIZE   VRAM STATUS           DESCRIPTION
+qwen3-0.6b                500.0MB    2GB  ready            Qwen3 0.6B Instruct
+
+Run one with: eullm run <NAME>   (e.g. eullm run qwen3-0.6b)
+
+
+Server started with --daemon --port 11435 --pidfile /tmp/eullm.pid --rust-debug --batch-size 1 --no-flash-attn
+eullm daemon started (PID 3288).
+  PID file: /tmp/eullm.pid
+  Log file: /tmp/eullm.log
+  Stop with: kill 3288
+
+
+TESTING http://localhost:11435/api/chat with simple query
+
+TEST_START
+The server is running
+{"created_at":"2026-08-28T16:46:03.728631576+00:00","done":true,"done_reason":"stop","eval_count":113,"eval_duration":4852000000,"load_duration":0,"message":{"content":"<think>\nOkay, the user just said \"Hello!\" to me. Let me respond appropriately.\n\nFirst, I should acknowledge their greeting. Maybe say something like \"Hello! How can I assist you today?\" That keeps the conversation open and shows willingness to help.\n\nI should check if there's anything specific they need. If they ask, I can provide further assistance. Otherwise, keep it simple and friendly.\n\nMake sure the response is polite and concise. No extra fluff. Just a positive reply.\n</think>\n\nHello! How can I assist you today? ","role":"assistant"},"model":"qwen3-0.6b","prompt_eval_count":10,"prompt_eval_duration":0,"total_duration":4852000000}
+TEST_END
+
+
+TESTING http://localhost:11435/v1/chat/completions with simple query
+
+TEST_START
+The server is running
+{"choices":[{"finish_reason":"stop","index":0,"message":{"content":"<think>\nOkay, the user said \"Hi!\" so I need to respond politely. Since they didn't ask a specific question, a simple greeting like \"Hi! How can I assist you today?\" would be appropriate. Let me make sure there's no confusion with other greetings. No, they're using a casual format, so the response should be friendly and open-ended.\n</think>\n\nHi! How can I assist you today?","role":"assistant"}}],"created":1787935572,"id":"chatcmpl-761d100e-18d7-498f-b960-e1ac24a6066f","model":"qwen3-0.6b","object":"chat.completion","usage":{"completion_tokens":86,"prompt_tokens":10,"total_tokens":96}}
+TEST_END
+
+
+TESTING http://localhost:11435/api/chat with longer query
+
+TEST_START
+The server is running
+{"created_at":"2026-08-28T16:47:23.672871220+00:00","done":true,"done_reason":"stop","eval_count":1470,"eval_duration":71176000000,"load_duration":0,"message":{"content":"<think>\nOkay, so the question is asking why 2 is a prime number when all the other numbers are odd. Hmm, let me think about this. \n\nFirst, I remember that primes are numbers greater than 1 that have no divisors other than 1 and themselves. So, the definition here is straightforward: a prime number is a natural number greater than 1 that cannot be expressed as the product of two smaller positive integers other than 1. \n\nNow, let's consider why 2 is considered a prime. Well, primes are numbers like 3, 5, 7, etc., and 1, 2, 4, etc., but wait, here the question is specifically about why 2 is considered a prime even though all other numbers are odd. \n\nWait, maybe I need to clarify: Are we talking about the general definition here? Let me check. The question says \"when all the rest are odd numbers\". So, if the other numbers (excluding 2) are odd, then why is 2 a prime? \n\nWait, but in that case, there's confusion. For example, if all the rest except 2 are odd, then maybe they have other factors? Let me take an example. Suppose we have numbers: 3 (prime), 5 (prime), 7 (prime). Now, if all other numbers except 2 are odd, but in reality, 2 is a prime. So the confusion might be arising from whether all other numbers (excluding 2) being odd implies that they have to be composite? \n\nWait, but maybe I need to think about the converse. If 2 is considered a prime even though all others are odd, that might not be correct. Let me check with an example. Take numbers: 3 (prime), 5 (prime), 7 (prime). Now, if we have all other numbers except 2 being odd, but here they are primes. So why is that? \n\nWait, perhaps the confusion comes from whether the question implies that there's a specific context where 2 is prime even though all others are odd. Maybe it's a trick question or a case where they're counting primes as in the set {2, 3, 5}, even though other numbers might be odd. \n\nBut let me think again. The definition of a prime number is that it is greater than 1 and has no divisors other than 1 and itself. So if all other numbers are odd, does that mean they can't be prime? Because primes except 2 are even, right? Wait, no! The number 2 is the only even prime. All other primes are odd numbers because they can't be divided by 2. For example, 3 is odd and prime, 5 is odd and prime, 7 is odd and prime. So if all other numbers are odd, but they are primes themselves, then why isn't that considered? \n\nSo the question is phrased as \"why is 2 a prime number when all the rest are odd numbers?\" So maybe there's confusion here. Perhaps the question is trying to say that in some context where other numbers are considered as primes, and 2 is included despite them being odd? \n\nAlternatively, perhaps there's a misunderstanding here. Let me check with an example. Suppose we have the set of primes: {2, 3, 5, 7, 11, ...}. In this list, 2 is the only even prime. All other primes are odd and greater than 1. So if you're talking about primes in general, 2 is a prime because it meets the criteria of having no divisors other than 1 and itself. Even though all others are odd, they are still primes themselves. \n\nBut if someone says \"when all the rest are odd numbers\", maybe they mean that 2 is the only even number in this context, and others are odd. So why does 2 get counted as a prime? Because it's the only even prime. The rest of the numbers being odd doesn't contradict that; they are all primes themselves. \n\nSo maybe the confusion is because when someone says \"all the rest are odd numbers\", they might be implying that there's a specific set where 2 is considered prime, but I think in general terms, primes are numbers greater than 1 with no divisors except 1 and themselves. So even if there's another number being odd, as long as it meets the prime criteria, it is considered a prime. \n\nTherefore, 2 is a prime because it satisfies the definition and there's no other number in the set being odd that would contradict this. The fact that all others are odd doesn't affect its primality. \n\nBut maybe there's a misunderstanding here. Let me check online or think about other perspectives. For example, if someone says \"2 is a prime because all others are odd numbers\", then they might be incorrect in their reasoning because 2 is a specific case. \n\nAlternatively, perhaps the question is asking why 2 is considered prime even though all others are odd numbers. The answer would be that in mathematics, primes include only 2 and odd primes, so the presence of other odd numbers (which themselves are prime) does not affect the primality of 2. \n\nTherefore, the confusion might be a misunderstanding about the definition or the context in which numbers are being considered. The answer lies in the prime number's definition and its relation to evenness.\n</think>\n\nThe question is asking why 2 is a prime number when all other numbers are odd. Let's break this down logically:\n\n1. **Definition of Prime Numbers**: A prime number is defined as a natural number greater than 1 that has no divisors other than 1 and itself. The definition does not rely on whether the rest of the numbers are even or odd, only their divisibility properties.\n\n2. **The Role of 2**: \n   - The number 2 is the only even prime number because all other primes are odd and cannot be divided evenly by 2. This aligns with its primality.\n   - In mathematics, the set of prime numbers includes only 2 and odd primes like 3, 5, 7, etc.\n\n3. **Implication of \"All Others Are Odd\"**:\n   - Even if all other numbers are odd (e.g., 3, 5, 7), they still satisfy the definition of a prime number. There is no conflict with this statement because all these numbers are primes themselves.\n\n4. **Conclusion**:\n   - The presence of other odd numbers does not contradict the primality of 2. Instead, it confirms that all primes are indeed odd and greater than 1.\n\nThus, 2 is a prime because it meets the criteria for a prime number, regardless of whether all other numbers in this context are odd. The fact that all others are odd doesn't negate 2's status as a prime. \n\n**Final Answer**: $\\boxed{2}$ is considered a prime number because it meets the primality criteria, and all other numbers being odd does not affect its status as such.","role":"assistant"},"model":"qwen3-0.6b","prompt_eval_count":23,"prompt_eval_duration":0,"total_duration":71176000000}
+TEST_END
+
+
+TESTING http://localhost:11435/v1/chat/completions with longer query
+
+TEST_START
+The server is running
+{"choices":[{"finish_reason":"stop","index":0,"message":{"content":"<think>\nOkay, so the question is why 2 is a prime number when all the rest are odd numbers. Hmm, let me think about this. I remember that primes are numbers greater than 1 that have no divisors other than 1 and themselves. So far, the number 2 is a prime because it's the smallest positive integer, right? And then why does all other numbers not become even after that?\n\nWait, maybe I need to check some examples. Let me list a few numbers and see: 2, 3, 4, 5... So 2 is prime, but what about 6? It's even. Oh, so why is 6 not a prime? Because it has divisors like 2 and 3. Similarly, all numbers except 2 are even. Wait, but the question says \"all the rest\" – so maybe they mean numbers after 2? But then again, 4 is not a prime because it's divisible by 2. So why does all the rest of the numbers (after 2) have to be even? Because they are all integers, right?\n\nWait, maybe there's a misunderstanding here. The question is phrased as \"why is 2 a prime number when all the rest are odd numbers?\" So if we're talking about primes, then 2 is a prime and there's no other prime among them. But how does that work? Because all the rest of the numbers (after 2) are even, which is not a prime. So maybe they're confusing themselves here. Let me think again.\n\nAlternatively, perhaps the question is trying to compare 2 with others. For example, when you have primes and even numbers, they can be in different categories. But why is 2 considered a prime? Because it's the smallest prime. So maybe the confusion arises from the fact that even numbers are non-prime, and primes like 2 are among them but not others.\n\nWait, let me check an example. Suppose someone says: \"Why is 2 a prime number when all the rest are odd numbers?\" Maybe they think that primes are only odd, but in reality, 2 is even and also a prime. So the confusion comes from mixing up the parity of the number with its primality.\n\nAlternatively, perhaps the question is trying to ask why 2 is a prime when all others are odd. Maybe in some contexts, people consider primes and even numbers as separate categories, but that's not true. The definition of a prime is based on its divisibility, so 2 is indeed a prime number and doesn't conflict with the rest being odd.\n\nWait, but if all the rest are odd, then they can't be even. So there's no contradiction here. So why does that happen? Because primes are numbers greater than 1 that are not divisible by any other number except 1 and themselves. Since 2 is the only even prime, all others must be odd, which makes sense because primes can't have factors other than 1 and themselves. For example, if you take a number like 3, it's not divisible by any number except 1 and itself, so it's prime. Similarly for numbers greater than 2, they are either odd or even.\n\nTherefore, the confusion arises from the fact that primes like 2 have to be considered as a special case, and all others (except 2) are either even or composite. So maybe the question is trying to highlight that there's no other prime besides 2, which is an example of a non-trivial prime number. Therefore, the answer would be that 2 is a prime because it's the smallest positive integer with no divisors except 1 and itself, while all other primes are larger than 2 and even or odd. So the rest of the numbers (after 2) are either composite or non-prime, making them not \"all the rest\" in this context.\n\nI think I got that. Let me recap: primes have specific properties regarding divisibility and parity, so 2 is unique, while others either are even or non-prime. Therefore, the answer is that 2 is a prime because it's the only even prime and all other primes are odd and either composite or non-prime.\n</think>\n\nThe statement \"why is 2 a prime number when all the rest are odd numbers?\" can be clarified as follows:\n\n1. **Definition of Prime Numbers**: A prime number is an integer greater than 1 that has no divisors other than 1 and itself. \n   \n2. **Parity of the Number**: While all primes except 2 are odd, this parity does not affect their primality. The number 2 is even, but it still qualifies as a prime because its only positive divisors are 1 and itself.\n\n3. **Why the Rest Are Odd**: If all the rest (excluding 2) were to be odd, they would need to satisfy the criteria of being a prime. However, since primes have no factors except 1 and themselves, only even numbers (like 4, 6, etc.) can satisfy this condition. Therefore, the rest of the numbers cannot be odd.\n\n4. **Conclusion**: The confusion arises from the fact that 2 is a prime (even), while all other primes are either even or non-prime. Thus, in this context, 2 is a prime because it does not conflict with the rest being odd numbers under the definition of primality.\n\n**Final Answer**: 2 is a prime number when all other numbers are odd because it remains an example of a non-trivial prime, while the rest are either even or composite.","role":"assistant"}}],"created":1787935694,"id":"chatcmpl-66591d54-eb6c-4089-9d99-7e1db655a543","model":"qwen3-0.6b","object":"chat.completion","usage":{"completion_tokens":1164,"prompt_tokens":23,"total_tokens":1187}}
+TEST_END
+
+
+The server is not running
+
+
+
+== Dumping server log /tmp/eullm.log after server shutdown
+
+[2m2026-08-28T16:45:51.474861Z[0m [32m INFO[0m [2meullm::inference[0m[2m:[0m Initializing llama.cpp backend...
+eullm ready (no model loaded — send a request with a "model" field to load one).
+  API (EULLM):   http://localhost:11435/api
+  API (OpenAI):  http://localhost:11435/v1
+  Rust debug:    enabled (NaN/Inf logit check active — extra per-token cost)
+
+Press Ctrl+C to stop.
+
+[2m2026-08-28T16:45:51.478311Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m API authentication: disabled (not configured (no authentication — the IP allowlist is the only control)). Set EULLM_API_KEYS=id:secret to require a bearer token — necessary behind Docker's published ports, where every external client arrives as the bridge gateway address.
+[2m2026-08-28T16:45:51.478342Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Allowed source IPs/subnets: 127.0.0.1/32, ::1/128  [source: default (loopback only — nothing configured)]
+[2m2026-08-28T16:45:51.478351Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Allowed browser origins: any loopback origin  [source: default (any loopback origin — nothing configured)]
+[2m2026-08-28T16:45:51.478386Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Model store: /home/jetson/.eullm/models  [source: default]
+[2m2026-08-28T16:45:51.478878Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Audit trail: /home/jetson/.eullm/audit/audit.jsonl
+[2m2026-08-28T16:45:51.479258Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m eullm API listening on 0.0.0.0:11435
+[2m2026-08-28T16:45:57.749999Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Swapping model → qwen3-0.6b (/home/jetson/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf)
+[2m2026-08-28T16:45:57.750092Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Previous model fully unloaded
+
+╔══════════════════════════════════════════════════════════════╗
+║  WARNING: GPU requested but this binary has no GPU support  ║
+║                                                              ║
+║  All inference will run on CPU (very slow for large prompts) ║
+║                                                              ║
+║  Rebuild with GPU support:                                   ║
+║    cargo build --release --features cuda    # NVIDIA         ║
+║    cargo build --release --features rocm    # AMD            ║
+║    cargo build --release --features vulkan  # Cross-platform ║
+║    cargo build --release --features metal   # Apple Silicon  ║
+║                                                              ║
+║  Docker: use the engine-gpu service or build with:           ║
+║    docker build --build-arg FEATURES=cuda -t eullm .         ║
+╚══════════════════════════════════════════════════════════════╝
+
+[2m2026-08-28T16:45:57.777873Z[0m [33m WARN[0m [2meullm::inference[0m[2m:[0m No GPU backend compiled: requested gpu_layers=-1, forcing 0. Rebuild with --features cuda/rocm/vulkan/metal for GPU acceleration.
+[2m2026-08-28T16:45:57.777954Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Loading model: /home/jetson/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf
+[2m2026-08-28T16:45:58.710453Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Allocating context: 4096 total tokens, 4096 per sequence (1 slots, flash_attn=false, n_batch=2048)
+[2m2026-08-28T16:45:58.801526Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Context params applied: n_ctx=4096, n_batch=2048, n_ubatch=512
+common_memory_breakdown_print: | memory breakdown [MiB] | total   free    self   model   context   compute    unaccounted |
+[2m2026-08-28T16:45:58.802176Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Scheduler running — max_batch_size=1, queue_capacity=8, total_ctx=4096, per_seq_ctx=4096
+common_memory_breakdown_print: |   - Host               |                  974 =   372 +     448 +     154                |
+[2m2026-08-28T16:45:58.802358Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Model swap complete → qwen3-0.6b (batch_size=1)
+  Model:         qwen3-0.6b
+  GPU backend:   none (CPU only!)
+  CPU features:  CPU : NEON = 1 | ARM_FMA = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 | 
+  Rust debug:    enabled (NaN/Inf logit check active — extra per-token cost)
+  GPU layers:    0 (no GPU backend compiled into this binary)
+  Context:       4096 total (4096 per sequence × 1 slots)
+    this model was trained for 40960 — raise it with --ctx-size (costs KV memory)
+  Flash attn:    disabled (auto-detect)
+  KV cache:      K=F16 V=F16
+  KV memory:     K=224 MiB, V=224 MiB
+  Threads:       6
+  Batch (prefill): 2048
+  Mode:          continuous batching (max 1 concurrent)
+[2m2026-08-28T16:45:58.844947Z[0m [32m INFO[0m [2meullm::api::routes[0m[2m:[0m Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+[2m2026-08-28T16:45:58.845303Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m num_predict capped: requested=4294967295, effective=4086 (context=4096, prompt_tokens=10)
+[2m2026-08-28T16:45:58.845346Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Seq 0: prompt=10 tokens, reused 0 from cache, decoded 10 fresh, max_output=4086, effective_ctx=4096
+[2m2026-08-28T16:46:03.698223Z[0m [32m INFO[0m [2meullm::audit[0m[2m:[0m Audit: inference logged [3maudit_id[0m[2m=[0m6d538a46-bbdc-4733-a02c-2b1970da4a42 [3mmodel[0m[2m=[0mqwen3-0.6b [3mrequest_type[0m[2m=[0mchat [3minput_tokens[0m[2m=[0m10 [3moutput_tokens[0m[2m=[0m113 [3mduration_ms[0m[2m=[0m4852
+[2m2026-08-28T16:46:03.797208Z[0m [32m INFO[0m [2meullm::api::routes[0m[2m:[0m Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+[2m2026-08-28T16:46:03.797582Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m num_predict capped: requested=4294967295, effective=4086 (context=4096, prompt_tokens=10)
+[2m2026-08-28T16:46:03.797639Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Seq 0: prompt=10 tokens, reused 3 from cache, decoded 7 fresh, max_output=4086, effective_ctx=4096
+[2m2026-08-28T16:46:12.442158Z[0m [32m INFO[0m [2meullm::audit[0m[2m:[0m Audit: inference logged [3maudit_id[0m[2m=[0mb3672ffc-590a-4b8e-b027-97079b86f7f4 [3mmodel[0m[2m=[0mqwen3-0.6b [3mrequest_type[0m[2m=[0mchat.completions [3minput_tokens[0m[2m=[0m10 [3moutput_tokens[0m[2m=[0m86 [3mduration_ms[0m[2m=[0m8644
+[2m2026-08-28T16:46:12.495136Z[0m [32m INFO[0m [2meullm::api::routes[0m[2m:[0m Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+[2m2026-08-28T16:46:12.495633Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m num_predict capped: requested=4294967295, effective=4073 (context=4096, prompt_tokens=23)
+[2m2026-08-28T16:46:12.495666Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Seq 0: prompt=23 tokens, reused 3 from cache, decoded 20 fresh, max_output=4073, effective_ctx=4096
+[2m2026-08-28T16:47:23.672584Z[0m [32m INFO[0m [2meullm::audit[0m[2m:[0m Audit: inference logged [3maudit_id[0m[2m=[0m9eed99bc-1a84-4db2-ae82-2a6fd3ef1913 [3mmodel[0m[2m=[0mqwen3-0.6b [3mrequest_type[0m[2m=[0mchat [3minput_tokens[0m[2m=[0m23 [3moutput_tokens[0m[2m=[0m1470 [3mduration_ms[0m[2m=[0m71176
+[2m2026-08-28T16:47:23.723335Z[0m [32m INFO[0m [2meullm::api::routes[0m[2m:[0m Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+[2m2026-08-28T16:47:23.724037Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m num_predict capped: requested=4294967295, effective=4073 (context=4096, prompt_tokens=23)
+[2m2026-08-28T16:47:23.724120Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Seq 0: prompt=23 tokens, reused 22 from cache, decoded 1 fresh, max_output=4073, effective_ctx=4096
+[2m2026-08-28T16:48:14.087790Z[0m [32m INFO[0m [2meullm::audit[0m[2m:[0m Audit: inference logged [3maudit_id[0m[2m=[0m17fa531c-3a07-49b9-8f0b-46f1096b35fb [3mmodel[0m[2m=[0mqwen3-0.6b [3mrequest_type[0m[2m=[0mchat.completions [3minput_tokens[0m[2m=[0m23 [3moutput_tokens[0m[2m=[0m1164 [3mduration_ms[0m[2m=[0m50363
+
+== End of dump
+
+Server started with --daemon --port 11435 --pidfile /tmp/eullm.pid --rust-debug --batch-size 1 --cache-type-k q4_0 --cache-type-v q4_0 --no-flash-attn
+eullm daemon started (PID 3824).
+  PID file: /tmp/eullm.pid
+  Log file: /tmp/eullm.log
+  Stop with: kill 3824
+TESTING http://localhost:11435/api/chat with longer query
+
+TEST_START
+The server is running
+{"created_at":"2026-08-28T16:49:03.174415540+00:00","done":true,"done_reason":"stop","eval_count":791,"eval_duration":32090000000,"load_duration":0,"message":{"content":"<think>\nOkay, so the question is why 2 is a prime number when all the rest are odd numbers. Let me think about this step by step.\n\nFirst, I remember that primes are numbers greater than 1 that have no divisors other than 1 and themselves. So the definition is pretty straightforward. The number 2 meets this criterion because it's greater than 1 and has only two divisors, which are itself (2) and 1. \n\nNow, the user is asking why 2 is considered a prime number even though all other numbers are odd. Wait, but that seems contradictory. If all others are odd, then why does 2 qualify as a prime? Maybe the confusion comes from mixing up the concepts of primes with composite numbers?\n\nLet me check. The number 2 is indeed a prime. All other numbers are odd, so their product or sum would be even, but that doesn't directly relate to primality unless they have other factors. But 2 is prime because it's the smallest odd number greater than 1. So even though there are odd numbers, 2 has a unique property as the only even prime.\n\nWait, maybe I'm mixing up something else? Let me think again. The question is asking why 2 is considered a prime number despite all the rest being odd. But in reality, primes are numbers that can't be divided evenly by any other number except 1 and themselves. So if all others are odd, then their factors would have to include at least 2 as a factor because 2 divides even numbers (like 4, 6, etc.), but since there are no other odd divisors besides 1 and themselves, this makes 2 a prime.\n\nBut maybe the user is confused because they think all primes except 2 are even? But no, primes can be odd or even. The only even prime is 2 itself. So the rest of the primes (excluding 2) are all odd. So 2 being a prime doesn't depend on other numbers, but rather on its own properties.\n\nAlternatively, maybe the user is thinking that since there are no even numbers except 2, which makes them prime, but that's actually correct. The confusion might arise from considering other primes as odd, like 3, 5, 7, etc., which are also odd, so they are all primes. So the key point is that 2 is a prime because it's the only even prime, and all other primes (except 2) are odd.\n\nI think I'm overcomplicating. The answer is that 2 is a prime because it meets the definition, and all others (which are primes or composite) have different properties. Since there's only one even number (2), which is prime, it stands out as the only such number.\n</think>\n\nThe reason 2 is a prime number despite all other numbers being odd lies in its unique properties and the definition of primes. Here's why:\n\n1. **Definition of Prime Numbers**: A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. For example, 2 is the only even prime number because it has only two factors: 1 and itself.\n\n2. **Even Prime Paradox**: While all other primes (except 2) are odd, they still satisfy the definition of a prime because they have no divisors except 1 and themselves. The number 2 is the smallest such number.\n\n3. **Even Number's Role**: Even numbers are not prime, but the only even prime is 2 itself. This means that 2 qualifies as a prime number because it fits the criteria of being greater than 1 and having no other divisors.\n\nThus, despite all other numbers being odd, 2 is still considered a prime because it meets the fundamental definition of primality.","role":"assistant"},"model":"qwen3-0.6b","prompt_eval_count":23,"prompt_eval_duration":0,"total_duration":32090000000}
+TEST_END
+
+
+TESTING http://localhost:11435/v1/chat/completions with longer query
+
+TEST_START
+The server is running
+{"choices":[{"finish_reason":"stop","index":0,"message":{"content":"<think>\nOkay, so I need to figure out why 2 is a prime number even though all the other odd numbers are also primes. Hmm, let's start by recalling what a prime number is. A prime number is a number greater than 1 that has no divisors other than 1 and itself. So, the definition is straightforward: primes are numbers divisible only by 1 and themselves.\n\nNow, the question is why 2 is a prime even though all others are odd. Let me think. Well, I know that 2 is the smallest and most straightforward prime number because it's the only even one. The rest of the primes are odd numbers like 3, 5, 7, etc., so they're not divisible by 2. That makes sense because 2 is the only even prime, and all others are odd. Therefore, even though there are many other primes (like 3, 5, etc.), none of them are divisible by 2.\n\nWait, but let me make sure. Let's check a few examples. The number 3 is prime, right? Yes, it's divisible only by 1 and itself. Similarly, 5 is prime as well. So even though they're odd numbers, they don't have a divisor of 2. Therefore, they are all primes. Therefore, the reason why 2 is considered prime in this case is because it's the only even prime number and all other primes (including the rest of the odd ones) are not divisible by 2.\n\nI think I'm overcomplicating it. The key here is understanding that primes are defined as numbers greater than 1 with no divisors other than 1 and themselves. So, even though there are many more odd primes, none of them have a divisor other than 2. Therefore, they are all considered primes. So the answer is that 2 is prime because it's the only even prime and all other primes (which are odd) do not have a divisor of 2. Therefore, they are considered primes in general.\n</think>\n\nThe number 2 is a prime because it meets the definition of a prime number. Here's why:\n\n1. **Definition**: A prime number is defined as a natural number greater than 1 that has no positive divisors other than 1 and itself. This means it must have only two factors: 1 and itself.\n\n2. **Why It's Unique**: Among all natural numbers, the only even prime number is 2. All other primes (3, 5, 7, etc.) are odd and do not have a divisor of 2. This uniqueness ensures that 2 is the only even prime.\n\n3. **Implication**: Since all other primes are odd, they are not divisible by 2 and thus satisfy the prime definition without violating it. Therefore, 2 is indeed a prime.\n\n**Answer**: 2 is considered a prime number because it satisfies the definition of a prime and is the only even prime. All other primes, being odd, do not have divisors other than 1 or themselves.","role":"assistant"}}],"created":1787935767,"id":"chatcmpl-c21d51d1-c562-48e1-b45b-c184967f0082","model":"qwen3-0.6b","object":"chat.completion","usage":{"completion_tokens":633,"prompt_tokens":23,"total_tokens":656}}
+TEST_END
+
+
+
+== Dumping server log /tmp/eullm.log after server shutdown
+
+[2m2026-08-28T16:48:24.134663Z[0m [32m INFO[0m [2meullm::inference[0m[2m:[0m Initializing llama.cpp backend...
+eullm ready (no model loaded — send a request with a "model" field to load one).
+  API (EULLM):   http://localhost:11435/api
+  API (OpenAI):  http://localhost:11435/v1
+  Rust debug:    enabled (NaN/Inf logit check active — extra per-token cost)
+
+Press Ctrl+C to stop.
+
+[2m2026-08-28T16:48:24.137816Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m API authentication: disabled (not configured (no authentication — the IP allowlist is the only control)). Set EULLM_API_KEYS=id:secret to require a bearer token — necessary behind Docker's published ports, where every external client arrives as the bridge gateway address.
+[2m2026-08-28T16:48:24.137840Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Allowed source IPs/subnets: 127.0.0.1/32, ::1/128  [source: default (loopback only — nothing configured)]
+[2m2026-08-28T16:48:24.137848Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Allowed browser origins: any loopback origin  [source: default (any loopback origin — nothing configured)]
+[2m2026-08-28T16:48:24.137866Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Model store: /home/jetson/.eullm/models  [source: default]
+[2m2026-08-28T16:48:24.137910Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Audit trail: /home/jetson/.eullm/audit/audit.jsonl
+[2m2026-08-28T16:48:24.138208Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m eullm API listening on 0.0.0.0:11435
+[2m2026-08-28T16:48:30.369184Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Swapping model → qwen3-0.6b (/home/jetson/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf)
+[2m2026-08-28T16:48:30.369271Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Previous model fully unloaded
+
+╔══════════════════════════════════════════════════════════════╗
+║  WARNING: GPU requested but this binary has no GPU support  ║
+║                                                              ║
+║  All inference will run on CPU (very slow for large prompts) ║
+║                                                              ║
+║  Rebuild with GPU support:                                   ║
+║    cargo build --release --features cuda    # NVIDIA         ║
+║    cargo build --release --features rocm    # AMD            ║
+║    cargo build --release --features vulkan  # Cross-platform ║
+║    cargo build --release --features metal   # Apple Silicon  ║
+║                                                              ║
+║  Docker: use the engine-gpu service or build with:           ║
+║    docker build --build-arg FEATURES=cuda -t eullm .         ║
+╚══════════════════════════════════════════════════════════════╝
+
+[2m2026-08-28T16:48:30.386962Z[0m [33m WARN[0m [2meullm::inference[0m[2m:[0m No GPU backend compiled: requested gpu_layers=-1, forcing 0. Rebuild with --features cuda/rocm/vulkan/metal for GPU acceleration.
+[2m2026-08-28T16:48:30.387026Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Loading model: /home/jetson/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf
+[2m2026-08-28T16:48:30.980245Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Allocating context: 4096 total tokens, 4096 per sequence (1 slots, flash_attn=false, n_batch=2048)
+[EULLM] KV cache fallback: Q4_0/Q4_0 → F16/F16
+[2m2026-08-28T16:48:31.063266Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Context params applied: n_ctx=4096, n_batch=2048, n_ubatch=512
+common_memory_breakdown_print: | memory breakdown [MiB] | total   free    self   model   context   compute    unaccounted |
+[2m2026-08-28T16:48:31.064068Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Scheduler running — max_batch_size=1, queue_capacity=8, total_ctx=4096, per_seq_ctx=4096
+common_memory_breakdown_print: |   - Host               |                  974 =   372 +     448 +     154                |
+[2m2026-08-28T16:48:31.064294Z[0m [32m INFO[0m [2meullm::api[0m[2m:[0m Model swap complete → qwen3-0.6b (batch_size=1)
+  Model:         qwen3-0.6b
+  GPU backend:   none (CPU only!)
+  CPU features:  CPU : NEON = 1 | ARM_FMA = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 | 
+  Rust debug:    enabled (NaN/Inf logit check active — extra per-token cost)
+  GPU layers:    0 (no GPU backend compiled into this binary)
+  Context:       4096 total (4096 per sequence × 1 slots)
+    this model was trained for 40960 — raise it with --ctx-size (costs KV memory)
+  Flash attn:    disabled (auto-detect)
+  KV cache:      K=Q4_0 V=Q4_0
+  KV memory:     K=63 MiB, V=63 MiB
+  Threads:       6
+  Batch (prefill): 2048
+  Mode:          continuous batching (max 1 concurrent)
+[2m2026-08-28T16:48:31.082985Z[0m [32m INFO[0m [2meullm::api::routes[0m[2m:[0m Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+[2m2026-08-28T16:48:31.083346Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m num_predict capped: requested=4294967295, effective=4073 (context=4096, prompt_tokens=23)
+[2m2026-08-28T16:48:31.083370Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Seq 0: prompt=23 tokens, reused 0 from cache, decoded 23 fresh, max_output=4073, effective_ctx=4096
+[2m2026-08-28T16:49:03.174122Z[0m [32m INFO[0m [2meullm::audit[0m[2m:[0m Audit: inference logged [3maudit_id[0m[2m=[0ma79c21c5-f69e-428e-973e-50119a3ee15e [3mmodel[0m[2m=[0mqwen3-0.6b [3mrequest_type[0m[2m=[0mchat [3minput_tokens[0m[2m=[0m23 [3moutput_tokens[0m[2m=[0m791 [3mduration_ms[0m[2m=[0m32090
+[2m2026-08-28T16:49:03.232555Z[0m [32m INFO[0m [2meullm::api::routes[0m[2m:[0m Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+[2m2026-08-28T16:49:03.233135Z[0m [33m WARN[0m [2meullm::inference::scheduler[0m[2m:[0m num_predict capped: requested=4294967295, effective=4073 (context=4096, prompt_tokens=23)
+[2m2026-08-28T16:49:03.233196Z[0m [32m INFO[0m [2meullm::inference::scheduler[0m[2m:[0m Seq 0: prompt=23 tokens, reused 22 from cache, decoded 1 fresh, max_output=4073, effective_ctx=4096
+[2m2026-08-28T16:49:27.844191Z[0m [32m INFO[0m [2meullm::audit[0m[2m:[0m Audit: inference logged [3maudit_id[0m[2m=[0m3e0301c5-8d18-47d1-8277-7e564163f0c5 [3mmodel[0m[2m=[0mqwen3-0.6b [3mrequest_type[0m[2m=[0mchat.completions [3minput_tokens[0m[2m=[0m23 [3moutput_tokens[0m[2m=[0m633 [3mduration_ms[0m[2m=[0m24610
+
+== End of dump
+
