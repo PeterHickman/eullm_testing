@@ -25,7 +25,8 @@ is_the_server_down() {
 }
 
 to() {
-  echo "TEST_START"
+  local TS=`date +%s`
+  echo "TEST_START $TS"
 
   is_the_server_up
 
@@ -36,7 +37,8 @@ to() {
   fi
 
   echo
-  echo "TEST_END"
+  TS=`date +%s`
+  echo "TEST_END $TS"
 }
 
 start_server() {

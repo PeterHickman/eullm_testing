@@ -74,10 +74,10 @@ ARGV.each do |filename|
         cpu = $2
       end
 
-      if line == 'TEST_START'
+      if line.start_with?('TEST_START')
         collecting = true
         counter += 1
-      elsif line == 'TEST_END'
+      elsif line.start_with?('TEST_END')
         collecting = false
         report[counter] = check_block(filename, counter, block)
         block.clear
