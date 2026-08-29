@@ -47,7 +47,9 @@ def clean_name(filename)
 end
 
 version = nil
-md = ["|Machine|CPU|1|2|3|4|5|6|", "|---|--:|--:|--:|--:|--:|--:|--:|"]
+md = ["|Machine|CPU|1|2|3|4|5|6|1|2|3|4|5|6|", "|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|"]
+
+stats = []
 
 ARGV.each do |filename|
   name = File.basename(filename)
@@ -57,7 +59,9 @@ ARGV.each do |filename|
     collecting = false
     counter = -1
 
-    report = Array.new(6)
+    report = Array.new(12)
+
+    time_start = nil
 
     File.open(filename, 'r').each do |line|
       line.chomp!
@@ -75,11 +79,19 @@ ARGV.each do |filename|
       end
 
       if line.start_with?('TEST_START')
+        line =~ /TEST_START (\d+)/
+        time_start = $1.to_i
         collecting = true
         counter += 1
       elsif line.start_with?('TEST_END')
+        line =~ /TEST_END (\d+)/
+        report[counter+6] = $1.to_i - time_start
+
+        c = check_block(filename, counter, block)
+
+        stats << [version, "#{clean_name(name)} #{FILENAME_MAP[name]}", counter + 1, c, $1.to_i - time_start]
         collecting = false
-        report[counter] = check_block(filename, counter, block)
+        report[counter] = c
         block.clear
       elsif collecting
         block << line
@@ -93,3 +105,10 @@ ARGV.each do |filename|
 end
 
 puts md
+
+f = File.open('stats.csv', 'w')
+f.puts 'version,host,test,outcome,seconds'
+stats.each do |row|
+  f.puts row.join(',')
+end
+f.close
