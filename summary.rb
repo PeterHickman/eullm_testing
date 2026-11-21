@@ -7,6 +7,7 @@ FILENAME_MAP = {
   'macbookpro_2018_intel.txt' => 'intel',
   'pi5.txt' => 'arm64',
   'pi4.txt' => 'arm64',
+  'pi3b.txt' => 'arm64',
   'jetson.txt' => 'arm64'
 }
 
