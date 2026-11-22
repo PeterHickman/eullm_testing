@@ -52,7 +52,7 @@ md = ["|Machine|CPU|1|2|3|4|5|6|1|2|3|4|5|6|", "|---|--:|--:|--:|--:|--:|--:|--:
 
 stats = []
 
-ARGV.each do |filename|
+Dir['*.txt'].each do |filename|
   name = File.basename(filename)
 
   if FILENAME_MAP.key?(name)
