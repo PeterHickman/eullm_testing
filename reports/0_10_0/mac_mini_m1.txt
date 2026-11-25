@@ -1,0 +1,311 @@
+OS:      macOS 27.0.1
+Kernel:  27.0.0
+CPU:     Apple M1
+GPU:     Apple M1
+Memory:  16.0 GiB
+
+eullm 0.10.0 (Metal) [8fab235088aa]
+
+
+Models in /Users/peterhickman/.eullm/models [default]
+
+NAME                         SIZE   VRAM STATUS           DESCRIPTION
+qwen3-0.6b                500.0MB    2GB  ready            Qwen3 0.6B Instruct
+qwen3.8-27b-gguf           16.5GB    0GB  ready            qwen3.8-27b-gguf
+
+Run one with: eullm run <NAME>   (e.g. eullm run qwen3-0.6b)
+
+
+Server started with --daemon --port 11435 --pidfile /tmp/eullm.pid --rust-debug --batch-size 1 --no-flash-attn
+eullm daemon started (PID 87277).
+  PID file: /tmp/eullm.pid
+  Log file: /tmp/eullm.log
+  Stop with: kill 87277
+
+
+TESTING http://localhost:11435/api/chat with simple query
+
+TEST_START 1795597726
+The server is running
+{"created_at":"2026-11-25T09:08:49.343541+00:00","done":true,"done_reason":"stop","eval_count":193,"eval_duration":2315561959,"load_duration":391181875,"message":{"content":"<think>Okay, the user just said \"Hello!\" so I need to respond appropriately. Let me think about the best way to greet them.\n\nFirst, a simple and friendly response is always good. Maybe start with something like \"Hi there!\" which is common in many languages. But since they might not know the exact language, it's better to be general. \n\nI should make sure my response is polite and welcoming. Let me check if there's any specific context needed here. The user hasn't provided more details yet. So, a standard greeting like \"Hello!\" should work.\n\nAnother option could be a more casual message, but the main point is to respond in a way that shows engagement. Also, using proper punctuation might be good for a friendly tone. \n\nI need to make sure there's no markdown and keep it natural. Let me put it all together in a concise manner.\n</think>Hello! How can I assist you today? 😊","role":"assistant"},"model":"qwen3-0.6b","prompt_eval_count":10,"prompt_eval_duration":8021333,"total_duration":2714181875}
+TEST_END 1795597729
+
+
+TESTING http://localhost:11435/v1/chat/completions with simple query
+
+TEST_START 1795597729
+The server is running
+{"choices":[{"finish_reason":"stop","index":0,"message":{"content":"Hi! How can I assist you today? 😊","reasoning_content":"Okay, the user said \"Hi!\" so I need to respond politely. Since they're just greeting, a simple \"Hi!\" is appropriate. Maybe add a friendly message to keep the conversation going. Let me check if there's any specific context I should consider, but since there's no additional info, a general response is best. Make sure it's warm and welcoming.\n","role":"assistant"}}],"created":1795597730,"id":"chatcmpl-9bc23369-8a7d-4369-8946-2841dda38e8e","model":"qwen3-0.6b","object":"chat.completion","timings":{"predicted_ms":1044.630541,"predicted_n":90,"prompt_ms":3.9048339999999997,"prompt_n":10},"usage":{"completion_tokens":90,"prompt_tokens":10,"total_tokens":100}}
+TEST_END 1795597730
+
+
+TESTING http://localhost:11435/api/chat with longer query
+
+TEST_START 1795597730
+The server is running
+{"created_at":"2026-11-25T09:09:01.199127+00:00","done":true,"done_reason":"stop","eval_count":801,"eval_duration":10671701875,"load_duration":0,"message":{"content":"<think>Okay, so I need to figure out why 2 is considered a prime number even though all the other numbers are odd. Let me start by recalling what a prime number is. From what I remember, a prime number is a number greater than 1 that has no divisors other than 1 and itself. So, the definition is pretty straightforward—except for 2, which is a prime. \n\nBut wait, the question says \"all the rest are odd numbers.\" Let me check if there's any confusion here. The user might be thinking that because all other numbers are odd, they can't be even, so maybe they're implying that 2 has some special property compared to others? But no, that doesn't make sense. \n\nLet me think about prime numbers. Prime numbers are numbers greater than 1 that cannot be divided evenly by any number except 1 and themselves. The first few prime numbers are 2, 3, 5, 7, 11, 13, etc. So, starting from the second one, they're all odd. For example, 3 is odd, 5 is odd, 7 is odd... so yes, all primes except 2 are odd. Therefore, why is 2 considered a prime when all others are odd? Because 2 has two divisors: itself and 1, which fits the definition of a prime number. \n\nBut maybe there's a trick here? Let me think again. If someone thinks that since all other numbers are odd, then they can't be even (so 2 is the only one), but this isn't the case. Even numbers like 4, 6, 8, etc., have more than two divisors. For example, 4 is divisible by 1, 2, and 4, so it's not prime. Similarly, all other even numbers are composite. So, there's no confusion here; the rest of the primes (except for 2) are odd, which makes sense because they can't be divided evenly except by 1 and themselves. \n\nWait a second. Let me confirm once more. The question is phrased as \"why is 2 a prime number when all the rest are odd numbers?\" So if all other numbers are odd, then why is 2 considered prime? Because it meets the criteria of having exactly two divisors (1 and itself). All other primes are odd, so they can't be even. Therefore, the answer lies in recognizing that 2 is a special case where it's the only number with two divisors. \n\nI think that's it. The confusion might come from assuming there's no even numbers except for 2, but actually, all other primes are odd and composite numbers, so 2 remains prime.\n</think>The reason 2 is considered a prime number despite all other numbers being odd lies in the definition of a prime number: a prime number is an integer greater than 1 that has no divisors other than 1 and itself. \n\nWhile all other primes are odd (such as 3, 5, 7, etc.), they fail to meet the criteria for having exactly two divisors because they can also be divisible by 1, which satisfies this condition. For example:\n\n- The number 2 has only two divisors: 1 and itself.\n- All other primes (except 2) are odd and cannot be divided evenly by any number except 1 or themselves. \n\nThis distinction is key: while all even numbers (like 4, 6, etc.) have more than two divisors, they are not prime, whereas 2 remains a prime because it meets the fundamental criteria of having exactly two divisors.\n\n**Answer:** Because 2 has only two divisors (1 and itself) and is the only prime number that can be used as such, despite all other primes being odd.","role":"assistant"},"model":"qwen3-0.6b","prompt_eval_count":23,"prompt_eval_duration":4015250,"total_duration":10675000000}
+TEST_END 1795597741
+
+
+TESTING http://localhost:11435/v1/chat/completions with longer query
+
+TEST_START 1795597741
+The server is running
+{"choices":[{"finish_reason":"stop","index":0,"message":{"content":"The number 2 is considered a prime number because it satisfies the definition of a prime number: a number greater than 1 that has no divisors other than 1 and itself. Here's why:\n\n1. **Definition**: A prime number is any integer greater than 1 that has no divisors other than 1 and itself.  \n2. **2's Nature**: 2 is the only even prime number. All other even numbers greater than 2 are not prime because they are divisible by 2.  \n3. **Odd Primes**: All other prime numbers are odd. For example, 3, 5, 7, 11, 13, and so on are primes and do not have any divisors except 1 and themselves.  \n\nThus, while all odd numbers are prime, 2 is unique among prime numbers because it is even and qualifies as a prime number. The confusion arises from the wording of the question, but in reality, 2 is indeed a prime number.  \n\n**Final Answer:** 2 is a prime number because it meets the definition, and it is the only even prime number among prime numbers.","reasoning_content":"Okay, so I need to figure out why 2 is considered a prime number even though all the other odd numbers are prime. Let me start by recalling what a prime number is. A prime number is a number greater than 1 that has no divisors other than 1 and itself. So, for example, 2 is prime because it has only two divisors: 1 and 2. \n\nNow, the question is about why 2 is considered a prime even though all other odd numbers are prime. Let me break this down. Prime numbers are defined in mathematics, and they are all numbers greater than 1 that have no divisors other than 1 and themselves. So, 2 is indeed a prime, right? Wait, but the other odd numbers... like 3, 5, 7, 11, 13, etc., all have more than two divisors. For example, 3 has divisors 1 and 3, 5 has 1 and 5, 7 has 1 and 7, and so on. So, all of these are prime numbers. \n\nSo, maybe the confusion comes from the fact that primes are mostly odd, but 2 is even and also a prime number. The key here is that 2 is the only even prime number. All other even numbers greater than 2 are not prime because they are divisible by 2. Therefore, even though there are many odd prime numbers, 2 is the only one among them that is even. \n\nI think this makes sense. Let me check a few more examples. Take 17, which is prime, but 17 is odd. 19 is prime, odd. 23 is prime, odd. So, they are all primes. And 2 is the only even prime. So, the answer is that 2 is considered a prime number because it meets the definition, and it is the only even prime number. The other odd primes, like 3, 5, 7, etc., are also primes. \n\nI don't see any contradictions here. So, the reason why 2 is a prime number is because it satisfies the prime definition, and it's the only even number that does so. All other primes are either odd and prime or even and composite. So, the confusion might arise from the fact that the question is phrased a bit oddly, but in reality, 2 is indeed a prime number, and all other primes are odd.\n","role":"assistant"}}],"created":1795597751,"id":"chatcmpl-cfaa49bf-181a-48a3-ae82-caa325e1120e","model":"qwen3-0.6b","object":"chat.completion","timings":{"predicted_ms":9814.357375,"predicted_n":757,"prompt_ms":1.795833,"prompt_n":23},"usage":{"completion_tokens":757,"prompt_tokens":23,"total_tokens":780}}
+TEST_END 1795597751
+
+
+The server is not running
+
+
+
+== Dumping server log /tmp/eullm.log after server shutdown
+
+2026-11-25T09:08:40.301890Z  INFO eullm_engine::inference: Initializing llama.cpp backend...
+ggml_metal_device_init: tensor API disabled for pre-M5 and pre-A19 devices
+ggml_metal_library_init: using embedded metal library
+ggml_metal_library_compile_all: compiled 'fa_aux' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'fa_f16' library in 0.009 sec
+ggml_metal_library_compile_all: compiled 'fa_f32' library in 0.024 sec
+ggml_metal_library_compile_all: compiled 'fa_q4_0' library in 0.006 sec
+ggml_metal_library_compile_all: compiled 'fa_q4_1' library in 0.042 sec
+ggml_metal_library_compile_all: compiled 'fa_q5_0' library in 0.026 sec
+ggml_metal_library_compile_all: compiled 'fa_q5_1' library in 0.011 sec
+ggml_metal_library_compile_all: compiled 'fa_q8_0' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'fa_tensor' library in 0.021 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_f16' library in 0.050 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_f32' library in 0.021 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q4_0' library in 0.039 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q4_1' library in 0.015 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q5_0' library in 0.019 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q5_1' library in 0.034 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q8_0' library in 0.029 sec
+ggml_metal_library_compile_all: compiled 'mul_mv' library in 0.043 sec
+ggml_metal_library_compile_all: compiled 'mul_mv_mma' library in 0.060 sec
+ggml_metal_library_compile_all: compiled 'mul_mm' library in 0.052 sec
+ggml_metal_library_compile_all: compiled 'quantize' library in 0.054 sec
+ggml_metal_library_compile_all: compiled 'softmax' library in 0.023 sec
+ggml_metal_library_compile_all: compiled 'norm' library in 0.008 sec
+ggml_metal_library_compile_all: compiled 'unary' library in 0.060 sec
+ggml_metal_library_compile_all: compiled 'binbcast' library in 0.041 sec
+ggml_metal_library_compile_all: compiled 'reduce' library in 0.044 sec
+ggml_metal_library_compile_all: compiled 'tri' library in 0.044 sec
+ggml_metal_library_compile_all: compiled 'ssm' library in 0.029 sec
+ggml_metal_library_compile_all: compiled 'wkv' library in 0.028 sec
+ggml_metal_library_compile_all: compiled 'gated_delta_net' library in 0.028 sec
+ggml_metal_library_compile_all: compiled 'solve_tri' library in 0.017 sec
+ggml_metal_library_compile_all: compiled 'rope' library in 0.018 sec
+ggml_metal_library_compile_all: compiled 'conv' library in 0.017 sec
+ggml_metal_library_compile_all: compiled 'upscale' library in 0.050 sec
+ggml_metal_library_compile_all: compiled 'argsort' library in 0.044 sec
+ggml_metal_library_compile_all: compiled 'pool' library in 0.014 sec
+ggml_metal_library_compile_all: compiled 'misc' library in 0.014 sec
+ggml_metal_library_compile_all: loaded 36 libraries from embedded data in 0.064 sec (max single = 0.060 sec)
+ggml_metal_rsets_init: creating a residency set collection (keep_alive = 180 s)
+ggml_metal_device_init: GPU name:   MTL0 (Apple M1)
+ggml_metal_device_init: GPU family: MTLGPUFamilyApple7  (1007)
+ggml_metal_device_init: GPU family: MTLGPUFamilyMetal4  (5002)
+ggml_metal_device_init: simdgroup reduction   = true
+ggml_metal_device_init: simdgroup matrix mul. = true
+ggml_metal_device_init: has unified memory    = true
+ggml_metal_device_init: has bfloat            = true
+ggml_metal_device_init: has tensor            = false
+ggml_metal_device_init: use residency sets    = true
+ggml_metal_device_init: use shared buffers    = true
+ggml_metal_device_init: recommendedMaxWorkingSetSize  = 12713.12 MB
+eullm ready (no model loaded — send a request with a "model" field to load one).
+  API (EULLM):   http://localhost:11435/api
+  API (OpenAI):  http://localhost:11435/v1
+  Chat UI:       http://localhost:11435/
+  Rust debug:    enabled (NaN/Inf logit check active — extra per-token cost)
+
+Press Ctrl+C to stop.
+
+2026-11-25T09:08:40.408903Z  INFO eullm_engine::api: API authentication: disabled (not configured (no authentication — the IP allowlist is the only control)). Set EULLM_API_KEYS=id:secret to require a bearer token — necessary behind Docker's published ports, where every external client arrives as the bridge gateway address.
+2026-11-25T09:08:40.408945Z  INFO eullm_engine::api: Allowed source IPs/subnets: 127.0.0.1/32, ::1/128  [source: default (loopback only — nothing configured)]
+2026-11-25T09:08:40.408951Z  INFO eullm_engine::api: Allowed browser origins: any loopback origin  [source: default (any loopback origin — nothing configured)]
+2026-11-25T09:08:40.408967Z  INFO eullm_engine::api: Decision policy: no rules  [source: not configured (EULLM_DECISION_POLICY not set)]
+2026-11-25T09:08:40.408977Z  INFO eullm_engine::api: Model store: /Users/peterhickman/.eullm/models  [source: default]
+2026-11-25T09:08:40.409053Z  INFO eullm_engine::api: Audit trail: /Users/peterhickman/.eullm/audit/audit.jsonl  [source: default]
+2026-11-25T09:08:40.409298Z  INFO eullm_engine::monitor::history: Monitor history: /Users/peterhickman/.eullm/metrics — 30 days kept (default), 0.1 MiB used  [source: default]
+2026-11-25T09:08:40.409534Z  INFO eullm_engine::api: Administration (EULLM_ADMIN_KEY): off (EULLM_ADMIN_KEY not set): whoever may use the API may download, delete and unload models; the Monitor's history can be read but not deleted or its retention changed over the API
+2026-11-25T09:08:40.409541Z  INFO eullm_engine::api: Prometheus /metrics (EULLM_METRICS_TOKEN): off (EULLM_METRICS_TOKEN not set): /metrics is not served
+2026-11-25T09:08:40.409545Z  INFO eullm_engine::api: Models a request may name: any model in the folder  [source: default]
+2026-11-25T09:08:40.409576Z  INFO eullm_engine::api: EuLLM Pro pages in the chat's admin menu: on  [source: default for a released build; EULLM_NO_PRO_HINTS=1 turns them off]
+2026-11-25T09:08:40.409580Z  INFO eullm_engine::api: Decision traces: off (EULLM_DECISION_TRACES not set) — decisions are audited with their state as a SHA-256 only
+2026-11-25T09:08:40.409598Z  INFO eullm_engine::api: Generation models kept resident: up to 1 (--max-loaded-models)
+2026-11-25T09:08:40.409621Z  INFO eullm_engine::api: A request that names no model is answered by the most recently used generation model (no --default-model)
+2026-11-25T09:08:40.410228Z  INFO eullm_engine::api: eullm API listening on 0.0.0.0:11435
+2026-11-25T09:08:40.410239Z  WARN eullm_engine::api: ui_port == api_port (11435); refusing to bind UI to avoid collision. Pick a different --ui-port or pass --no-ui.
+2026-11-25T09:08:46.620696Z  INFO eullm_engine::api: Loading model → qwen3-0.6b (/Users/peterhickman/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf)
+[EULLM] --fit: model (0.37 GiB) fits fully in 11.84 GiB free VRAM → offloading all layers.
+2026-11-25T09:08:46.628070Z  INFO eullm_engine::inference: GPU backend: Metal
+2026-11-25T09:08:46.628131Z  INFO eullm_engine::inference::scheduler: Loading model: /Users/peterhickman/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf
+2026-11-25T09:08:46.910906Z  INFO eullm_engine::inference::scheduler: Allocating context: 4096 total tokens, 4096 per sequence (1 slots, flash_attn=false, n_batch=2048)
+2026-11-25T09:08:47.008927Z  INFO eullm_engine::inference::scheduler: Context params applied: n_ctx=4096, n_batch=2048, n_ubatch=512
+2026-11-25T09:08:47.009123Z  INFO eullm_engine::inference::scheduler: Scheduler running — max_batch_size=1, queue_capacity=8, total_ctx=4096, per_seq_ctx=4096
+common_memory_breakdown_print: | memory breakdown [MiB] | total    free    self   model   context   compute    unaccounted |
+common_memory_breakdown_print: |   - MTL0 (Apple M1)    | 12124 = 11145 + ( 978 =   372 +     448 +     158) +           0 |
+common_memory_breakdown_print: |   - Host               |                   141 =   121 +       0 +      20                |
+2026-11-25T09:08:47.011327Z  INFO eullm_engine::api: Model swap complete → qwen3-0.6b (batch_size=1)
+  Model:         qwen3-0.6b
+  GPU backend:   Metal
+  CPU features:  MTL : EMBED_LIBRARY = 1 | CPU : NEON = 1 | ARM_FMA = 1 | FP16_VA = 1 | DOTPROD = 1 | LLAMAFILE = 1 | ACCELERATE = 1 | REPACK = 1 |
+  Rust debug:    enabled (NaN/Inf logit check active — extra per-token cost)
+  GPU layers:    all
+  Context:       4096 total (4096 per sequence × 1 slots)
+    this model was trained for 40960 — raise it with --ctx-size (costs KV memory)
+  Flash attn:    off (--no-flash-attn)
+  KV cache:      K=F16 V=F16
+  KV memory:     K=224 MiB, V=224 MiB
+  Threads:       4
+  Batch (prefill): 2048 (micro-batch 512)
+  Mode:          continuous batching (max 1 concurrent)
+2026-11-25T09:08:47.017818Z  INFO eullm_engine::api::routes: Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+2026-11-25T09:08:47.018056Z  INFO eullm_engine::inference::scheduler: Seq 0: prompt=10 tokens, reused 0 from cache, decoded 10 fresh, max_output=4086, effective_ctx=4096
+2026-11-25T09:08:49.341751Z  INFO eullm_engine::audit: Audit: inference logged audit_id=afc9094a-53dc-42f9-bc14-84b72bd1646a model=qwen3-0.6b request_type=chat input_tokens=10 output_tokens=193 duration_ms=2323
+2026-11-25T09:08:49.408513Z  INFO eullm_engine::api::routes: Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.00, num_ctx=None
+2026-11-25T09:08:49.408621Z  INFO eullm_engine::inference::scheduler: Seq 0: prompt=10 tokens, reused 3 from cache, decoded 7 fresh, max_output=4086, effective_ctx=4096
+2026-11-25T09:08:50.457232Z  INFO eullm_engine::audit: Audit: inference logged audit_id=48ae02b9-b169-4f8a-8f05-12f3bc00aeb9 model=qwen3-0.6b request_type=chat.completions input_tokens=10 output_tokens=90 duration_ms=1048
+2026-11-25T09:08:50.522661Z  INFO eullm_engine::api::routes: Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+2026-11-25T09:08:50.522966Z  INFO eullm_engine::inference::scheduler: Seq 0: prompt=23 tokens, reused 3 from cache, decoded 20 fresh, max_output=4073, effective_ctx=4096
+2026-11-25T09:09:01.198584Z  INFO eullm_engine::audit: Audit: inference logged audit_id=4b3372b9-0342-46cd-93a6-295b4d739f34 model=qwen3-0.6b request_type=chat input_tokens=23 output_tokens=801 duration_ms=10675
+2026-11-25T09:09:01.256245Z  INFO eullm_engine::api::routes: Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.00, num_ctx=None
+2026-11-25T09:09:01.256416Z  INFO eullm_engine::inference::scheduler: Seq 0: prompt=23 tokens, reused 22 from cache, decoded 1 fresh, max_output=4073, effective_ctx=4096
+2026-11-25T09:09:11.072416Z  INFO eullm_engine::audit: Audit: inference logged audit_id=b6b48252-8c81-47fc-b2d5-e2f108c1941e model=qwen3-0.6b request_type=chat.completions input_tokens=23 output_tokens=757 duration_ms=9816
+
+== End of dump
+
+Server started with --daemon --port 11435 --pidfile /tmp/eullm.pid --rust-debug --batch-size 1 --cache-type-k q4_0 --cache-type-v q4_0 --no-flash-attn
+eullm daemon started (PID 87316).
+  PID file: /tmp/eullm.pid
+  Log file: /tmp/eullm.log
+  Stop with: kill 87316
+TESTING http://localhost:11435/api/chat with longer query
+
+TEST_START 1795597767
+The server is running
+{"created_at":"2026-11-25T09:10:45.083577+00:00","done":true,"done_reason":"length","eval_count":4073,"eval_duration":77454742625,"load_duration":145164250,"message":{"content":"eral\neral\neral\neral\n rime\n\n rime...?\n rime\n r...\neral\ner\n \n rime r im...\n\nIt is... the shall. rime?\n\nOkay, so I need to answer this question. Let, or the riddle. Given, or the riddle. Let me think, let, or the r.\n\nAlright? Alright, right? Alright, right? Alright, right?\n\nBut maybe I should start with the original question: \"why is 2 a prime number when all the rest is odd numbers?\" Hmm. Well... It's time to respond.\n\nSo, the user is asking for the meaning of \"wh\" is 2 a prime number when all the rest is odd and...? Let... Let me think... Maybe they or the r? Alright. Okay, so.\n\nLet me break it down. The phrase is that they or the rime? So, I need to answer here. The user's question is in the form of \"why is 2 a prime number when all the rest is odd numbers?\" \n\nSo, breaking it down: The phrase is that the phrase is \"wh\" or the \"r\" and \"is\". And then they rime? Let me think... Alright, so maybe I need to answer this.\n\nBut since I'm not sure about the question. So let me try to explain the meaning. The phrase is that \"why is 2 a prime number when all the rest is odd numbers?\" So in other words, the question is asking for what? Let me think... Hmm. Alright.\n\nSo perhaps the user is trying to answer with! Let me think of... Alright, let me break it down. Maybe I should explain the meaning. The phrase is \"wh\" or \"the r\" and \"is\". So, \"why is 2 a prime number when all the rest is odd numbers?\" Which would be? Let me think, maybe the answer is that \"wh, or the rime... Alright.\n\nAlright, so I think. Maybe I should just go ahead. The question is: \"why is 2 a prime number when all the rest is odd numbers?\" So breaking it down into pieces. The phrase is \"why is 22 a prime number when...\" So meaning, \"what's 2 a prime number, when all the rest is odd numbers?\"\n\nSo then that I think the answer is: When you have 2 as a prime number, and all the rest is odd numbers? But so the answer would be that it's \"wh\" or the rime... Let me think... Alright.\n\nAlright. So maybe now i just need to explain it for the answer. So yeah.\n\n**Final Answer**\n**\n\nWhen 2 is a prime number, and when all the rest is odd numbers, then the phrase is: \"why is 2 a prime number when all the rest is odd numbers?\"\n\nSo in another way, the meaning is that: \"what's 2 as a prime number, when all the rest is odd numbers.\"\n\nTherefore, the answer would be: \"When 2 is a prime number and when all the rest is odd numbers.\"\n\nTherefore, the final answer is:\n\n**Final Answer**\n$$\\boxed{ \\text{When 2 is a prime number and when all the rest is odd numbers.} }\n$$\n\nWait, but maybe I need to make it clearer. Let me just think: \"What's 2 as a prime number, and when all the rest is odd numbers.\"\n\nSo yeah, putting that into proper answer:\n\n**Final Answer**\n\\boxed{ \\text{ When 2 is a prime number and when all the rest is odd numbers.}\n$$\n\nOkay, so that seems to me.\n\nWait, maybe I should write it more properly: \"When 2 is a prime number and when all the rest is odd numbers.\"\n\nSo yeah, putting in a box:\n\n**Final Answer**\n\\boxed{ \\text{When } 2 \\text{is} \\textit{a} prime number and when all the rest is odd numbers.}}\n\nAlternatively more words:\n\n**Final Answer**\n$$\\boxed{\\text{ When } 2 \\text{ is } a prime number \\text{and} \\text{ when} \\text{all} \\text{the} \\text{rest} \\text{is} \\text{odd} } \\text{numbers.}}\n$$\n\nBut maybe I should make it more concise: \"When 2 is a prime and all the rest is odd numbers.\"\n\nSo yeah.\n\n**Final Answer**\n\\boxed{\\text{When} \\, 2 \\text{is} \\text{a} \\text{prime number} \\text{and} }when all the rest is odd numbers.}}\n$$\n\nBut maybe I should write it as: \"When 2 is a prime number and when all the rest is an odd number.\"\n\nSo the final answer would be:\n\n**Final Answer**\n\\boxed{\\text{When}} 2 \\text{is} a prime number and when all the rest is an odd number.}\n$$\n\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{is} \\text{a prime number and when all the rest is an odd number.}\n$$\n\nBut I think maybe the most concise is:\n\n**Final Answer**\n$$\n\\boxed{ \\text{ When } 2 \\text{is} \\text{a} \\text{prime number and when all the rest is odd numbers.}}\n$$\n\nAlternatively, to be more precise as per instruction.\n\n**Final Answer**\n$$\n\\boxed{\\text{When} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\nBut I think maybe it's better if we just write:\n\n**Final Answer**\n$$\n\\boxed{\\text{When} \\, 2 \\text{is} \\text{a} \\text{prime} \\text{number \\text{and} \\text{when all the rest is an odd number.}}\n$$\n\nOr more simply as per instruction.\n\n**Final Answer**\n$$\n\\boxed{\\text{When}} \\, 2 \\text{is a prime} \\text{and} \\text{ when all the rest is an odd number.}}\n$$\n\nBut since the user wrote:\n\n\"I need to answer why is 2 a prime number when all the rest is odd numbers?\"\n\nSo I think maybe write \"When 2 is a prime and when all the rest is an odd number.\"\n\n**Final Answer**\n\\boxed{\\text{When} \\, \\, 2 \\text{is} a prime number \\text{and} \\text{when all the rest is an odd number.}\n$$\n\nBut to make it more precise:\n\n**Final Answer**\n$$\n\\boxed{\\text{When}} \\, 2 \\text{is} \\text{a prime number and when all the rest is an odd number.}}\n$$\n\nAlternatively, maybe:\n\n**Final Answer**\n$$\n\\boxed{{\\text{ When } \\, 2 \\text{is a prime} \\text{and when all the rest is an odd number.}}\n$$\n\nBut given that, maybe even more precise is:\n\n**Final Answer**\n$$\n\\boxed{\\text{When}} \\, 2 \\text{is} \\text{a prime number and when all the rest is an odd number.}\n$$\n\n**Final Answer**\n\\$$\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\n$$\n**Final Answer**\n\n$\\boxed{\\text{When}\\, 2 \\text{is a prime number and when all the rest is an odd number.}}$\n\nBut since they have not a multiple answer, let I think to write in a box.\n\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{is} \\text{a} \\text{prime} \\text{number and when all the rest is an odd number.}}\n$$\n\nBut since the system will accept \\boxed{} as:\n\n$\\boxed{ \\text{When} } 2 \\text{is a prime and when all the rest is an odd number.}\n\n**Final Answer**\n$$\n\\boxed{\\text{When}} \\, \\, 2 \\text{is} \\text{a prime number and when all the rest is an odd number.}}\n$$\n\nWhichBut considering to the user's requirement in terms of box:\n\n**Final Answer**\n$$\n\\boxed{\\text{When} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\nAnd since in LaTeX:\n\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n\nBut if I have to write it as per instruction:\n\n**Final Answer**\n\n$$\n\\boxed{\\text{When}} \\, 2 \\text{is} a prime number and when all the rest is an odd number.}\n$$\n\nAlternatively, if allowed:\n\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\n\nBut to make it as per instruction:\n\n**Final Answer**\n\n$\\boxed{\\text{When} \\, 2 \\text{is} \\text{a} \\text{prime} \\text{number} \\text{and} \\text{when all the rest is an odd number.}}}$\n\nBut if I have to write as per instruction:\n\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.\n\n**Final Answer**\n\n$$\n\\boxed{\\text{When} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\nBut since user said to put in box:\n\n**Final Answer**\n$\\boxed{ \\text{When} \\, 2 \\text{is a prime number and when all the rest is odd numbers.}} }$\n\nAlternatively, more concise:\n\n**Final Answer**\n\\boxed{\\text{ When } \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\nBut since the system might expect it to be in LaTeX format with boxed notation.\n\nHence:\n\n**Final Answer**\n\\boxed{\\text{When} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n\nOr simply:\n\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.\n\nBut to make it in box:\n\n**Final Answer**\n\n$$\n\\boxed{\\text{When}}\n\\text{ \\quad 2 \\text{is} } \\text{a prime} \\text{number and when all the rest is an odd number.}\n$$\n\nBut since user said to use boxed, perhaps:\n\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\n}\n\nOr even more precise:\n\n**Final Answer**\n\n$$\n\\boxed{\\text{When} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\n$$\n\nBut since user might prefer boxed as per instruction:\n\n**Final Answer**\n$$\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.} $$\n\nHence, I the final answer is:\n\n$$\n\\boxed{\\text{When} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\n$$\n\nBut since LaTeX can't handle this:\n\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.\n**Final Answer**\n\n$$\n\\boxed{\\text{When}} \\, 2 \\text{is} \\text{a} \\text{prime number and when all the rest is an odd number.}\n$$\n\nBut again, since the system might accept boxed answers:\n\n**Final Answer**\n$$\n\\boxed{\\text{When}\\,2 \\text{is a prime number and when all the rest is an odd number.}}.\n**Final Answer**\n\n$$\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\nBut to use the format as per instruction:\n\n**Final Answer**\n\\boxed{\\text{When}}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{ is a prime number and when all the rest is an odd number}.\n$$\n\nBut since if I have to write it as:\n\n**Final Answer**\n\\boxed{\\{\\text{When} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\\}\n}\n\nBut given the system might accept this as correct.\n\n**Final Answer**\n$$\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}$$\n\nHence:\n\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\n}\n\n**Final Answer**\n\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\\}\n$$\n\nBut due to LaTeX only:\n\n**Final Answer**\n\n$$\n\\boxed{\\text{When}} \\, 2 \\text{is} \\text{a prime number and when all the rest is an odd number.}\n$$\n\nSince the system might expect something similar.\n\nBut perhaps just write:\n\n**Final Answer**\n$$\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\nAlternatively, boxed:\n\n$\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\nBut since LaTeX is not allowed here...\n\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n}\n\n**Final Answer**\n$$\n\\boxed{\\text{When} \\quad 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\nBut since system might expect only one box.\n\n**Final Answer**\n\n$$\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\n$$\n\n\n\nAfter some thinking, but perhaps I can use:\n\n**Final Answer**\n\n$$\n\\boxed{\\text{When} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\nHence final answer:\n\n**Final Answer**\n$$\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}}}\n$$\n\nBut since this might not be accepted:\n\n**Final Answer**\n\n$$\n\\boxed{\n\\text{When}} \\, 2 \\text{is} \\text{a prime number and when all the rest is an odd number.}\n$$\n\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{is a a prime number and when all the rest is an odd number.}\n$$\n**Final Answer**\n\n$$\n$\\boxed{\\text{When}} \\, 2 \\text{is} \\text{a prime number and when all the rest is an odd number.}}}$\n\nBut to make it as:\n\n**Final Answer**\n\\boxed{\n\\begin{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.\n}\n$$\n\nThis is the final answer according to the user's request.\n\n**Final Answer**\n\n$$\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}$$\n$\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\n**Final Answer**\n\n$$\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\n**Final Answer**\n\n$$\n\\boxed{\n\\text{When}} \\, 2 \\text{is} \\text{a prime number and when all the rest is an odd number.}\n}\n$$\n\n \n\nBut since I think that maybe in LaTeX it should be:\n\n**Final Answer**\n\n$$\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\n$$\n\nThus,\n\n**Final Answer**\n$$\n\\boxed{\\text{When}} \\, 2 \\text{is} \\text{a} prime number and when all the rest is an odd number.}}\n}\n\nBut if since LaTeX box format:\n\n**Final Answer**\n\n$\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{is} a prime number and when all the rest is an odd number.}\n**Final Answer**\n\\boxed{{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\nBut due to system not accept box:\n\n**Final Answer**\n\n$$\n\\boxed{\n\\text{When} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\n}\n\n**Final Answer**\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n$$\n\nLet me know if I can make it shorter.\n\n**Final Answer**\n\n$$$\n\\boxed{\\text{When}} \\, 2 \\text{is} \\text{a} prime number and when all the rest is an odd number.}\n$$\n\n**Final Answer**\n$$\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\n$$\n\nBut since the system may accept boxed answers:\n\n**Final Answer**\n\n$$\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}$$\n**Final Answer**:\n\n\\boxed{\\text{When}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}\n$$\n\n**Final Answer**\n\n\\boxed{\\text{When\\}} \\, 2 \\text{is a prime number and when all the rest is an odd number.}}\n} \n\n**Final Answer**\n$$\n\\boxed{\\text{When}} \\ 2 \\","role":"assistant"},"model":"qwen3-0.6b","prompt_eval_count":23,"prompt_eval_duration":4144584,"total_duration":77603164250}
+TEST_END 1795597845
+
+
+TESTING http://localhost:11435/v1/chat/completions with longer query
+
+TEST_START 1795597845
+The server is running
+{"choices":[{"finish_reason":"length","index":0,"message":{"content":"utor\n \notto\n \n \n \n \n literacy\nration\nrance\n\n\n\n?\n\n\n\n\n\nOkay, way, it, when all the rest is... ore... perhaps... maybe... perhaps............ all... er... ... er... er ... ... er … er ... er ... er ... er ... er ... er ... er ... er er ... er er ... er er er er er ... er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er er","role":"assistant"}}],"created":1795597921,"id":"chatcmpl-e2ad44b3-44cd-47e7-b7e6-1bc84392b201","model":"qwen3-0.6b","object":"chat.completion","timings":{"predicted_ms":76254.104125,"predicted_n":4073,"prompt_ms":2.4702080000000004,"prompt_n":23},"usage":{"completion_tokens":4073,"prompt_tokens":23,"total_tokens":4096}}
+TEST_END 1795597921
+
+
+
+== Dumping server log /tmp/eullm.log after server shutdown
+
+[EULLM] --cache-type-v q4_0 needs flash attention, which --no-flash-attn turns off: the value cache is f16, the key cache stays as asked.
+2026-11-25T09:09:21.157692Z  INFO eullm_engine::inference: Initializing llama.cpp backend...
+ggml_metal_device_init: tensor API disabled for pre-M5 and pre-A19 devices
+ggml_metal_library_init: using embedded metal library
+ggml_metal_library_compile_all: compiled 'fa_aux' library in 0.001 sec
+ggml_metal_library_compile_all: compiled 'fa_f16' library in 0.015 sec
+ggml_metal_library_compile_all: compiled 'fa_f32' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'fa_q4_0' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'fa_q4_1' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'fa_q5_0' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'fa_q5_1' library in 0.007 sec
+ggml_metal_library_compile_all: compiled 'fa_q8_0' library in 0.006 sec
+ggml_metal_library_compile_all: compiled 'fa_tensor' library in 0.003 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_f16' library in 0.008 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_f32' library in 0.009 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q4_0' library in 0.011 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q4_1' library in 0.005 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q5_0' library in 0.002 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q5_1' library in 0.016 sec
+ggml_metal_library_compile_all: compiled 'fa_vec_q8_0' library in 0.004 sec
+ggml_metal_library_compile_all: compiled 'mul_mv' library in 0.008 sec
+ggml_metal_library_compile_all: compiled 'mul_mv_mma' library in 0.013 sec
+ggml_metal_library_compile_all: compiled 'mul_mm' library in 0.015 sec
+ggml_metal_library_compile_all: compiled 'quantize' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'softmax' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'norm' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'unary' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'binbcast' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'reduce' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'tri' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'ssm' library in 0.009 sec
+ggml_metal_library_compile_all: compiled 'wkv' library in 0.010 sec
+ggml_metal_library_compile_all: compiled 'gated_delta_net' library in 0.008 sec
+ggml_metal_library_compile_all: compiled 'solve_tri' library in 0.008 sec
+ggml_metal_library_compile_all: compiled 'rope' library in 0.008 sec
+ggml_metal_library_compile_all: compiled 'conv' library in 0.007 sec
+ggml_metal_library_compile_all: compiled 'upscale' library in 0.000 sec
+ggml_metal_library_compile_all: compiled 'argsort' library in 0.008 sec
+ggml_metal_library_compile_all: compiled 'pool' library in 0.007 sec
+ggml_metal_library_compile_all: compiled 'misc' library in 0.007 sec
+ggml_metal_library_compile_all: loaded 36 libraries from embedded data in 0.018 sec (max single = 0.016 sec)
+ggml_metal_rsets_init: creating a residency set collection (keep_alive = 180 s)
+ggml_metal_device_init: GPU name:   MTL0 (Apple M1)
+ggml_metal_device_init: GPU family: MTLGPUFamilyApple7  (1007)
+ggml_metal_device_init: GPU family: MTLGPUFamilyMetal4  (5002)
+ggml_metal_device_init: simdgroup reduction   = true
+ggml_metal_device_init: simdgroup matrix mul. = true
+ggml_metal_device_init: has unified memory    = true
+ggml_metal_device_init: has bfloat            = true
+ggml_metal_device_init: has tensor            = false
+ggml_metal_device_init: use residency sets    = true
+ggml_metal_device_init: use shared buffers    = true
+ggml_metal_device_init: recommendedMaxWorkingSetSize  = 12713.12 MB
+eullm ready (no model loaded — send a request with a "model" field to load one).
+  API (EULLM):   http://localhost:11435/api
+  API (OpenAI):  http://localhost:11435/v1
+  Chat UI:       http://localhost:11435/
+  Rust debug:    enabled (NaN/Inf logit check active — extra per-token cost)
+
+Press Ctrl+C to stop.
+
+2026-11-25T09:09:21.220099Z  INFO eullm_engine::api: API authentication: disabled (not configured (no authentication — the IP allowlist is the only control)). Set EULLM_API_KEYS=id:secret to require a bearer token — necessary behind Docker's published ports, where every external client arrives as the bridge gateway address.
+2026-11-25T09:09:21.220115Z  INFO eullm_engine::api: Allowed source IPs/subnets: 127.0.0.1/32, ::1/128  [source: default (loopback only — nothing configured)]
+2026-11-25T09:09:21.220121Z  INFO eullm_engine::api: Allowed browser origins: any loopback origin  [source: default (any loopback origin — nothing configured)]
+2026-11-25T09:09:21.220127Z  INFO eullm_engine::api: Decision policy: no rules  [source: not configured (EULLM_DECISION_POLICY not set)]
+2026-11-25T09:09:21.220136Z  INFO eullm_engine::api: Model store: /Users/peterhickman/.eullm/models  [source: default]
+2026-11-25T09:09:21.220190Z  INFO eullm_engine::api: Audit trail: /Users/peterhickman/.eullm/audit/audit.jsonl  [source: default]
+2026-11-25T09:09:21.220384Z  INFO eullm_engine::monitor::history: Monitor history: /Users/peterhickman/.eullm/metrics — 30 days kept (default), 0.1 MiB used  [source: default]
+2026-11-25T09:09:21.220554Z  INFO eullm_engine::api: Administration (EULLM_ADMIN_KEY): off (EULLM_ADMIN_KEY not set): whoever may use the API may download, delete and unload models; the Monitor's history can be read but not deleted or its retention changed over the API
+2026-11-25T09:09:21.220561Z  INFO eullm_engine::api: Prometheus /metrics (EULLM_METRICS_TOKEN): off (EULLM_METRICS_TOKEN not set): /metrics is not served
+2026-11-25T09:09:21.220565Z  INFO eullm_engine::api: Models a request may name: any model in the folder  [source: default]
+2026-11-25T09:09:21.220572Z  INFO eullm_engine::api: EuLLM Pro pages in the chat's admin menu: on  [source: default for a released build; EULLM_NO_PRO_HINTS=1 turns them off]
+2026-11-25T09:09:21.220578Z  INFO eullm_engine::api: Decision traces: off (EULLM_DECISION_TRACES not set) — decisions are audited with their state as a SHA-256 only
+2026-11-25T09:09:21.220584Z  INFO eullm_engine::api: Generation models kept resident: up to 1 (--max-loaded-models)
+2026-11-25T09:09:21.220590Z  INFO eullm_engine::api: A request that names no model is answered by the most recently used generation model (no --default-model)
+2026-11-25T09:09:21.220883Z  INFO eullm_engine::api: eullm API listening on 0.0.0.0:11435
+2026-11-25T09:09:21.221466Z  WARN eullm_engine::api: ui_port == api_port (11435); refusing to bind UI to avoid collision. Pick a different --ui-port or pass --no-ui.
+2026-11-25T09:09:27.473264Z  INFO eullm_engine::api: Loading model → qwen3-0.6b (/Users/peterhickman/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf)
+[EULLM] --fit: model (0.37 GiB) fits fully in 11.84 GiB free VRAM → offloading all layers.
+2026-11-25T09:09:27.478375Z  INFO eullm_engine::inference: GPU backend: Metal
+2026-11-25T09:09:27.478431Z  INFO eullm_engine::inference::scheduler: Loading model: /Users/peterhickman/.eullm/models/qwen3-0.6b/Qwen3-0.6B-Q4_K_M.gguf
+2026-11-25T09:09:27.579029Z  INFO eullm_engine::inference::scheduler: Allocating context: 4096 total tokens, 4096 per sequence (1 slots, flash_attn=false, n_batch=2048)
+2026-11-25T09:09:27.615790Z  INFO eullm_engine::inference::scheduler: Context params applied: n_ctx=4096, n_batch=2048, n_ubatch=512
+2026-11-25T09:09:27.615960Z  INFO eullm_engine::inference::scheduler: Scheduler running — max_batch_size=1, queue_capacity=8, total_ctx=4096, per_seq_ctx=4096
+common_memory_breakdown_print: | memory breakdown [MiB] | total    free    self   model   context   compute    unaccounted |
+common_memory_breakdown_print: |   - MTL0 (Apple M1)    | 12124 = 11310 + ( 813 =   372 +     288 +     152) +           0 |
+common_memory_breakdown_print: |   - Host               |                   141 =   121 +       0 +      20                |
+2026-11-25T09:09:27.617889Z  INFO eullm_engine::api: Model swap complete → qwen3-0.6b (batch_size=1)
+  Model:         qwen3-0.6b
+  GPU backend:   Metal
+  CPU features:  MTL : EMBED_LIBRARY = 1 | CPU : NEON = 1 | ARM_FMA = 1 | FP16_VA = 1 | DOTPROD = 1 | LLAMAFILE = 1 | ACCELERATE = 1 | REPACK = 1 |
+  Rust debug:    enabled (NaN/Inf logit check active — extra per-token cost)
+  GPU layers:    all
+  Context:       4096 total (4096 per sequence × 1 slots)
+    this model was trained for 40960 — raise it with --ctx-size (costs KV memory)
+  Flash attn:    off (--no-flash-attn)
+  KV cache:      K=Q4_0 V=F16
+  KV memory:     K=63 MiB, V=224 MiB
+  Threads:       4
+  Batch (prefill): 2048 (micro-batch 512)
+  Mode:          continuous batching (max 1 concurrent)
+2026-11-25T09:09:27.623678Z  INFO eullm_engine::api::routes: Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.10, num_ctx=None
+2026-11-25T09:09:27.623935Z  INFO eullm_engine::inference::scheduler: Seq 0: prompt=23 tokens, reused 0 from cache, decoded 23 fresh, max_output=4073, effective_ctx=4096
+2026-11-25T09:10:45.081461Z  INFO eullm_engine::audit: Audit: inference logged audit_id=ac133f57-1d68-4252-8649-1d827a285ae0 model=qwen3-0.6b request_type=chat input_tokens=23 output_tokens=4073 duration_ms=77458
+2026-11-25T09:10:45.150329Z  INFO eullm_engine::api::routes: Request params: max_tokens=4294967295, temp=0.80, top_k=40, top_p=0.90, repeat_penalty=1.00, num_ctx=None
+2026-11-25T09:10:45.150602Z  INFO eullm_engine::inference::scheduler: Seq 0: prompt=23 tokens, reused 22 from cache, decoded 1 fresh, max_output=4073, effective_ctx=4096
+2026-11-25T09:12:01.405842Z  INFO eullm_engine::audit: Audit: inference logged audit_id=45d50deb-c370-4108-a01e-157f70f2191e model=qwen3-0.6b request_type=chat.completions input_tokens=23 output_tokens=4073 duration_ms=76256
+
+== End of dump
