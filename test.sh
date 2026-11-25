@@ -155,7 +155,7 @@ echo
 
 dump_log
 
-SERVER_ARGS="--rust-debug --batch-size 1 --cache-type-k q4_0 --cache-type-v q4_0 --no-flash-attn"
+SERVER_ARGS="--rust-debug --batch-size 1 --cache-type-k q8_0 --cache-type-v q8_0 --no-flash-attn"
 start_server
 
 echo TESTING http://localhost:${NOT_OLLAMA}/api/chat with longer query
